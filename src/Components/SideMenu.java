@@ -4,17 +4,32 @@
  */
 package Components;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.ButtonGroup;
+
 /**
  *
  * @author Atahan
  */
 public class SideMenu extends javax.swing.JPanel {
-
+    private ArrayList<Button> menuButtons;
+    private Button selectedButton;
+    
     /**
      * Creates new form SideMenu
      */
     public SideMenu() {
         initComponents();
+        menuButtons = new ArrayList<Button>();
+        menuButtons.add(activitiesBtn);
+        menuButtons.add(messagesBtn);
+        menuButtons.add(schedulerBtn);
+        menuButtons.add(profileBtn); 
+        menuButtons.add(createBtn); 
+        menuButtons.add(settingsBtn); 
+        
+        setSelectedButton(activitiesBtn);
     }
 
     /**
@@ -26,19 +41,176 @@ public class SideMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        logo = new javax.swing.JLabel();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 80), new java.awt.Dimension(30, 80), new java.awt.Dimension(30, 80));
+        activitiesBtn = new Components.Button();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20));
+        messagesBtn = new Components.Button();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20));
+        schedulerBtn = new Components.Button();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20));
+        profileBtn = new Components.Button();
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20));
+        createBtn = new Components.Button();
+        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+        settingsBtn = new Components.Button();
+        filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20));
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(300, 1024));
+        setMinimumSize(new java.awt.Dimension(300, 1024));
+        setPreferredSize(new java.awt.Dimension(300, 1024));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logo.png"))); // NOI18N
+        logo.setAlignmentX(0.5F);
+        logo.setMaximumSize(new java.awt.Dimension(220, 120));
+        logo.setMinimumSize(new java.awt.Dimension(220, 120));
+        logo.setPreferredSize(new java.awt.Dimension(220, 120));
+        add(logo);
+        add(filler4);
+
+        activitiesBtn.setText("Activities");
+        activitiesBtn.setAlignmentX(0.5F);
+        activitiesBtn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        activitiesBtn.setMaximumSize(new java.awt.Dimension(250, 75));
+        activitiesBtn.setPreferredSize(new java.awt.Dimension(250, 70));
+        activitiesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activitiesBtnActionPerformed(evt);
+            }
+        });
+        add(activitiesBtn);
+        add(filler3);
+
+        messagesBtn.setText("Messages");
+        messagesBtn.setAlignmentX(0.5F);
+        messagesBtn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        messagesBtn.setMaximumSize(new java.awt.Dimension(250, 75));
+        messagesBtn.setPreferredSize(new java.awt.Dimension(250, 70));
+        messagesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                messagesBtnActionPerformed(evt);
+            }
+        });
+        add(messagesBtn);
+        add(filler2);
+
+        schedulerBtn.setText("Scheduler");
+        schedulerBtn.setAlignmentX(0.5F);
+        schedulerBtn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        schedulerBtn.setMaximumSize(new java.awt.Dimension(250, 75));
+        schedulerBtn.setPreferredSize(new java.awt.Dimension(250, 70));
+        schedulerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                schedulerBtnActionPerformed(evt);
+            }
+        });
+        add(schedulerBtn);
+        add(filler1);
+
+        profileBtn.setText("Profile");
+        profileBtn.setAlignmentX(0.5F);
+        profileBtn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        profileBtn.setMaximumSize(new java.awt.Dimension(250, 75));
+        profileBtn.setPreferredSize(new java.awt.Dimension(250, 70));
+        profileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileBtnActionPerformed(evt);
+            }
+        });
+        add(profileBtn);
+        add(filler5);
+
+        createBtn.setText("Create");
+        createBtn.setAlignmentX(0.5F);
+        createBtn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        createBtn.setMaximumSize(new java.awt.Dimension(250, 75));
+        createBtn.setPreferredSize(new java.awt.Dimension(250, 70));
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
+        add(createBtn);
+        add(filler6);
+
+        settingsBtn.setText("Settings");
+        settingsBtn.setAlignmentX(0.5F);
+        settingsBtn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        settingsBtn.setMaximumSize(new java.awt.Dimension(250, 75));
+        settingsBtn.setPreferredSize(new java.awt.Dimension(250, 70));
+        settingsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingsBtnActionPerformed(evt);
+            }
+        });
+        add(settingsBtn);
+        add(filler7);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void activitiesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activitiesBtnActionPerformed
+        setSelectedButton(activitiesBtn);
+    }//GEN-LAST:event_activitiesBtnActionPerformed
+
+    private void messagesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messagesBtnActionPerformed
+        setSelectedButton(messagesBtn);
+    }//GEN-LAST:event_messagesBtnActionPerformed
+
+    private void schedulerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schedulerBtnActionPerformed
+        setSelectedButton(schedulerBtn);
+    }//GEN-LAST:event_schedulerBtnActionPerformed
+
+    private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
+        setSelectedButton(profileBtn);
+    }//GEN-LAST:event_profileBtnActionPerformed
+
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        setSelectedButton(createBtn);
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void settingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsBtnActionPerformed
+        setSelectedButton(settingsBtn);
+    }//GEN-LAST:event_settingsBtnActionPerformed
+
+    public void setSelectedButton(Button selectedButton) {
+        if (selectedButton != this.selectedButton) {
+            this.selectedButton = selectedButton;
+            for (Button menuButton : menuButtons) {
+                setDefaultColors(menuButton);
+            }
+            setSelectedColors(selectedButton);
+            //TODO: make desired panel pop up!
+        }
+    }
+    
+    private void setDefaultColors (Button btn){
+        btn.setBgColor(Button.WHITE);
+        btn.setColorClicked(Button.RED);
+        btn.setTextColor(Button.GREY);
+    }
+    
+    private void setSelectedColors (Button btn){
+        btn.setBgColor(Button.RED);
+        btn.setColorClicked(Button.RED);
+        btn.setTextColor(Button.WHITE);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Components.Button activitiesBtn;
+    private Components.Button createBtn;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.Box.Filler filler6;
+    private javax.swing.Box.Filler filler7;
+    private javax.swing.JLabel logo;
+    private Components.Button messagesBtn;
+    private Components.Button profileBtn;
+    private Components.Button schedulerBtn;
+    private Components.Button settingsBtn;
     // End of variables declaration//GEN-END:variables
 }
