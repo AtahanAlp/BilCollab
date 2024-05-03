@@ -4,9 +4,10 @@
  */
 package Components;
 
-import java.awt.Color;
 import java.util.ArrayList;
-import javax.swing.ButtonGroup;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -15,10 +16,26 @@ import javax.swing.ButtonGroup;
 public class SideMenu extends javax.swing.JPanel {
     private ArrayList<Button> menuButtons;
     private Button selectedButton;
+    private AppFrame mainFrame;
     
     /**
      * Creates new form SideMenu
      */
+    public SideMenu(AppFrame mainFrame) {
+        this.mainFrame = mainFrame;
+        initComponents();
+        menuButtons = new ArrayList<Button>();
+        menuButtons.add(activitiesBtn);
+        menuButtons.add(messagesBtn);
+        menuButtons.add(schedulerBtn);
+        menuButtons.add(profileBtn); 
+        menuButtons.add(createBtn); 
+        menuButtons.add(settingsBtn); 
+        
+        setSelectedPage(activitiesBtn, mainFrame.getActivitiesPanel());
+    }
+    
+    //fortesting purposes
     public SideMenu() {
         initComponents();
         menuButtons = new ArrayList<Button>();
@@ -29,7 +46,7 @@ public class SideMenu extends javax.swing.JPanel {
         menuButtons.add(createBtn); 
         menuButtons.add(settingsBtn); 
         
-        setSelectedButton(activitiesBtn);
+        //setSelectedPage(activitiesBtn, mainFrame.getActivitiesPanel());
     }
 
     /**
@@ -148,42 +165,42 @@ public class SideMenu extends javax.swing.JPanel {
         add(settingsBtn);
         add(filler7);
     }// </editor-fold>//GEN-END:initComponents
-
+  
     private void activitiesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activitiesBtnActionPerformed
-        setSelectedButton(activitiesBtn);
+        setSelectedPage(activitiesBtn, mainFrame.getActivitiesPanel());
     }//GEN-LAST:event_activitiesBtnActionPerformed
 
     private void messagesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messagesBtnActionPerformed
-        setSelectedButton(messagesBtn);
+        setSelectedPage(messagesBtn, mainFrame.getMessagesPanel());
     }//GEN-LAST:event_messagesBtnActionPerformed
 
     private void schedulerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schedulerBtnActionPerformed
-        setSelectedButton(schedulerBtn);
+        setSelectedPage(schedulerBtn, mainFrame.getSchedulerPanel());
     }//GEN-LAST:event_schedulerBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        setSelectedButton(profileBtn);
+        setSelectedPage(profileBtn, mainFrame.getProfilePanel());
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        setSelectedButton(createBtn);
+        setSelectedPage(createBtn, mainFrame.getCreateActivityPanel());
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void settingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsBtnActionPerformed
-        setSelectedButton(settingsBtn);
+        setSelectedPage(settingsBtn, mainFrame.getSettingsPanel());
     }//GEN-LAST:event_settingsBtnActionPerformed
 
-    public void setSelectedButton(Button selectedButton) {
+    public void setSelectedPage(Button selectedButton, JPanel selectedPanel) {
         if (selectedButton != this.selectedButton) {
             this.selectedButton = selectedButton;
             for (Button menuButton : menuButtons) {
                 setDefaultColors(menuButton);
             }
             setSelectedColors(selectedButton);
-            //TODO: make desired panel pop up!
+            mainFrame.switchPanels(selectedPanel);
         }
     }
-    
+        
     private void setDefaultColors (Button btn){
         btn.setBgColor(Button.WHITE);
         btn.setColorClicked(Button.RED);

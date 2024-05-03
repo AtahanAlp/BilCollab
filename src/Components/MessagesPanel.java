@@ -8,12 +8,12 @@ package Components;
  *
  * @author Atahan
  */
-public class ActivitiesPanel extends javax.swing.JPanel {
+public class MessagesPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ActivitiesPage
      */
-    public ActivitiesPanel() {
+    public MessagesPanel() {
         initComponents();
     }
 

@@ -4,7 +4,9 @@
  */
 package Components;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import javax.swing.JPanel;
 /**
  *
  * @author Atahan
@@ -16,6 +18,12 @@ public class AppFrame extends javax.swing.JFrame {
      */
     public AppFrame() {
         initComponents();
+        //my init components
+        sideMenu1 = new Components.SideMenu(this);
+        getContentPane().add(sideMenu1, java.awt.BorderLayout.WEST);
+        pack();
+        setLocationRelativeTo(null);
+        
         NotificationBtn.setColorClicked(new Color(177, 177, 177));
     }
 
@@ -28,11 +36,17 @@ public class AppFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sideMenu2 = new Components.SideMenu();
         featuresPanel = new javax.swing.JPanel();
         InformationPanel = new javax.swing.JPanel();
         NotificationBtn = new Components.Button();
         InfoText = new javax.swing.JLabel();
+        showPane = new javax.swing.JPanel();
+        settingsPanel1 = new Components.SettingsPanel();
+        createActivityPanel1 = new Components.CreateActivityPanel();
+        profilePanel1 = new Components.ProfilePanel();
+        activitiesPanel = new Components.ActivitiesPanel();
+        messagesPanel1 = new Components.MessagesPanel();
+        schedulerPanel1 = new Components.SchedulerPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AppFrame");
@@ -40,12 +54,11 @@ public class AppFrame extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1024, 1024));
         setPreferredSize(new java.awt.Dimension(1440, 1024));
         setSize(new java.awt.Dimension(1440, 1024));
-        getContentPane().add(sideMenu2, java.awt.BorderLayout.WEST);
 
         featuresPanel.setBackground(new java.awt.Color(235, 240, 255));
         featuresPanel.setLayout(new java.awt.BorderLayout());
 
-        InformationPanel.setBackground(new java.awt.Color(255, 255, 255));
+        InformationPanel.setBackground(new java.awt.Color(253, 254, 254));
         InformationPanel.setPreferredSize(new java.awt.Dimension(1146, 80));
 
         NotificationBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/bell.png"))); // NOI18N
@@ -88,6 +101,98 @@ public class AppFrame extends javax.swing.JFrame {
 
         featuresPanel.add(InformationPanel, java.awt.BorderLayout.PAGE_START);
 
+        showPane.setLayout(new java.awt.CardLayout());
+
+        settingsPanel1.setBackground(new java.awt.Color(204, 255, 255));
+
+        javax.swing.GroupLayout settingsPanel1Layout = new javax.swing.GroupLayout(settingsPanel1);
+        settingsPanel1.setLayout(settingsPanel1Layout);
+        settingsPanel1Layout.setHorizontalGroup(
+            settingsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1446, Short.MAX_VALUE)
+        );
+        settingsPanel1Layout.setVerticalGroup(
+            settingsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1821, Short.MAX_VALUE)
+        );
+
+        showPane.add(settingsPanel1, "card7");
+
+        createActivityPanel1.setBackground(new java.awt.Color(204, 255, 204));
+
+        javax.swing.GroupLayout createActivityPanel1Layout = new javax.swing.GroupLayout(createActivityPanel1);
+        createActivityPanel1.setLayout(createActivityPanel1Layout);
+        createActivityPanel1Layout.setHorizontalGroup(
+            createActivityPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1446, Short.MAX_VALUE)
+        );
+        createActivityPanel1Layout.setVerticalGroup(
+            createActivityPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1821, Short.MAX_VALUE)
+        );
+
+        showPane.add(createActivityPanel1, "card6");
+
+        profilePanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout profilePanel1Layout = new javax.swing.GroupLayout(profilePanel1);
+        profilePanel1.setLayout(profilePanel1Layout);
+        profilePanel1Layout.setHorizontalGroup(
+            profilePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1446, Short.MAX_VALUE)
+        );
+        profilePanel1Layout.setVerticalGroup(
+            profilePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1821, Short.MAX_VALUE)
+        );
+
+        showPane.add(profilePanel1, "card5");
+
+        javax.swing.GroupLayout activitiesPanelLayout = new javax.swing.GroupLayout(activitiesPanel);
+        activitiesPanel.setLayout(activitiesPanelLayout);
+        activitiesPanelLayout.setHorizontalGroup(
+            activitiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1446, Short.MAX_VALUE)
+        );
+        activitiesPanelLayout.setVerticalGroup(
+            activitiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1821, Short.MAX_VALUE)
+        );
+
+        showPane.add(activitiesPanel, "card3");
+
+        messagesPanel1.setBackground(new java.awt.Color(255, 204, 255));
+
+        javax.swing.GroupLayout messagesPanel1Layout = new javax.swing.GroupLayout(messagesPanel1);
+        messagesPanel1.setLayout(messagesPanel1Layout);
+        messagesPanel1Layout.setHorizontalGroup(
+            messagesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1446, Short.MAX_VALUE)
+        );
+        messagesPanel1Layout.setVerticalGroup(
+            messagesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1821, Short.MAX_VALUE)
+        );
+
+        showPane.add(messagesPanel1, "card4");
+
+        schedulerPanel1.setBackground(new java.awt.Color(153, 153, 255));
+
+        javax.swing.GroupLayout schedulerPanel1Layout = new javax.swing.GroupLayout(schedulerPanel1);
+        schedulerPanel1.setLayout(schedulerPanel1Layout);
+        schedulerPanel1Layout.setHorizontalGroup(
+            schedulerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1446, Short.MAX_VALUE)
+        );
+        schedulerPanel1Layout.setVerticalGroup(
+            schedulerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1821, Short.MAX_VALUE)
+        );
+
+        showPane.add(schedulerPanel1, "card4");
+
+        featuresPanel.add(showPane, java.awt.BorderLayout.CENTER);
+
         getContentPane().add(featuresPanel, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -97,7 +202,42 @@ public class AppFrame extends javax.swing.JFrame {
     private void NotificationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NotificationBtnActionPerformed
+   
+    public void switchPanels(JPanel selectedPanel){
+        for (Component component : showPane.getComponents()) {
+            component.setVisible(false);
+        }
+        selectedPanel.setVisible(true);
+    }
+    
+    public JPanel getShowPanel(){
+        return showPane;
+    }
 
+    public JPanel getActivitiesPanel() {
+        return activitiesPanel;
+    }
+
+    public JPanel getMessagesPanel() {
+        return messagesPanel1;
+    }
+    
+    public JPanel getSchedulerPanel() {
+        return schedulerPanel1;
+    }
+    
+    public JPanel getProfilePanel(){
+        return profilePanel1;
+    }
+    
+    public JPanel getCreateActivityPanel(){
+        return createActivityPanel1;
+    }
+    
+    public JPanel getSettingsPanel(){
+        return settingsPanel1;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -137,7 +277,14 @@ public class AppFrame extends javax.swing.JFrame {
     private javax.swing.JLabel InfoText;
     private javax.swing.JPanel InformationPanel;
     private Components.Button NotificationBtn;
+    private Components.ActivitiesPanel activitiesPanel;
+    private Components.CreateActivityPanel createActivityPanel1;
     private javax.swing.JPanel featuresPanel;
-    private Components.SideMenu sideMenu2;
+    private Components.MessagesPanel messagesPanel1;
+    private Components.ProfilePanel profilePanel1;
+    private Components.SchedulerPanel schedulerPanel1;
+    private Components.SettingsPanel settingsPanel1;
+    private javax.swing.JPanel showPane;
     // End of variables declaration//GEN-END:variables
+    private JPanel sideMenu1;
 }

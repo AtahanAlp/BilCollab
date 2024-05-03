@@ -8,6 +8,6 @@ package Main;
  *
  * @author Atahan
  */
-public class Activities {
+public class BilCollab {
     
 }
