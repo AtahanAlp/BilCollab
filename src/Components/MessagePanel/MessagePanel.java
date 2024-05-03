@@ -1,6 +1,10 @@
 package Components.MessagePanel;
 
-import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import javax.swing.*;
 
 /**
  *
@@ -8,110 +12,96 @@ import javax.swing.JFrame;
  */
 public class MessagePanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MessagePanel
-     */
+    // Variables declaration
+    private javax.swing.JPanel MessageTitle;
+    private javax.swing.JLabel backButton;
+    private javax.swing.JLabel profilePic;
+    private javax.swing.JTextArea friendName;
+    private javax.swing.JPanel messageDisplay;
+    private javax.swing.JScrollPane scrollPane;
+    private MessageArea msgArea;
+
+    //Constructor
     public MessagePanel() {
+        setLayout (new BorderLayout ());
         initComponents();
     }
 
     //Method to initialize the components
     private void initComponents() {
 
-        messageBox = new javax.swing.JTextArea();
-        MessageArea = new javax.swing.JTextField();
+        messageDisplay = new javax.swing.JPanel();
+        messageDisplay.setLayout (new BoxLayout (messageDisplay, BoxLayout.Y_AXIS));
+        messageDisplay.setPreferredSize (new Dimension(800, 500));
+        messageDisplay.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        scrollPane = new JScrollPane(messageDisplay);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(800, 500));
+
+        msgArea = new MessageArea (this);
+
+        //Adding the message title area
+        backButton = new javax.swing.JLabel ();
+        backButton.setText ("go back");
+        profilePic = new javax.swing.JLabel ();
+        profilePic.setText ("PFP");
+        friendName = new javax.swing.JTextArea ();
+        friendName.setEditable (false);
+        friendName.setFocusable (false);
+        friendName.setText ("your friends name");
+
         MessageTitle = new javax.swing.JPanel();
-        backButton = new javax.swing.JLabel();
-        profilePic = new javax.swing.JLabel();
-        friendName = new javax.swing.JTextArea();
+        MessageTitle.setBorder (BorderFactory.createLineBorder (new Color (0,0,0), 1));
+        MessageTitle.setLayout (new FlowLayout (FlowLayout.LEFT, 10, 10));
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        MessageTitle.add (backButton);
+        MessageTitle.add (profilePic);
+        MessageTitle.add (friendName);
+        //Message title area complete
 
-        messageBox.setBackground(new java.awt.Color(245, 12, 67));
-        messageBox.setColumns(20);
-        messageBox.setForeground(new java.awt.Color(255, 255, 255));
-        messageBox.setRows(5);
-        messageBox.setText("yoo what uppp");
+        this.setPreferredSize (new Dimension (800, 600));
+        setBackground (new java.awt.Color (255, 255, 255));
 
-        MessageArea.setText("Enter your message here");
-        MessageArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MessageAreaActionPerformed(evt);
-            }
-        });
+        add (MessageTitle, BorderLayout.NORTH);
+        add (scrollPane, BorderLayout.CENTER);
+        add (msgArea, BorderLayout.SOUTH);
 
-        backButton.setText("go back");
+        msgArea.requestFocusInWindow();
 
-        profilePic.setText("PFP");
-
-        friendName.setColumns(20);
-        friendName.setRows(5);
-        friendName.setText("your friends name");
-
-        javax.swing.GroupLayout MessageTitleLayout = new javax.swing.GroupLayout(MessageTitle);
-        MessageTitle.setLayout(MessageTitleLayout);
-        MessageTitleLayout.setHorizontalGroup(
-            MessageTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MessageTitleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(profilePic)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(friendName, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        MessageTitleLayout.setVerticalGroup(
-            MessageTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MessageTitleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(MessageTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(profilePic)
-                    .addGroup(MessageTitleLayout.createSequentialGroup()
-                        .addComponent(friendName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(messageBox, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(MessageTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MessageArea))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(MessageTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 357, Short.MAX_VALUE)
-                .addComponent(messageBox, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MessageArea, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
     }
 
-    private void MessageAreaActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO
-    }
+    public void addMsgToDisplay (Message message) {
 
-    // Variables declaration
-    private javax.swing.JTextField MessageArea;
-    private javax.swing.JPanel MessageTitle;
-    private javax.swing.JLabel backButton;
-    private javax.swing.JLabel profilePic;
-    private javax.swing.JTextArea friendName;
-    private javax.swing.JTextArea messageBox;
-    // End of variables declaration
+        JLabel msg = new JLabel ();
+
+        msg.setText (message.getContent ());
+        msg.setBorder (BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        msg.setOpaque (true);
+
+        if (message.getSender().equals("user")) {
+
+            msg.setForeground (Color.WHITE);
+            msg.setBackground (new java.awt.Color(245, 12, 67));
+            msg.setHorizontalAlignment(SwingConstants.RIGHT);
+            
+
+        } else {
+            
+            msg.setForeground (Color.BLACK);
+            msg.setBackground (new java.awt.Color (217, 217, 217));
+            msg.setHorizontalAlignment(SwingConstants.LEFT);
+
+        }
+
+        JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+        verticalScrollBar.setValue(0);
+
+        messageDisplay.add (msg);
+        messageDisplay.add(Box.createRigidArea(new Dimension(0, 5)));
+        messageDisplay.revalidate ();
+    }
 
     public static void main(String[] args) {
         JFrame test = new JFrame();
