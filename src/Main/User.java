@@ -14,10 +14,10 @@ import javax.imageio.ImageIO;
  * @author Atahan
  */
 public class User {
+    public static int count = 0;
     //public static final BufferedImage DEFAULT_PROFILE_PIC = ImageIO.read(new File("profilePic.png"));
 
     
-    private BilCollab app;
     private int id;
     private String username;
     private String password;
@@ -33,9 +33,8 @@ public class User {
     private ArrayList<Friend> friends;
 
     
-    public User(BilCollab app, int id, String username, String eMail, String password){
-        this.app = app;
-        this.id = id;
+    public User(String username, String eMail, String password){
+        this.id = ++count;
         this.username = username;
         this.eMail = eMail;
         this.password = password;
@@ -52,10 +51,6 @@ public class User {
     }
     
     //getter methods
-    public BilCollab getApp() {
-        return app;
-    }
-
     public int getId() {
         return id;
     }

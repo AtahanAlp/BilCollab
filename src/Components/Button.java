@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
  * @author Atahan
  */
 public class Button extends JButton{
-    public static final Color SHADOW = new Color(120, 120, 120, 20);
+    public static final Color SHADOW = new Color(120, 120, 120, 25);
     public static final Color WHITE = Color.WHITE;
     public static final Color RED = new Color(245, 12, 67);
     public static final Color GREY = new Color(47, 47, 47);
@@ -35,7 +35,7 @@ public class Button extends JButton{
     private boolean over;
     
     public Button(){
-        this(WHITE, RED, GREY, WHITE, 15);
+        this(WHITE, RED, GREY, WHITE, 20);
     }
     
     public Button(Color bgColor, Color colorClicked, Color textColor, Color textColorClicked, int roundness){

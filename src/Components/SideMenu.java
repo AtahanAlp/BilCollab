@@ -5,9 +5,7 @@
 package Components;
 
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -33,9 +31,10 @@ public class SideMenu extends javax.swing.JPanel {
         menuButtons.add(settingsBtn); 
         
         setSelectedPage(activitiesBtn, mainFrame.getActivitiesPanel());
+        mainFrame.setInfoText("Upcoming Activities");
     }
     
-    //fortesting purposes
+    //for testing purposes
     public SideMenu() {
         initComponents();
         menuButtons = new ArrayList<Button>();
@@ -168,26 +167,32 @@ public class SideMenu extends javax.swing.JPanel {
   
     private void activitiesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activitiesBtnActionPerformed
         setSelectedPage(activitiesBtn, mainFrame.getActivitiesPanel());
+        mainFrame.setInfoText("Upcoming Activities");
     }//GEN-LAST:event_activitiesBtnActionPerformed
 
     private void messagesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messagesBtnActionPerformed
         setSelectedPage(messagesBtn, mainFrame.getMessagesPanel());
+        mainFrame.setInfoText("Direct Messages");
     }//GEN-LAST:event_messagesBtnActionPerformed
 
     private void schedulerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schedulerBtnActionPerformed
         setSelectedPage(schedulerBtn, mainFrame.getSchedulerPanel());
+        mainFrame.setInfoText("Your Calendar");
     }//GEN-LAST:event_schedulerBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         setSelectedPage(profileBtn, mainFrame.getProfilePanel());
+        mainFrame.setInfoText("Your Profile");
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         setSelectedPage(createBtn, mainFrame.getCreateActivityPanel());
+        mainFrame.setInfoText("Create New Activity");
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void settingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsBtnActionPerformed
         setSelectedPage(settingsBtn, mainFrame.getSettingsPanel());
+        mainFrame.setInfoText("Settings");
     }//GEN-LAST:event_settingsBtnActionPerformed
 
     public void setSelectedPage(Button selectedButton, JPanel selectedPanel) {

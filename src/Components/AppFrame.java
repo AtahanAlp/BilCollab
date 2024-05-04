@@ -6,6 +6,7 @@ package Components;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 /**
  *
@@ -24,7 +25,7 @@ public class AppFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         
-        NotificationBtn.setColorClicked(new Color(177, 177, 177));
+        notificationBtn.setColorClicked(new Color(177, 177, 177));
     }
 
     /**
@@ -37,159 +38,148 @@ public class AppFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         featuresPanel = new javax.swing.JPanel();
-        InformationPanel = new javax.swing.JPanel();
-        NotificationBtn = new Components.Button();
-        InfoText = new javax.swing.JLabel();
+        infoPanel = new javax.swing.JPanel();
+        notificationBtn = new Components.Button();
+        infoText = new javax.swing.JLabel();
         showPane = new javax.swing.JPanel();
-        settingsPanel1 = new Components.SettingsPanel();
-        createActivityPanel1 = new Components.CreateActivityPanel();
-        profilePanel1 = new Components.ProfilePanel();
-        activitiesPanel = new Components.ActivitiesPanel();
-        messagesPanel1 = new Components.MessagesPanel();
-        schedulerPanel1 = new Components.SchedulerPanel();
+        activitiesPanel = new Components.ActivitiesComp.ActivitiesPanel();
+        settingsPanel = new Components.SettingsComp.SettingsPanel();
+        createActPanel = new Components.ActivitiesComp.CreateActivityPanel();
+        profilePanel = new Components.ProfileComp.ProfilePanel();
+        messagesPanel = new Components.MessagesComp.MessagesPanel();
+        schedulerPanel = new Components.SchedulerComp.SchedulerPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AppFrame");
         setMaximumSize(new java.awt.Dimension(1920, 1024));
-        setMinimumSize(new java.awt.Dimension(1024, 1024));
-        setPreferredSize(new java.awt.Dimension(1440, 1024));
-        setSize(new java.awt.Dimension(1440, 1024));
+        setMinimumSize(new java.awt.Dimension(1480, 800));
+        setPreferredSize(new java.awt.Dimension(1620, 1024));
+        setSize(new java.awt.Dimension(1640, 1024));
 
         featuresPanel.setBackground(new java.awt.Color(235, 240, 255));
         featuresPanel.setLayout(new java.awt.BorderLayout());
 
-        InformationPanel.setBackground(new java.awt.Color(253, 254, 254));
-        InformationPanel.setPreferredSize(new java.awt.Dimension(1146, 80));
+        infoPanel.setBackground(new java.awt.Color(253, 254, 254));
+        infoPanel.setPreferredSize(new java.awt.Dimension(1146, 80));
 
-        NotificationBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/bell.png"))); // NOI18N
-        NotificationBtn.setRoundness(1000);
-        NotificationBtn.addActionListener(new java.awt.event.ActionListener() {
+        notificationBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/bell.png"))); // NOI18N
+        notificationBtn.setRoundness(1000);
+        notificationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NotificationBtnActionPerformed(evt);
+                notificationBtnActionPerformed(evt);
             }
         });
 
-        InfoText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 24)); // NOI18N
-        InfoText.setText("Current Page Name");
-        InfoText.setMaximumSize(new java.awt.Dimension(208, 32));
-        InfoText.setMinimumSize(new java.awt.Dimension(208, 32));
-        InfoText.setPreferredSize(new java.awt.Dimension(208, 32));
+        infoText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 24)); // NOI18N
+        infoText.setText("Current Page Name");
+        infoText.setMaximumSize(new java.awt.Dimension(208, 32));
+        infoText.setMinimumSize(new java.awt.Dimension(208, 32));
+        infoText.setPreferredSize(new java.awt.Dimension(208, 32));
 
-        javax.swing.GroupLayout InformationPanelLayout = new javax.swing.GroupLayout(InformationPanel);
-        InformationPanel.setLayout(InformationPanelLayout);
-        InformationPanelLayout.setHorizontalGroup(
-            InformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InformationPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
+        infoPanel.setLayout(infoPanelLayout);
+        infoPanelLayout.setHorizontalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(InfoText, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 610, Short.MAX_VALUE)
-                .addComponent(NotificationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(infoText, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1104, Short.MAX_VALUE)
+                .addComponent(notificationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
-        InformationPanelLayout.setVerticalGroup(
-            InformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InformationPanelLayout.createSequentialGroup()
+        infoPanelLayout.setVerticalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(InformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(InformationPanelLayout.createSequentialGroup()
-                        .addComponent(NotificationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(infoPanelLayout.createSequentialGroup()
+                        .addComponent(notificationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(InformationPanelLayout.createSequentialGroup()
-                        .addComponent(InfoText, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addGroup(infoPanelLayout.createSequentialGroup()
+                        .addComponent(infoText, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                         .addGap(20, 20, 20))))
         );
 
-        featuresPanel.add(InformationPanel, java.awt.BorderLayout.PAGE_START);
+        featuresPanel.add(infoPanel, java.awt.BorderLayout.PAGE_START);
 
+        showPane.setBackground(new java.awt.Color(235, 240, 255));
         showPane.setLayout(new java.awt.CardLayout());
+        showPane.add(activitiesPanel, "card8");
 
-        settingsPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        settingsPanel.setBackground(new java.awt.Color(204, 255, 255));
 
-        javax.swing.GroupLayout settingsPanel1Layout = new javax.swing.GroupLayout(settingsPanel1);
-        settingsPanel1.setLayout(settingsPanel1Layout);
-        settingsPanel1Layout.setHorizontalGroup(
-            settingsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1446, Short.MAX_VALUE)
+        javax.swing.GroupLayout settingsPanelLayout = new javax.swing.GroupLayout(settingsPanel);
+        settingsPanel.setLayout(settingsPanelLayout);
+        settingsPanelLayout.setHorizontalGroup(
+            settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1640, Short.MAX_VALUE)
         );
-        settingsPanel1Layout.setVerticalGroup(
-            settingsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1821, Short.MAX_VALUE)
-        );
-
-        showPane.add(settingsPanel1, "card7");
-
-        createActivityPanel1.setBackground(new java.awt.Color(204, 255, 204));
-
-        javax.swing.GroupLayout createActivityPanel1Layout = new javax.swing.GroupLayout(createActivityPanel1);
-        createActivityPanel1.setLayout(createActivityPanel1Layout);
-        createActivityPanel1Layout.setHorizontalGroup(
-            createActivityPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1446, Short.MAX_VALUE)
-        );
-        createActivityPanel1Layout.setVerticalGroup(
-            createActivityPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1821, Short.MAX_VALUE)
+        settingsPanelLayout.setVerticalGroup(
+            settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 944, Short.MAX_VALUE)
         );
 
-        showPane.add(createActivityPanel1, "card6");
+        showPane.add(settingsPanel, "card7");
 
-        profilePanel1.setBackground(new java.awt.Color(204, 204, 204));
+        createActPanel.setBackground(new java.awt.Color(204, 255, 204));
 
-        javax.swing.GroupLayout profilePanel1Layout = new javax.swing.GroupLayout(profilePanel1);
-        profilePanel1.setLayout(profilePanel1Layout);
-        profilePanel1Layout.setHorizontalGroup(
-            profilePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1446, Short.MAX_VALUE)
+        javax.swing.GroupLayout createActPanelLayout = new javax.swing.GroupLayout(createActPanel);
+        createActPanel.setLayout(createActPanelLayout);
+        createActPanelLayout.setHorizontalGroup(
+            createActPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1640, Short.MAX_VALUE)
         );
-        profilePanel1Layout.setVerticalGroup(
-            profilePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1821, Short.MAX_VALUE)
-        );
-
-        showPane.add(profilePanel1, "card5");
-
-        javax.swing.GroupLayout activitiesPanelLayout = new javax.swing.GroupLayout(activitiesPanel);
-        activitiesPanel.setLayout(activitiesPanelLayout);
-        activitiesPanelLayout.setHorizontalGroup(
-            activitiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1446, Short.MAX_VALUE)
-        );
-        activitiesPanelLayout.setVerticalGroup(
-            activitiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1821, Short.MAX_VALUE)
+        createActPanelLayout.setVerticalGroup(
+            createActPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 944, Short.MAX_VALUE)
         );
 
-        showPane.add(activitiesPanel, "card3");
+        showPane.add(createActPanel, "card6");
 
-        messagesPanel1.setBackground(new java.awt.Color(255, 204, 255));
+        profilePanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        javax.swing.GroupLayout messagesPanel1Layout = new javax.swing.GroupLayout(messagesPanel1);
-        messagesPanel1.setLayout(messagesPanel1Layout);
-        messagesPanel1Layout.setHorizontalGroup(
-            messagesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1446, Short.MAX_VALUE)
+        javax.swing.GroupLayout profilePanelLayout = new javax.swing.GroupLayout(profilePanel);
+        profilePanel.setLayout(profilePanelLayout);
+        profilePanelLayout.setHorizontalGroup(
+            profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1640, Short.MAX_VALUE)
         );
-        messagesPanel1Layout.setVerticalGroup(
-            messagesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1821, Short.MAX_VALUE)
-        );
-
-        showPane.add(messagesPanel1, "card4");
-
-        schedulerPanel1.setBackground(new java.awt.Color(153, 153, 255));
-
-        javax.swing.GroupLayout schedulerPanel1Layout = new javax.swing.GroupLayout(schedulerPanel1);
-        schedulerPanel1.setLayout(schedulerPanel1Layout);
-        schedulerPanel1Layout.setHorizontalGroup(
-            schedulerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1446, Short.MAX_VALUE)
-        );
-        schedulerPanel1Layout.setVerticalGroup(
-            schedulerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1821, Short.MAX_VALUE)
+        profilePanelLayout.setVerticalGroup(
+            profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 944, Short.MAX_VALUE)
         );
 
-        showPane.add(schedulerPanel1, "card4");
+        showPane.add(profilePanel, "card5");
+
+        messagesPanel.setBackground(new java.awt.Color(255, 204, 255));
+
+        javax.swing.GroupLayout messagesPanelLayout = new javax.swing.GroupLayout(messagesPanel);
+        messagesPanel.setLayout(messagesPanelLayout);
+        messagesPanelLayout.setHorizontalGroup(
+            messagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1640, Short.MAX_VALUE)
+        );
+        messagesPanelLayout.setVerticalGroup(
+            messagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 944, Short.MAX_VALUE)
+        );
+
+        showPane.add(messagesPanel, "card4");
+
+        schedulerPanel.setBackground(new java.awt.Color(153, 153, 255));
+
+        javax.swing.GroupLayout schedulerPanelLayout = new javax.swing.GroupLayout(schedulerPanel);
+        schedulerPanel.setLayout(schedulerPanelLayout);
+        schedulerPanelLayout.setHorizontalGroup(
+            schedulerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1640, Short.MAX_VALUE)
+        );
+        schedulerPanelLayout.setVerticalGroup(
+            schedulerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 944, Short.MAX_VALUE)
+        );
+
+        showPane.add(schedulerPanel, "card4");
 
         featuresPanel.add(showPane, java.awt.BorderLayout.CENTER);
 
@@ -199,9 +189,9 @@ public class AppFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NotificationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationBtnActionPerformed
+    private void notificationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NotificationBtnActionPerformed
+    }//GEN-LAST:event_notificationBtnActionPerformed
    
     public void switchPanels(JPanel selectedPanel){
         for (Component component : showPane.getComponents()) {
@@ -219,25 +209,32 @@ public class AppFrame extends javax.swing.JFrame {
     }
 
     public JPanel getMessagesPanel() {
-        return messagesPanel1;
+        return messagesPanel;
     }
     
     public JPanel getSchedulerPanel() {
-        return schedulerPanel1;
+        return schedulerPanel;
     }
     
     public JPanel getProfilePanel(){
-        return profilePanel1;
+        return profilePanel;
     }
     
     public JPanel getCreateActivityPanel(){
-        return createActivityPanel1;
+        return createActPanel;
     }
     
     public JPanel getSettingsPanel(){
-        return settingsPanel1;
+        return settingsPanel;
     }
     
+    public JLabel getInfoText(){
+        return infoText;
+    }
+    
+    public void setInfoText(String str){
+        infoText.setText(str);
+    }
     /**
      * @param args the command line arguments
      */
@@ -274,16 +271,16 @@ public class AppFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel InfoText;
-    private javax.swing.JPanel InformationPanel;
-    private Components.Button NotificationBtn;
-    private Components.ActivitiesPanel activitiesPanel;
-    private Components.CreateActivityPanel createActivityPanel1;
+    private Components.ActivitiesComp.ActivitiesPanel activitiesPanel;
+    private Components.ActivitiesComp.CreateActivityPanel createActPanel;
     private javax.swing.JPanel featuresPanel;
-    private Components.MessagesPanel messagesPanel1;
-    private Components.ProfilePanel profilePanel1;
-    private Components.SchedulerPanel schedulerPanel1;
-    private Components.SettingsPanel settingsPanel1;
+    private javax.swing.JPanel infoPanel;
+    private javax.swing.JLabel infoText;
+    private Components.MessagesComp.MessagesPanel messagesPanel;
+    private Components.Button notificationBtn;
+    private Components.ProfileComp.ProfilePanel profilePanel;
+    private Components.SchedulerComp.SchedulerPanel schedulerPanel;
+    private Components.SettingsComp.SettingsPanel settingsPanel;
     private javax.swing.JPanel showPane;
     // End of variables declaration//GEN-END:variables
     private JPanel sideMenu1;
