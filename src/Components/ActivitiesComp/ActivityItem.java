@@ -5,21 +5,15 @@
 package Components.ActivitiesComp;
 
 import Components.Button;
+import Main.Activity;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.util.Date;
-import javax.swing.JPanel;
 
 /**
  *
  * @author Atahan
  */
 public class ActivityItem extends javax.swing.JPanel {
-    private static Color bgColor = Color.WHITE;
-    private static int radius = 40;
-
+    Activity activity;
     /**
      * Creates new form activityItem
      */
@@ -29,21 +23,28 @@ public class ActivityItem extends javax.swing.JPanel {
         joinBtn.setBgColor(Button.RED);
         joinBtn.setColorClicked(new Color(155, 2, 17));
         joinBtn.setTextColor(Color.WHITE);
+        this.description.setText("<html><p style=\"width:400px\">"+description.getText()+"</p></html>");
     }
     
-    public ActivityItem(String creatorName, String title, String desc, Date startTime, boolean isPublic) {
+    public ActivityItem(Activity activity) {
         initComponents();
+        
+        this.activity = activity;
         
         joinBtn.setBgColor(Button.RED);
         joinBtn.setColorClicked(new Color(155, 2, 17));
         joinBtn.setTextColor(Color.WHITE);
         
-        this.title.setText(title);
-        this.description.setText(desc);
-        this.creatorName.setText(creatorName);
-        this.activityTime.setText(startTime.toString());
+        this.title.setText(activity.getTitle());
+        this.description.setText("<html><p style=\"width:400px\">"+activity.getDescription()+"</p></html>");
+        this.creatorName.setText(activity.getCreator().getDisplayName());
+        this.activityTime.setText(activity.getStartDate().toString());
+        setQuotaDisplay();
     }
 
+    private void setQuotaDisplay(){
+        this.quota.setText("Quota: " + activity.getAttendence() + "/" + activity.getQuota());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +56,6 @@ public class ActivityItem extends javax.swing.JPanel {
 
         roundedPanel1 = new Components.RoundedPanel();
         title = new javax.swing.JLabel();
-        description = new javax.swing.JLabel();
         creatorName = new javax.swing.JLabel();
         timeDesc = new javax.swing.JLabel();
         activityTime = new javax.swing.JLabel();
@@ -63,6 +63,7 @@ public class ActivityItem extends javax.swing.JPanel {
         quota = new javax.swing.JLabel();
         profilePic = new Components.ImageAvatar();
         roundedPanel2 = new Components.RoundedPanel();
+        description = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(2000, 2000));
         setMinimumSize(new java.awt.Dimension(985, 240));
@@ -80,11 +81,6 @@ public class ActivityItem extends javax.swing.JPanel {
         title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/bell.png"))); // NOI18N
         title.setText("Title of Activity  ");
         title.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-
-        description.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        description.setForeground(new java.awt.Color(102, 102, 102));
-        description.setText("Description for the activity.");
-        description.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         creatorName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         creatorName.setForeground(new java.awt.Color(51, 51, 51));
@@ -133,6 +129,13 @@ public class ActivityItem extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        description.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        description.setForeground(new java.awt.Color(102, 102, 102));
+        description.setText("Description");
+        description.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        description.setAlignmentY(0.0F);
+        description.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
         javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
         roundedPanel1Layout.setHorizontalGroup(
@@ -148,7 +151,10 @@ public class ActivityItem extends javax.swing.JPanel {
                         .addGap(22, 22, 22)
                         .addComponent(roundedPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                 .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
@@ -161,10 +167,6 @@ public class ActivityItem extends javax.swing.JPanel {
                             .addComponent(timeDesc, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(activityTime, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(40, 40, 40))))
-            .addGroup(roundedPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,24 +174,25 @@ public class ActivityItem extends javax.swing.JPanel {
                 .addGap(19, 19, 19)
                 .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(roundedPanel1Layout.createSequentialGroup()
-                        .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(roundedPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(creatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(roundedPanel1Layout.createSequentialGroup()
                         .addComponent(timeDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(activityTime, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(91, 91, 91)
                         .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(joinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(quota))))
-                .addGap(23, 23, 23))
+                            .addComponent(quota))
+                        .addGap(23, 23, 23))
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(roundedPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(creatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6))))
         );
 
         add(roundedPanel1, java.awt.BorderLayout.NORTH);

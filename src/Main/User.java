@@ -126,7 +126,11 @@ public class User {
     }
     
     public void addActivity(Activity activity){
-        //TODO
+        joinedActivities.add(activity);
+    }
+    
+    public void removeActivity(Activity activity){
+        joinedActivities.remove(activity);
     }
     
     public void addFriend(User user){

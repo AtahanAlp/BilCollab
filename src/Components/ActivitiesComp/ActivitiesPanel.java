@@ -5,9 +5,12 @@
 package Components.ActivitiesComp;
 
 import Components.ScrollBarUI;
+import Main.Activity;
+import Main.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Date;
 import javax.swing.JScrollBar;
 
 /**
@@ -40,11 +43,21 @@ public class ActivitiesPanel extends javax.swing.JPanel {
     }
 
     private void loadActivities(){
+        Date startDate = new Date(2024, 5, 12, 12, 30);
+        Date endDate = new Date(2024, 5, 12, 16, 30);
+        User creator = new User("Atahan", "atos", "12345");
         //TODO add from sql
+        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Tennis Match", creator, "blabla", "tennis", 7, true)));
+        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Cofee Break", creator, "Want to hang out and drink cofee w/ friends!", "chill", 3, true)));
+        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Board Game Night", creator, "I found a place called Bam, it has grat board games! Waiting you all to participate in this grat activity!", "tennis", 5, true)));
         outputPanel.add(new ActivityItem());
         outputPanel.add(new ActivityItem());
         outputPanel.add(new ActivityItem());
         outputPanel.add(new ActivityItem());
+        outputPanel.add(new ActivityItem());
+        outputPanel.add(new ActivityItem());
+        
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
