@@ -42,7 +42,10 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         loadActivities();
     }
 
-    private void loadActivities(){
+    public void loadActivities(){
+        outputPanel.removeAll();        
+        scrollPane.getVerticalScrollBar().setValue(0);
+        
         Date startDate = new Date(2024, 5, 12, 12, 30);
         Date endDate = new Date(2024, 5, 12, 16, 30);
         User creator = new User("Atahan", "atos", "12345");
@@ -56,8 +59,13 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         outputPanel.add(new ActivityItem());
         outputPanel.add(new ActivityItem());
         outputPanel.add(new ActivityItem());
-        
-        
+        outputPanel.add(new ActivityItem());
+        outputPanel.add(new ActivityItem());
+        outputPanel.add(new ActivityItem());
+        outputPanel.add(new ActivityItem());
+        outputPanel.add(new ActivityItem());
+        outputPanel.add(new ActivityItem());
+     
     }
     /**
      * This method is called from within the constructor to initialize the form.

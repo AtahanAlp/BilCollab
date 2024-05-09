@@ -4,17 +4,62 @@
  */
 package Components.NotifComp;
 
+import Components.ActivitiesComp.ActivityItem;
+import Components.ScrollBarUI;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+
 /**
  *
  * @author Atahan
  */
-public class NotificationsPanel extends javax.swing.JPanel {
-
+public class NotificationsPanel extends JPanel {
+    private boolean over;
     /**
      * Creates new form NotificationsPanel
      */
     public NotificationsPanel() {
         initComponents();
+        over = false;
+          
+        setOpaque(false);
+        JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
+        scrollBar.setOpaque(false);
+        scrollBar.setUnitIncrement(1);
+        scrollBar.setForeground(new Color(100, 160, 239));
+        scrollBar.setPreferredSize(new Dimension(12, 20));
+        scrollBar.setUI(new ScrollBarUI());//change later
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setViewportBorder(null);
+        
+        GridLayout layout = new GridLayout(0, 1);
+        layout.setVgap(15);
+        notifOutput.setLayout(layout);
+        setVisible(false);
+        
+        loadNotifications();
+    }
+
+    public void loadNotifications(){
+        notifOutput.removeAll();
+        scrollPane.getVerticalScrollBar().setValue(0);
+        notifOutput.add(new NotificationItem());
+        notifOutput.add(new NotificationItem());
+        notifOutput.add(new NotificationItem());
+        notifOutput.add(new NotificationItem());
+        notifOutput.add(new NotificationItem());
+        notifOutput.add(new NotificationItem());
+        notifOutput.add(new NotificationItem());
+        notifOutput.add(new NotificationItem());
+    }
+    
+    public void openNotifications(){
+        setVisible(true);
+        loadNotifications();
     }
 
     /**
@@ -26,19 +71,124 @@ public class NotificationsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        centeredPanel = new javax.swing.JPanel();
+        roundedPanel = new Components.RoundedPanel();
+        scrollPane = new javax.swing.JScrollPane();
+        notifOutput = new javax.swing.JPanel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(11000, 10000));
+        setMinimumSize(new java.awt.Dimension(725, 725));
+        setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(1640, 1024));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
+        setLayout(new java.awt.BorderLayout());
+
+        centeredPanel.setBackground(new java.awt.Color(255, 51, 51));
+        centeredPanel.setMaximumSize(new java.awt.Dimension(525, 625));
+        centeredPanel.setMinimumSize(new java.awt.Dimension(525, 625));
+        centeredPanel.setOpaque(false);
+        centeredPanel.setPreferredSize(new java.awt.Dimension(525, 625));
+
+        roundedPanel.setBackground(new java.awt.Color(204, 204, 255));
+        roundedPanel.setMaximumSize(new java.awt.Dimension(500, 500));
+        roundedPanel.setMinimumSize(new java.awt.Dimension(500, 500));
+        roundedPanel.setPreferredSize(new java.awt.Dimension(500, 500));
+        roundedPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                roundedPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                roundedPanelMouseExited(evt);
+            }
+        });
+
+        scrollPane.setBorder(null);
+        scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setMaximumSize(new java.awt.Dimension(480, 480));
+        scrollPane.setMinimumSize(new java.awt.Dimension(480, 480));
+        scrollPane.setOpaque(false);
+        scrollPane.setPreferredSize(new java.awt.Dimension(480, 480));
+
+        notifOutput.setBackground(new java.awt.Color(204, 255, 204));
+        notifOutput.setMinimumSize(new java.awt.Dimension(0, 0));
+        notifOutput.setOpaque(false);
+        notifOutput.setPreferredSize(new java.awt.Dimension(500, 900));
+
+        javax.swing.GroupLayout notifOutputLayout = new javax.swing.GroupLayout(notifOutput);
+        notifOutput.setLayout(notifOutputLayout);
+        notifOutputLayout.setHorizontalGroup(
+            notifOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        notifOutputLayout.setVerticalGroup(
+            notifOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
+
+        scrollPane.setViewportView(notifOutput);
+
+        javax.swing.GroupLayout roundedPanelLayout = new javax.swing.GroupLayout(roundedPanel);
+        roundedPanel.setLayout(roundedPanelLayout);
+        roundedPanelLayout.setHorizontalGroup(
+            roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
+        roundedPanelLayout.setVerticalGroup(
+            roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+        );
+
+        javax.swing.GroupLayout centeredPanelLayout = new javax.swing.GroupLayout(centeredPanel);
+        centeredPanel.setLayout(centeredPanelLayout);
+        centeredPanelLayout.setHorizontalGroup(
+            centeredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centeredPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+        centeredPanelLayout.setVerticalGroup(
+            centeredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centeredPanelLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        add(centeredPanel, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void roundedPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanelMouseEntered
+       over = true;
+    }//GEN-LAST:event_roundedPanelMouseEntered
+
+    private void roundedPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanelMouseExited
+        over = false;
+    }//GEN-LAST:event_roundedPanelMouseExited
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        if (!over) {
+            setVisible(false);
+        }
+    }//GEN-LAST:event_formMousePressed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel centeredPanel;
+    private javax.swing.JPanel notifOutput;
+    private Components.RoundedPanel roundedPanel;
+    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 }

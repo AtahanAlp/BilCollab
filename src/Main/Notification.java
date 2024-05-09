@@ -9,5 +9,24 @@ package Main;
  * @author Atahan
  */
 public class Notification {
+    String description;
+    User sender;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+    
     
 }

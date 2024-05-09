@@ -168,6 +168,7 @@ public class SideMenu extends javax.swing.JPanel {
     private void activitiesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activitiesBtnActionPerformed
         setSelectedPage(activitiesBtn, mainFrame.getActivitiesPanel());
         mainFrame.setInfoText("Upcoming Activities");
+        mainFrame.getActivitiesPanel().loadActivities();
     }//GEN-LAST:event_activitiesBtnActionPerformed
 
     private void messagesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messagesBtnActionPerformed

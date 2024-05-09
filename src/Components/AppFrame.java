@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Components;
+import Components.ActivitiesComp.ActivitiesPanel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -21,7 +22,7 @@ public class AppFrame extends javax.swing.JFrame {
         initComponents();
         //my init components
         sideMenu1 = new Components.SideMenu(this);
-        getContentPane().add(sideMenu1, java.awt.BorderLayout.WEST);
+        appPanel.add(sideMenu1, java.awt.BorderLayout.WEST);
         pack();
         setLocationRelativeTo(null);
         
@@ -37,6 +38,8 @@ public class AppFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        notificationsPanel = new Components.NotifComp.NotificationsPanel();
+        appPanel = new javax.swing.JPanel();
         featuresPanel = new javax.swing.JPanel();
         infoPanel = new javax.swing.JPanel();
         notificationBtn = new Components.Button();
@@ -55,6 +58,16 @@ public class AppFrame extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1480, 800));
         setPreferredSize(new java.awt.Dimension(1620, 1024));
         setSize(new java.awt.Dimension(1640, 1024));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
+        getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
+        getContentPane().add(notificationsPanel);
+
+        appPanel.setBackground(new java.awt.Color(235, 240, 255));
+        appPanel.setLayout(new java.awt.BorderLayout());
 
         featuresPanel.setBackground(new java.awt.Color(235, 240, 255));
         featuresPanel.setLayout(new java.awt.BorderLayout());
@@ -83,7 +96,7 @@ public class AppFrame extends javax.swing.JFrame {
             .addGroup(infoPanelLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(infoText, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(notificationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -183,15 +196,21 @@ public class AppFrame extends javax.swing.JFrame {
 
         featuresPanel.add(showPane, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(featuresPanel, java.awt.BorderLayout.CENTER);
+        appPanel.add(featuresPanel, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(appPanel);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void notificationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationBtnActionPerformed
-        // TODO add your handling code here:
+        notificationsPanel.openNotifications();
     }//GEN-LAST:event_notificationBtnActionPerformed
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        
+    }//GEN-LAST:event_formMousePressed
    
     public void switchPanels(JPanel selectedPanel){
         for (Component component : showPane.getComponents()) {
@@ -204,7 +223,7 @@ public class AppFrame extends javax.swing.JFrame {
         return showPane;
     }
 
-    public JPanel getActivitiesPanel() {
+    public ActivitiesPanel getActivitiesPanel() {
         return activitiesPanel;
     }
 
@@ -272,12 +291,14 @@ public class AppFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Components.ActivitiesComp.ActivitiesPanel activitiesPanel;
+    private javax.swing.JPanel appPanel;
     private Components.ActivitiesComp.CreateActivityPanel createActPanel;
     private javax.swing.JPanel featuresPanel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel infoText;
     private Components.MessagesComp.MessagesPanel messagesPanel;
     private Components.Button notificationBtn;
+    private Components.NotifComp.NotificationsPanel notificationsPanel;
     private Components.ProfileComp.ProfilePanel profilePanel;
     private Components.SchedulerComp.SchedulerPanel schedulerPanel;
     private Components.SettingsComp.SettingsPanel settingsPanel;
