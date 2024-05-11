@@ -5,6 +5,7 @@
 package Components.ProfileComp;
 
 import Components.ActivitiesComp.ActivityItem;
+import Components.RefreshablePanel;
 import Components.ScrollBarUI;
 import Components.TextCharLimit;
 import Main.Activity;
@@ -12,9 +13,7 @@ import Main.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.Date;
-import javax.swing.Box;
-import javax.swing.JPanel;
+import java.util.ArrayList;
 import javax.swing.JScrollBar;
 import javax.swing.border.EmptyBorder;
 
@@ -22,7 +21,8 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Atahan
  */
-public class ProfilePanel extends javax.swing.JPanel {
+public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel{
+    private User user;
     
     public ProfilePanel() {
         initComponents();
@@ -31,16 +31,13 @@ public class ProfilePanel extends javax.swing.JPanel {
         description.setBorder(new EmptyBorder(0, 0, 0, 0));
         description.setBackground(new Color(0,0,0,0));
         description.setDocument(new TextCharLimit(100));
-        description.setText("lalala");//TODO
 
         displayName.setBorder(new EmptyBorder(0, 0, 0, 0));
         displayName.setBackground(new Color(0,0,0,0));
         displayName.setDocument(new TextCharLimit(20));
-        displayName.setText("username");//TODO
         
         buttonGroup.add(yourActBtn);
         buttonGroup.add(joinedActBtn);
-        yourActBtn.setSelected(true);
         
         editBtn.radius = 12;
         
@@ -57,22 +54,38 @@ public class ProfilePanel extends javax.swing.JPanel {
         layout.setVgap(25);
         outputPanel.setLayout(layout);
     }
+    
+    public void setUser(User user){
+        this.user = user;
+    }
 
+    public void refresh(){
+        setActivityCounter();
+        setFriendNo();
+        yourActBtn.setSelected(false);
+        yourActBtn.setSelected(true);
+        displayName.setText(user.getDisplayName());
+        description.setText(user.getDescription());
+        searchBar2.setText("");
+    }
+    
+    public void setActivityCounter(){
+        activityNo.setText(user.getCreatedActivities().size()+"");
+    }
+    
+    public void setFriendNo(){
+        friendsNo.setText(user.getFriends().size()+"");
+    }
+    
     public void loadYourActivities(){
         outputPanel.removeAll();
         revalidate();
         scrollPane.getVerticalScrollBar().setValue(0);
         
-        Date startDate = new Date(2024, 5, 12, 12, 30);
-        Date endDate = new Date(2024, 5, 12, 16, 30);
-        User creator = new User("Atahan", "atos", "12345");
-        //TODO add from sql
-        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Tennis Match", creator, "blabla", "tennis", 7, true)));
-        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Cofee Break", creator, "Want to hang out and drink cofee w/ friends!", "chill", 3, true)));
-        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Board Game Night", creator, "I found a place called Bam, it has grat board games! Waiting you all to participate in this grat activity!", "tennis", 5, true)));
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
+       ArrayList<Activity> activities = user.getCreatedActivities();
+        for (int i = activities.size()-1; i >= 0; i--) {
+            outputPanel.add(new ActivityItem(activities.get(i)));
+        }
     }
     
     public void loadJoinedActivities(){
@@ -80,11 +93,10 @@ public class ProfilePanel extends javax.swing.JPanel {
         revalidate();
         scrollPane.getVerticalScrollBar().setValue(0);
         
-        Date startDate = new Date(2024, 5, 12, 12, 30);
-        Date endDate = new Date(2024, 5, 12, 16, 30);
-        User creator = new User("Atahan", "atos", "12345");
-        //TODO add from sql
-        outputPanel.add(new ActivityItem());
+        ArrayList<Activity> activities = user.getJoinedActivities();
+        for (int i = activities.size()-1; i >= 0; i--) {
+            outputPanel.add(new ActivityItem(activities.get(i)));
+        }
     }
     
     public void enableEditing(){
@@ -95,7 +107,8 @@ public class ProfilePanel extends javax.swing.JPanel {
     public void disableEditingAndSave(){
         displayName.setEnabled(false);
         description.setEnabled(false);
-        //TODO
+        user.setDisplayName(displayName.getText().trim());
+        user.setDescription(description.getText().trim());
     }
     
     /**
@@ -124,6 +137,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         friendsNo = new javax.swing.JLabel();
         editBtn = new Components.SelectionButton();
         searchBar2 = new Components.SearchBar();
+        descriptionLbl = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -241,6 +255,10 @@ public class ProfilePanel extends javax.swing.JPanel {
 
         searchBar2.setHint("Search Profiles");
 
+        descriptionLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        descriptionLbl.setForeground(new java.awt.Color(153, 153, 153));
+        descriptionLbl.setText("Description:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -273,7 +291,11 @@ public class ProfilePanel extends javax.swing.JPanel {
                 .addGap(81, 81, 81))
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
-                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(descriptionLbl)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -297,12 +319,14 @@ public class ProfilePanel extends javax.swing.JPanel {
                             .addComponent(activitiesTxt)
                             .addComponent(friendsNo)
                             .addComponent(FriendsTxt))))
-                .addGap(28, 28, 28)
+                .addGap(25, 25, 25)
+                .addComponent(descriptionLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -339,6 +363,7 @@ public class ProfilePanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JTextArea description;
+    private javax.swing.JLabel descriptionLbl;
     private javax.swing.JTextField displayName;
     private Components.SelectionButton editBtn;
     private javax.swing.JLabel friendsNo;

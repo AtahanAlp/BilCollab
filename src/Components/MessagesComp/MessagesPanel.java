@@ -4,6 +4,7 @@
  */
 package Components.MessagesComp;
 
+import Components.RefreshablePanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
@@ -14,7 +15,7 @@ import javax.swing.JFrame;
  *
  * @author Atahan
  */
-public class MessagesPanel extends javax.swing.JPanel {
+public class MessagesPanel extends javax.swing.JPanel implements RefreshablePanel{
 
     /**
      * Creates new form ActivitiesPage
@@ -25,6 +26,10 @@ public class MessagesPanel extends javax.swing.JPanel {
         Chats.setVisible(true);
         Chats.setLayout(new BoxLayout(Chats, BoxLayout.Y_AXIS));
         addChat ("Eren");
+    }
+    
+    public void refresh(){
+        //TODO
     }
     
     public static void main(String[] args) {

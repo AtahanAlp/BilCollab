@@ -13,6 +13,12 @@ public class FriendRequest {
     User reciever;
     User sender;
 
+    public FriendRequest(User reciever, User sender) {
+        this.description = sender.getDisplayName() + "sent you a friend request.";
+        this.reciever = reciever;
+        this.sender = sender;
+    }
+
     public String getDescription() {
         return description;
     }

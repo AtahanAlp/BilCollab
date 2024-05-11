@@ -32,6 +32,9 @@ public class User {
     private ArrayList<FriendRequest> friendRequests;
     private ArrayList<User> friends;
 
+    public User(){
+        this("ali", "mail", "123");
+    }
     
     public User(String username, String eMail, String password){
         this.id = ++count;
@@ -85,6 +88,16 @@ public class User {
 
     public ArrayList<Activity> getJoinedActivities() {
         return joinedActivities;
+    }
+    
+    public ArrayList<Activity> getAllActivities() {
+        //TODO
+        return new ArrayList<Activity>();
+    }
+    
+    public ArrayList<Activity> getSpecificActivities(String str){
+        //TODO
+        return new ArrayList<Activity>();
     }
 
     public ArrayList<Plan> getPlans() {

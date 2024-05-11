@@ -41,7 +41,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Component id="hintTextField1" pref="444" max="32767" attributes="0"/>
+                  <Component id="hintTextField" pref="444" max="32767" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="searchBtn" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -50,7 +50,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="searchBtn" alignment="0" pref="41" max="32767" attributes="0"/>
-              <Component id="hintTextField1" alignment="1" pref="0" max="32767" attributes="0"/>
+              <Component id="hintTextField" alignment="1" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -66,7 +66,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="Components.HintTextField" name="hintTextField1">
+        <Component class="Components.HintTextField" name="hintTextField">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2f" green="2f" red="2f" type="rgb"/>
@@ -76,7 +76,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hintTextField1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hintTextFieldActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

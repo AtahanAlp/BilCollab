@@ -19,14 +19,23 @@ public class SearchBar extends javax.swing.JPanel {
     public SearchBar() {
         initComponents();
         
-        hintTextField1.setHint("Search");
+        hintTextField.setHint("Search");
         
         searchBtn.setBgColor(new Color(0,0,0,0));
     }
 
     public void setHint(String hint){
-        hintTextField1.setHint(hint);
+        hintTextField.setHint(hint);
     }
+    
+    public void setText(String str){
+        hintTextField.setText(str);
+    }
+    
+    public String getText(){
+        return hintTextField.getText();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,7 +47,7 @@ public class SearchBar extends javax.swing.JPanel {
 
         totalArea = new Components.RoundedPanel();
         searchBtn = new Components.Button();
-        hintTextField1 = new Components.HintTextField();
+        hintTextField = new Components.HintTextField();
 
         setOpaque(false);
 
@@ -52,11 +61,11 @@ public class SearchBar extends javax.swing.JPanel {
             }
         });
 
-        hintTextField1.setForeground(new java.awt.Color(47, 47, 47));
-        hintTextField1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        hintTextField1.addActionListener(new java.awt.event.ActionListener() {
+        hintTextField.setForeground(new java.awt.Color(47, 47, 47));
+        hintTextField.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        hintTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hintTextField1ActionPerformed(evt);
+                hintTextFieldActionPerformed(evt);
             }
         });
 
@@ -66,14 +75,14 @@ public class SearchBar extends javax.swing.JPanel {
             totalAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, totalAreaLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(hintTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addComponent(hintTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         totalAreaLayout.setVerticalGroup(
             totalAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, Short.MAX_VALUE)
-            .addComponent(hintTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(hintTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -92,13 +101,13 @@ public class SearchBar extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void hintTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintTextField1ActionPerformed
+    private void hintTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_hintTextField1ActionPerformed
+    }//GEN-LAST:event_hintTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Components.HintTextField hintTextField1;
+    private Components.HintTextField hintTextField;
     private Components.Button searchBtn;
     private Components.RoundedPanel totalArea;
     // End of variables declaration//GEN-END:variables

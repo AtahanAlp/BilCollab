@@ -101,9 +101,9 @@
                               <Component id="sortBtn" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="searchBar2" min="-2" pref="926" max="-2" attributes="0"/>
+                              <Component id="searchBar" min="-2" pref="926" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="button2" max="32767" attributes="0"/>
+                              <Component id="filterBtn" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -115,8 +115,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="searchBar2" pref="42" max="32767" attributes="0"/>
-                          <Component id="button2" pref="0" max="32767" attributes="0"/>
+                          <Component id="searchBar" pref="42" max="32767" attributes="0"/>
+                          <Component id="filterBtn" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="65" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -168,7 +168,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="Components.Button" name="button2">
+            <Component class="Components.Button" name="filterBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Icons/filter.png"/>
@@ -183,7 +183,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="Components.SearchBar" name="searchBar2">
+            <Component class="Components.SearchBar" name="searchBar">
             </Component>
           </SubComponents>
         </Container>

@@ -4,12 +4,14 @@
  */
 package Components.NotifComp;
 
-import Components.ActivitiesComp.ActivityItem;
 import Components.ScrollBarUI;
+import Main.FriendRequest;
+import Main.Notification;
+import Main.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
@@ -18,6 +20,7 @@ import javax.swing.JScrollBar;
  * @author Atahan
  */
 public class NotificationsPanel extends JPanel {
+    private User user;
     private boolean over;
     /**
      * Creates new form NotificationsPanel
@@ -42,8 +45,10 @@ public class NotificationsPanel extends JPanel {
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(5);
         notifOutput.setLayout(layout);
-        
-        loadNotifications();
+    }
+    
+    public void setUser(User user){
+        this.user = user;
     }
 
     public void loadNotifications(){
@@ -54,15 +59,10 @@ public class NotificationsPanel extends JPanel {
         infoText.setText("Recent Notifications");
         notifOutput.add(infoText);
         
-        //TODO
-        notifOutput.add(new NotificationItem());
-        notifOutput.add(new NotificationItem());
-        notifOutput.add(new NotificationItem());
-        notifOutput.add(new NotificationItem());
-        notifOutput.add(new NotificationItem());
-        notifOutput.add(new NotificationItem());
-        notifOutput.add(new NotificationItem());
-        notifOutput.add(new NotificationItem());
+        ArrayList<Notification> notifications = user.getNotifications();
+        for (int i = notifications.size()-1; i >= 0; i--) {
+            notifOutput.add(new NotificationItem(notifications.get(i)));
+        }
     }
     
     public void loadFriendReqs(){
@@ -72,22 +72,20 @@ public class NotificationsPanel extends JPanel {
         infoText.setText("Friend Requests");
         notifOutput.add(infoText);
         
-        //TODO
-        notifOutput.add(new FriendRequestItem());
-        notifOutput.add(new FriendRequestItem());
-        notifOutput.add(new FriendRequestItem());
-        notifOutput.add(new FriendRequestItem());
-        notifOutput.add(new FriendRequestItem());
-        notifOutput.add(new FriendRequestItem());
-        notifOutput.add(new FriendRequestItem());
-        notifOutput.add(new FriendRequestItem());
-        notifOutput.add(new FriendRequestItem());
-        notifOutput.add(new FriendRequestItem());
+        ArrayList<FriendRequest> friendReqs = user.getFriendRequests();
+        for (int i = friendReqs.size()-1; i >= 0; i--) {
+            notifOutput.add(new FriendRequestItem(friendReqs.get(i), this));
+        }
     }
     
     public void openNotifications(){
         setVisible(true);
         loadNotifications();
+    }
+    
+    public void removeItem(JPanel panel){
+        notifOutput.remove(panel);
+        revalidate();
     }
 
     /**

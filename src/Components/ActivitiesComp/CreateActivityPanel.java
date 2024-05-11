@@ -4,11 +4,13 @@
  */
 package Components.ActivitiesComp;
 
+import Components.RefreshablePanel;
+
 /**
  *
  * @author Atahan
  */
-public class CreateActivityPanel extends javax.swing.JPanel {
+public class CreateActivityPanel extends javax.swing.JPanel implements RefreshablePanel{
 
     /**
      * Creates new form ActivitiesPage
@@ -17,6 +19,9 @@ public class CreateActivityPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    public void refresh(){
+        //TODO
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

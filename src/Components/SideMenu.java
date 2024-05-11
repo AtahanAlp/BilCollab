@@ -4,8 +4,10 @@
  */
 package Components;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.border.MatteBorder;
 
 /**
  *
@@ -32,6 +34,8 @@ public class SideMenu extends javax.swing.JPanel {
         
         setSelectedPage(activitiesBtn, mainFrame.getActivitiesPanel());
         mainFrame.setInfoText("Upcoming Activities");
+        
+        setBorder(new MatteBorder(0, 0, 0, 1, new Color(200, 200, 200)));
     }
     
     //for testing purposes
@@ -168,7 +172,6 @@ public class SideMenu extends javax.swing.JPanel {
     private void activitiesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activitiesBtnActionPerformed
         setSelectedPage(activitiesBtn, mainFrame.getActivitiesPanel());
         mainFrame.setInfoText("Upcoming Activities");
-        mainFrame.getActivitiesPanel().loadActivities();
     }//GEN-LAST:event_activitiesBtnActionPerformed
 
     private void messagesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messagesBtnActionPerformed
@@ -196,14 +199,15 @@ public class SideMenu extends javax.swing.JPanel {
         mainFrame.setInfoText("Settings");
     }//GEN-LAST:event_settingsBtnActionPerformed
 
-    public void setSelectedPage(Button selectedButton, JPanel selectedPanel) {
+    public void setSelectedPage(Button selectedButton, RefreshablePanel selectedPanel) {
         if (selectedButton != this.selectedButton) {
             this.selectedButton = selectedButton;
             for (Button menuButton : menuButtons) {
                 setDefaultColors(menuButton);
             }
             setSelectedColors(selectedButton);
-            mainFrame.switchPanels(selectedPanel);
+            selectedPanel.refresh();
+            mainFrame.switchPanels((JPanel)selectedPanel);
         }
     }
         

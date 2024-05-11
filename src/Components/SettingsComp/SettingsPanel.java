@@ -4,17 +4,23 @@
  */
 package Components.SettingsComp;
 
+import Components.RefreshablePanel;
+
 /**
  *
  * @author Atahan
  */
-public class SettingsPanel extends javax.swing.JPanel {
+public class SettingsPanel extends javax.swing.JPanel implements RefreshablePanel{
 
     /**
      * Creates new form ActivitiesPage
      */
     public SettingsPanel() {
         initComponents();
+    }
+    
+    public void refresh(){
+        //TODO
     }
 
     /**

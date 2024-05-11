@@ -3,30 +3,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Components;
-import Components.ActivitiesComp.ActivitiesPanel;
+import Main.User;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.MatteBorder;
 /**
  *
  * @author Atahan
  */
 public class AppFrame extends javax.swing.JFrame {
-
+    User user;
+    
     /**
      * Creates new form AppFrame
      */
-    public AppFrame() {
+    public AppFrame(User user) {
+        this.user = user;
+        
         initComponents();
+        setTitle("BilCollab");
+        setIconImage(new ImageIcon(getClass().getResource("/Icons/logo.png")).getImage());
+        
         //my init components
+        notificationsPanel.setUser(user);
+        activitiesPanel.setUser(user);
+        profilePanel.setUser(user);
+        
         sideMenu1 = new Components.SideMenu(this);
         appPanel.add(sideMenu1, java.awt.BorderLayout.WEST);
         pack();
         setLocationRelativeTo(null);
         
         notificationBtn.setColorClicked(new Color(177, 177, 177));
+        
+        infoPanel.setBorder(new MatteBorder(0, 0, 1, 0, new Color(220, 220, 220)));
     }
 
     /**
@@ -195,27 +209,27 @@ public class AppFrame extends javax.swing.JFrame {
         return showPane;
     }
 
-    public ActivitiesPanel getActivitiesPanel() {
+    public RefreshablePanel getActivitiesPanel() {
         return activitiesPanel;
     }
 
-    public JPanel getMessagesPanel() {
+    public RefreshablePanel getMessagesPanel() {
         return messagesPanel;
     }
     
-    public JPanel getSchedulerPanel() {
+    public RefreshablePanel getSchedulerPanel() {
         return schedulerPanel;
     }
     
-    public JPanel getProfilePanel(){
+    public RefreshablePanel getProfilePanel(){
         return profilePanel;
     }
     
-    public JPanel getCreateActivityPanel(){
+    public RefreshablePanel getCreateActivityPanel(){
         return createActPanel;
     }
     
-    public JPanel getSettingsPanel(){
+    public RefreshablePanel getSettingsPanel(){
         return settingsPanel;
     }
     
@@ -256,7 +270,8 @@ public class AppFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AppFrame().setVisible(true);
+                JFrame frame = new AppFrame(new User("Atahan", "mail", "123"));
+                frame.setVisible(true);
             }
         });
     }

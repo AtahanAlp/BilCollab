@@ -4,9 +4,6 @@
  */
 package Components.NotifComp;
 
-import Components.ActivitiesComp.*;
-import Components.Button;
-import Main.Activity;
 import Main.Notification;
 import java.awt.Color;
 
@@ -138,7 +135,7 @@ public class NotificationItem extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        add(roundedPanel, java.awt.BorderLayout.NORTH);
+        add(roundedPanel, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundedPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanelMouseEntered

@@ -4,17 +4,23 @@
  */
 package Components.SchedulerComp;
 
+import Components.RefreshablePanel;
+
 /**
  *
  * @author Atahan
  */
-public class SchedulerPanel extends javax.swing.JPanel {
+public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePanel{
 
     /**
      * Creates new form ActivitiesPage
      */
     public SchedulerPanel() {
         initComponents();
+    }
+    
+    public void refresh(){
+        //TODO
     }
 
     /**

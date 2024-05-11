@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
  */
 public class FriendRequestItem extends javax.swing.JPanel {
     FriendRequest friendRequest;
+    NotificationsPanel notificationsPanel;
     boolean over;
     /**
      * Creates new form activityItem
@@ -31,7 +32,7 @@ public class FriendRequestItem extends javax.swing.JPanel {
         denyButton.setTextColor(Color.WHITE);
     }
     
-    public FriendRequestItem(FriendRequest friendRequest) {
+    public FriendRequestItem(FriendRequest friendRequest, NotificationsPanel notificationsPanel) {
         initComponents();
         roundedPanel.setBackground(new Color(60, 60, 60, 0));
         over = false;
@@ -43,6 +44,7 @@ public class FriendRequestItem extends javax.swing.JPanel {
         denyButton.setTextColor(Color.WHITE);
         
         this.friendRequest = friendRequest;
+        this.notificationsPanel = notificationsPanel;
         
         this.senderName.setText(friendRequest.getSender().getDisplayName());
     }
@@ -142,8 +144,8 @@ public class FriendRequestItem extends javax.swing.JPanel {
                         .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(roundedPanelLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(denyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(denyButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(acceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(roundedPanelLayout.createSequentialGroup()
                         .addContainerGap()
@@ -164,10 +166,12 @@ public class FriendRequestItem extends javax.swing.JPanel {
 
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
         friendRequest.acceptRequest();
+        notificationsPanel.removeItem(this);
     }//GEN-LAST:event_acceptButtonActionPerformed
 
     private void denyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_denyButtonActionPerformed
         friendRequest.denyRequest();
+        notificationsPanel.removeItem(this);
     }//GEN-LAST:event_denyButtonActionPerformed
 
 

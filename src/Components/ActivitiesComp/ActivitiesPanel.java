@@ -4,21 +4,24 @@
  */
 package Components.ActivitiesComp;
 
+import Components.RefreshablePanel;
 import Components.ScrollBarUI;
 import Main.Activity;
 import Main.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.Date;
+import java.util.ArrayList;
 import javax.swing.JScrollBar;
 
 /**
  *
  * @author Atahan
  */
-public class ActivitiesPanel extends javax.swing.JPanel {
-
+public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePanel{
+    private User user;
+    private boolean ascendingDate;
+    
     /**
      * Creates new form ActivitiesPage
      */
@@ -38,7 +41,15 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(25);
         outputPanel.setLayout(layout);
-        
+    }
+    
+    public void setUser(User user){
+        this.user = user;
+    }
+    
+    public void refresh(){
+        searchBar.setText("");
+        ascendingDate  = true;
         loadActivities();
     }
 
@@ -46,27 +57,33 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         outputPanel.removeAll();        
         scrollPane.getVerticalScrollBar().setValue(0);
         
-        Date startDate = new Date(2024, 5, 12, 12, 30);
-        Date endDate = new Date(2024, 5, 12, 16, 30);
-        User creator = new User("Atahan", "atos", "12345");
-        //TODO add from sql
-        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Tennis Match", creator, "blabla", "tennis", 7, false)));
-        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Cofee Break", creator, "Want to hang out and drink cofee w/ friends!", "chill", 3, true)));
-        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Board Game Night", creator, "I found a place called Bam, it has grat board games! Waiting you all to participate in this grat activity!", "tennis", 5, false)));
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
-        outputPanel.add(new ActivityItem());
+        ArrayList<Activity> activities = user.getAllActivities();
         
-        setactivityCounter(16);
+        if (ascendingDate) {
+            for (int i = activities.size()-1; i >= 0; i--) {
+                outputPanel.add(new ActivityItem(activities.get(i)));
+            }
+        }
+        else{
+            for (int i = 0; i < activities.size(); i++) {
+               outputPanel.add(new ActivityItem(activities.get(i)));
+            }
+        }
+        
+        setactivityCounter(activities.size());
+    }
+    
+    public void loadSearchActivities(){
+        outputPanel.removeAll();        
+        scrollPane.getVerticalScrollBar().setValue(0);
+        
+        ArrayList<Activity> activities = user.getSpecificActivities(searchBar.getText().trim());
+        
+        for (int i = activities.size()-1; i >= 0; i--) {
+            outputPanel.add(new ActivityItem(activities.get(i)));
+        }
+
+        setactivityCounter(activities.size());
     }
     
     public void setactivityCounter(int count){
@@ -86,8 +103,8 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         activityCounter = new javax.swing.JLabel();
         sortDesc = new javax.swing.JLabel();
         sortBtn = new Components.Button();
-        button2 = new Components.Button();
-        searchBar2 = new Components.SearchBar();
+        filterBtn = new Components.Button();
+        searchBar = new Components.SearchBar();
         belowPanel = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         outputPanel = new javax.swing.JPanel();
@@ -121,11 +138,11 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         sortBtn.setIconTextGap(2);
         sortBtn.setMargin(new java.awt.Insets(2, 14, 3, 8));
 
-        button2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/filter.png"))); // NOI18N
-        button2.setText("Filter");
-        button2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        button2.setIconTextGap(5);
-        button2.setMargin(new java.awt.Insets(2, 10, 3, 18));
+        filterBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/filter.png"))); // NOI18N
+        filterBtn.setText("Filter");
+        filterBtn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        filterBtn.setIconTextGap(5);
+        filterBtn.setMargin(new java.awt.Insets(2, 10, 3, 18));
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -141,9 +158,9 @@ public class ActivitiesPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(sortBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                        .addComponent(searchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 926, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 926, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(filterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(16, 16, 16))
         );
         searchPanelLayout.setVerticalGroup(
@@ -151,8 +168,8 @@ public class ActivitiesPanel extends javax.swing.JPanel {
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(searchBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(filterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(activityCounter)
@@ -230,11 +247,11 @@ public class ActivitiesPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityCounter;
     private javax.swing.JPanel belowPanel;
-    private Components.Button button2;
     private javax.swing.JPanel centererPanel;
+    private Components.Button filterBtn;
     private javax.swing.JPanel outputPanel;
     private javax.swing.JScrollPane scrollPane;
-    private Components.SearchBar searchBar2;
+    private Components.SearchBar searchBar;
     private javax.swing.JPanel searchPanel;
     private Components.Button sortBtn;
     private javax.swing.JLabel sortDesc;
