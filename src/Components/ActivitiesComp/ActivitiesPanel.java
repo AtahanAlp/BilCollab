@@ -50,9 +50,9 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         Date endDate = new Date(2024, 5, 12, 16, 30);
         User creator = new User("Atahan", "atos", "12345");
         //TODO add from sql
-        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Tennis Match", creator, "blabla", "tennis", 7, true)));
+        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Tennis Match", creator, "blabla", "tennis", 7, false)));
         outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Cofee Break", creator, "Want to hang out and drink cofee w/ friends!", "chill", 3, true)));
-        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Board Game Night", creator, "I found a place called Bam, it has grat board games! Waiting you all to participate in this grat activity!", "tennis", 5, true)));
+        outputPanel.add(new ActivityItem(new Activity(startDate, endDate, "Board Game Night", creator, "I found a place called Bam, it has grat board games! Waiting you all to participate in this grat activity!", "tennis", 5, false)));
         outputPanel.add(new ActivityItem());
         outputPanel.add(new ActivityItem());
         outputPanel.add(new ActivityItem());
@@ -86,8 +86,8 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         activityCounter = new javax.swing.JLabel();
         sortDesc = new javax.swing.JLabel();
         sortBtn = new Components.Button();
-        searchArea = new javax.swing.JTextArea();
         button2 = new Components.Button();
+        searchBar2 = new Components.SearchBar();
         belowPanel = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         outputPanel = new javax.swing.JPanel();
@@ -121,11 +121,6 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         sortBtn.setIconTextGap(2);
         sortBtn.setMargin(new java.awt.Insets(2, 14, 3, 8));
 
-        searchArea.setColumns(1);
-        searchArea.setForeground(new java.awt.Color(51, 51, 51));
-        searchArea.setRows(1);
-        searchArea.setBorder(null);
-
         button2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/filter.png"))); // NOI18N
         button2.setText("Filter");
         button2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -137,18 +132,18 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(searchArea, javax.swing.GroupLayout.PREFERRED_SIZE, 926, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(activityCounter)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(sortDesc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sortBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sortBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                        .addComponent(searchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 926, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(16, 16, 16))
         );
         searchPanelLayout.setVerticalGroup(
@@ -156,8 +151,8 @@ public class ActivitiesPanel extends javax.swing.JPanel {
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchArea))
+                    .addComponent(searchBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(activityCounter)
@@ -196,7 +191,7 @@ public class ActivitiesPanel extends javax.swing.JPanel {
         );
         belowPanelLayout.setVerticalGroup(
             belowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(scrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
         );
 
         scrollPane.getAccessibleContext().setAccessibleName("");
@@ -239,7 +234,7 @@ public class ActivitiesPanel extends javax.swing.JPanel {
     private javax.swing.JPanel centererPanel;
     private javax.swing.JPanel outputPanel;
     private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JTextArea searchArea;
+    private Components.SearchBar searchBar2;
     private javax.swing.JPanel searchPanel;
     private Components.Button sortBtn;
     private javax.swing.JLabel sortDesc;

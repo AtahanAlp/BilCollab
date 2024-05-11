@@ -30,7 +30,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         description.setLineWrap(true);
         description.setBorder(new EmptyBorder(0, 0, 0, 0));
         description.setBackground(new Color(0,0,0,0));
-        description.setDocument(new TextCharLimit(120));
+        description.setDocument(new TextCharLimit(100));
         description.setText("lalala");//TODO
 
         displayName.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -92,9 +92,10 @@ public class ProfilePanel extends javax.swing.JPanel {
         description.setEnabled(true);
     }
     
-    public void disableEditing(){
+    public void disableEditingAndSave(){
         displayName.setEnabled(false);
         description.setEnabled(false);
+        //TODO
     }
     
     /**
@@ -122,6 +123,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         FriendsTxt = new javax.swing.JLabel();
         friendsNo = new javax.swing.JLabel();
         editBtn = new Components.SelectionButton();
+        searchBar2 = new Components.SearchBar();
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -146,7 +148,7 @@ public class ProfilePanel extends javax.swing.JPanel {
 
         buttonPanel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         buttonPanel.setOpaque(false);
-        buttonPanel.setLayout(new java.awt.GridLayout());
+        buttonPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         yourActBtn.setForeground(new java.awt.Color(51, 51, 51));
         yourActBtn.setText("Your Activities");
@@ -237,20 +239,29 @@ public class ProfilePanel extends javax.swing.JPanel {
             }
         });
 
+        searchBar2.setHint("Search Profiles");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1098, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(username)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(displayName, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(activityNo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -258,16 +269,11 @@ public class ProfilePanel extends javax.swing.JPanel {
                         .addGap(55, 55, 55)
                         .addComponent(friendsNo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FriendsTxt))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(displayName, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(username))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(FriendsTxt)))
+                .addGap(81, 81, 81))
             .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97)
+                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -279,9 +285,10 @@ public class ProfilePanel extends javax.swing.JPanel {
                         .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(displayName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(displayName)
+                            .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(username)
                         .addGap(55, 55, 55)
@@ -290,9 +297,9 @@ public class ProfilePanel extends javax.swing.JPanel {
                             .addComponent(activitiesTxt)
                             .addComponent(friendsNo)
                             .addComponent(FriendsTxt))))
-                .addGap(30, 30, 30)
+                .addGap(28, 28, 28)
                 .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(27, 27, 27)
                 .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
@@ -320,7 +327,7 @@ public class ProfilePanel extends javax.swing.JPanel {
             enableEditing();
         }
         else{
-            disableEditing();
+            disableEditingAndSave();
         }
     }//GEN-LAST:event_editBtnItemStateChanged
 
@@ -340,6 +347,7 @@ public class ProfilePanel extends javax.swing.JPanel {
     private Components.SelectionButton joinedActBtn;
     private javax.swing.JPanel outputPanel;
     private javax.swing.JScrollPane scrollPane;
+    private Components.SearchBar searchBar2;
     private javax.swing.JLabel username;
     private Components.SelectionButton yourActBtn;
     // End of variables declaration//GEN-END:variables

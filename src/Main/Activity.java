@@ -71,7 +71,7 @@ public class Activity {
         return participants;
     }
 
-    public boolean isIsPublic() {
+    public boolean isPublic() {
         return isPublic;
     }
 
