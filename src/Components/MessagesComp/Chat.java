@@ -13,9 +13,22 @@ public class Chat extends javax.swing.JPanel {
     /**
      * Creates new form Chat
      */
-    public Chat() {
+    public Chat (String name, String pfp, String message, MessagesPanel m) {
         initComponents();
+        
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                
+                m.displayChat(new MessagePanel());
+                System.out.println("yeet");
+                
+            }
+        });
+        
+        jLabel1.setText(name);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
