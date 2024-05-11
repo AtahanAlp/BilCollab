@@ -16,15 +16,21 @@ import java.awt.Color;
  */
 public class NotificationItem extends javax.swing.JPanel {
     Notification notification;
+    boolean over;
     /**
      * Creates new form activityItem
      */
     public NotificationItem() {
         initComponents();
+        roundedPanel.setBackground(new Color(60, 60, 60, 0));  
+        over = false;
     }
     
     public NotificationItem(Notification notification) {
         initComponents();
+        roundedPanel.setBackground(new Color(60, 60, 60, 0));
+        over = false;
+        
         
         this.notification = notification;
         
@@ -32,7 +38,19 @@ public class NotificationItem extends javax.swing.JPanel {
         this.senderName.setText(notification.getSender().getDisplayName());
     }
 
-    private void setTimeDisplay(){
+    public void setDescription(String str){
+        this.description.setText(str);
+    }
+    
+    public void setSender (String str){
+        this.senderName.setText(str);
+    }
+    
+    public void setTime (String str){
+        this.timeLbl.setText(str);
+    }
+    
+    public void setTimeDisplay(){
         //TODO
         this.timeLbl.setText("hellloooo");
     }
@@ -51,16 +69,24 @@ public class NotificationItem extends javax.swing.JPanel {
         profilePic = new Components.ImageAvatar();
         description = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(500, 100));
-        setMinimumSize(new java.awt.Dimension(500, 100));
+        setMaximumSize(new java.awt.Dimension(2000, 2000));
+        setMinimumSize(new java.awt.Dimension(420, 60));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(500, 100));
+        setPreferredSize(new java.awt.Dimension(420, 60));
         setLayout(new java.awt.BorderLayout());
 
         roundedPanel.setBackground(new java.awt.Color(255, 255, 255));
-        roundedPanel.setMaximumSize(new java.awt.Dimension(500, 100));
-        roundedPanel.setMinimumSize(new java.awt.Dimension(500, 100));
-        roundedPanel.setPreferredSize(new java.awt.Dimension(500, 100));
+        roundedPanel.setMaximumSize(new java.awt.Dimension(420, 60));
+        roundedPanel.setMinimumSize(new java.awt.Dimension(420, 60));
+        roundedPanel.setPreferredSize(new java.awt.Dimension(420, 60));
+        roundedPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                roundedPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                roundedPanelMouseExited(evt);
+            }
+        });
 
         timeLbl.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         timeLbl.setForeground(new java.awt.Color(102, 102, 102));
@@ -95,23 +121,33 @@ public class NotificationItem extends javax.swing.JPanel {
                 .addComponent(description)
                 .addGap(18, 18, 18)
                 .addComponent(timeLbl)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         roundedPanelLayout.setVerticalGroup(
             roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(timeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(senderName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(16, 16, 16))
+            .addGroup(roundedPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(roundedPanelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timeLbl)
+                    .addComponent(description)
+                    .addComponent(senderName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         add(roundedPanel, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void roundedPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanelMouseEntered
+        roundedPanel.setBackground(new Color(60, 60, 60, 20));
+    }//GEN-LAST:event_roundedPanelMouseEntered
+
+    private void roundedPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanelMouseExited
+       roundedPanel.setBackground(new Color(60, 60, 60, 0));
+    }//GEN-LAST:event_roundedPanelMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

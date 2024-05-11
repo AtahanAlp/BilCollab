@@ -27,26 +27,34 @@ public class NotificationsPanel extends JPanel {
         over = false;
           
         setOpaque(false);
+        setVisible(false);
         JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
         scrollBar.setOpaque(false);
         scrollBar.setUnitIncrement(1);
         scrollBar.setForeground(new Color(100, 160, 239));
-        scrollBar.setPreferredSize(new Dimension(12, 20));
+        scrollBar.setPreferredSize(new Dimension(12, 14));
         scrollBar.setUI(new ScrollBarUI());//change later
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setViewportBorder(null);
         
+        friendReqBtn.setBgColor(new Color(0,0,0,0));
+        
         GridLayout layout = new GridLayout(0, 1);
-        layout.setVgap(15);
+        layout.setVgap(5);
         notifOutput.setLayout(layout);
-        setVisible(false);
         
         loadNotifications();
     }
 
     public void loadNotifications(){
         notifOutput.removeAll();
+        revalidate();
         scrollPane.getVerticalScrollBar().setValue(0);
+        notifOutput.add(friendReqBtn);
+        infoText.setText("Recent Notifications");
+        notifOutput.add(infoText);
+        
+        //TODO
         notifOutput.add(new NotificationItem());
         notifOutput.add(new NotificationItem());
         notifOutput.add(new NotificationItem());
@@ -55,6 +63,26 @@ public class NotificationsPanel extends JPanel {
         notifOutput.add(new NotificationItem());
         notifOutput.add(new NotificationItem());
         notifOutput.add(new NotificationItem());
+    }
+    
+    public void loadFriendReqs(){
+        notifOutput.removeAll();
+        revalidate();
+        scrollPane.getVerticalScrollBar().setValue(0);
+        infoText.setText("Friend Requests");
+        notifOutput.add(infoText);
+        
+        //TODO
+        notifOutput.add(new FriendRequestItem());
+        notifOutput.add(new FriendRequestItem());
+        notifOutput.add(new FriendRequestItem());
+        notifOutput.add(new FriendRequestItem());
+        notifOutput.add(new FriendRequestItem());
+        notifOutput.add(new FriendRequestItem());
+        notifOutput.add(new FriendRequestItem());
+        notifOutput.add(new FriendRequestItem());
+        notifOutput.add(new FriendRequestItem());
+        notifOutput.add(new FriendRequestItem());
     }
     
     public void openNotifications(){
@@ -75,6 +103,8 @@ public class NotificationsPanel extends JPanel {
         roundedPanel = new Components.RoundedPanel();
         scrollPane = new javax.swing.JScrollPane();
         notifOutput = new javax.swing.JPanel();
+        infoText = new javax.swing.JLabel();
+        friendReqBtn = new Components.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(11000, 10000));
@@ -94,7 +124,7 @@ public class NotificationsPanel extends JPanel {
         centeredPanel.setOpaque(false);
         centeredPanel.setPreferredSize(new java.awt.Dimension(525, 625));
 
-        roundedPanel.setBackground(new java.awt.Color(204, 204, 255));
+        roundedPanel.setBackground(new java.awt.Color(255, 255, 255));
         roundedPanel.setMaximumSize(new java.awt.Dimension(500, 500));
         roundedPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         roundedPanel.setPreferredSize(new java.awt.Dimension(500, 500));
@@ -109,25 +139,52 @@ public class NotificationsPanel extends JPanel {
 
         scrollPane.setBorder(null);
         scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setMaximumSize(new java.awt.Dimension(480, 480));
-        scrollPane.setMinimumSize(new java.awt.Dimension(480, 480));
+        scrollPane.setName(""); // NOI18N
         scrollPane.setOpaque(false);
-        scrollPane.setPreferredSize(new java.awt.Dimension(480, 480));
 
         notifOutput.setBackground(new java.awt.Color(204, 255, 204));
-        notifOutput.setMinimumSize(new java.awt.Dimension(0, 0));
         notifOutput.setOpaque(false);
-        notifOutput.setPreferredSize(new java.awt.Dimension(500, 900));
+
+        infoText.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        infoText.setForeground(new java.awt.Color(102, 102, 102));
+        infoText.setText("   Recent Notifications");
+        infoText.setAlignmentX(1.0F);
+
+        friendReqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/addFriend.png"))); // NOI18N
+        friendReqBtn.setText("Friend Requests");
+        friendReqBtn.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        friendReqBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        friendReqBtn.setIconTextGap(24);
+        friendReqBtn.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        friendReqBtn.setMaximumSize(new java.awt.Dimension(500, 60));
+        friendReqBtn.setMinimumSize(new java.awt.Dimension(500, 60));
+        friendReqBtn.setPreferredSize(new java.awt.Dimension(500, 60));
+        friendReqBtn.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        friendReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                friendReqBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout notifOutputLayout = new javax.swing.GroupLayout(notifOutput);
         notifOutput.setLayout(notifOutputLayout);
         notifOutputLayout.setHorizontalGroup(
             notifOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(notifOutputLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(infoText, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(notifOutputLayout.createSequentialGroup()
+                .addComponent(friendReqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         notifOutputLayout.setVerticalGroup(
             notifOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(notifOutputLayout.createSequentialGroup()
+                .addComponent(friendReqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoText)
+                .addGap(0, 392, Short.MAX_VALUE))
         );
 
         scrollPane.setViewportView(notifOutput);
@@ -138,14 +195,14 @@ public class NotificationsPanel extends JPanel {
             roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
         roundedPanelLayout.setVerticalGroup(
             roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
@@ -153,9 +210,9 @@ public class NotificationsPanel extends JPanel {
         centeredPanel.setLayout(centeredPanelLayout);
         centeredPanelLayout.setHorizontalGroup(
             centeredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(centeredPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, centeredPanelLayout.createSequentialGroup()
+                .addContainerGap(1093, Short.MAX_VALUE)
+                .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
         centeredPanelLayout.setVerticalGroup(
@@ -183,10 +240,16 @@ public class NotificationsPanel extends JPanel {
         }
     }//GEN-LAST:event_formMousePressed
 
-    
+    private void friendReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendReqBtnActionPerformed
+        loadFriendReqs();
+        revalidate();
+    }//GEN-LAST:event_friendReqBtnActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel centeredPanel;
+    private Components.Button friendReqBtn;
+    private javax.swing.JLabel infoText;
     private javax.swing.JPanel notifOutput;
     private Components.RoundedPanel roundedPanel;
     private javax.swing.JScrollPane scrollPane;

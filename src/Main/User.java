@@ -30,7 +30,7 @@ public class User {
     private ArrayList<Plan> plans;
     private ArrayList<Notification> notifications;
     private ArrayList<FriendRequest> friendRequests;
-    private ArrayList<Friend> friends;
+    private ArrayList<User> friends;
 
     
     public User(String username, String eMail, String password){
@@ -47,7 +47,7 @@ public class User {
         plans = new ArrayList<Plan>();
         notifications = new ArrayList<Notification>();
         friendRequests = new ArrayList<FriendRequest>();
-        friends = new ArrayList<Friend>();
+        friends = new ArrayList<User>();
     }
     
     //getter methods
@@ -99,7 +99,7 @@ public class User {
         return friendRequests;
     }
 
-    public ArrayList<Friend> getFriends() {
+    public ArrayList<User> getFriends() {
         return friends;
     }
     
@@ -134,11 +134,15 @@ public class User {
     }
     
     public void addFriend(User user){
-        //TODO
+        friends.add(user);
     }
     
-    public void removeFriend(Friend friend){
-        //TODO
+    public void removeFriend(User friend){
+        friends.remove(friend);
+    }
+    
+    public void removeRequest(FriendRequest request){
+        friendRequests.remove(request);
     }
     
     public void createNotification(Notification notification){

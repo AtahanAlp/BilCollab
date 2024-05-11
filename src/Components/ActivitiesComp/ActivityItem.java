@@ -78,7 +78,7 @@ public class ActivityItem extends javax.swing.JPanel {
 
         title.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         title.setForeground(new java.awt.Color(51, 51, 51));
-        title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/bell.png"))); // NOI18N
+        title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/public.png"))); // NOI18N
         title.setText("Title of Activity  ");
         title.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 

@@ -148,21 +148,7 @@ public class AppFrame extends javax.swing.JFrame {
         );
 
         showPane.add(createActPanel, "card6");
-
-        profilePanel.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout profilePanelLayout = new javax.swing.GroupLayout(profilePanel);
-        profilePanel.setLayout(profilePanelLayout);
-        profilePanelLayout.setHorizontalGroup(
-            profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1640, Short.MAX_VALUE)
-        );
-        profilePanelLayout.setVerticalGroup(
-            profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 944, Short.MAX_VALUE)
-        );
-
-        showPane.add(profilePanel, "card5");
+        showPane.add(profilePanel, "card8");
 
         messagesPanel.setBackground(new java.awt.Color(255, 204, 255));
 
