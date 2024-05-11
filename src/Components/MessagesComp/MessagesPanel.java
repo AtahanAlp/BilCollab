@@ -73,11 +73,11 @@ public class MessagesPanel extends javax.swing.JPanel {
         Chats.setLayout(ChatsLayout);
         ChatsLayout.setHorizontalGroup(
             ChatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 982, Short.MAX_VALUE)
+            .addGap(0, 986, Short.MAX_VALUE)
         );
         ChatsLayout.setVerticalGroup(
             ChatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 782, Short.MAX_VALUE)
+            .addGap(0, 786, Short.MAX_VALUE)
         );
 
         ChatsScrollPane.setViewportView(Chats);
@@ -88,14 +88,14 @@ public class MessagesPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ChatsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+                .addComponent(ChatsScrollPane)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ChatsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addComponent(ChatsScrollPane)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
