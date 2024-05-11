@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Components.MessagesComp;
 
 import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.JFrame;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -15,26 +15,44 @@ import javax.swing.JScrollPane;
  */
 public class MessagePanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ChatDisplay
-     */
+    private int messageCount = 0;
+    
     public MessagePanel() {
         setLayout (new BorderLayout ());
         initComponents();
         initMessageArea ();
-        MessageDisplay.setLayout (new BoxLayout (MessageDisplay, BoxLayout.Y_AXIS));
-        MessageDisplayPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        MessageDisplay.setLayout(new GridBagLayout());
+        MessageDisplayPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         MessageDisplayPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         MessageArea.requestFocusInWindow();
     }
     
     public void addMsgToDisplay (Message m) {
-        MessageDisplay.add(m);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = messageCount++; // Increment the y-coordinate for each message
+        
+        //To be done with SQL later
+        if (messageCount%2 == 0) {
+           gbc.anchor = GridBagConstraints.LINE_START; 
+        } else {
+            gbc.anchor = GridBagConstraints.LINE_END;
+        }
+        
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(2, 2, 2, 2);
+        MessageDisplay.add(m, gbc);
+        
+        SwingUtilities.invokeLater(() -> {
+            JScrollBar verticalScrollBar = MessageDisplayPane.getVerticalScrollBar();
+            verticalScrollBar.setValue(verticalScrollBar.getMaximum());
+        });
     }
     
     private void initMessageArea () {
         
         MessageArea.addKeyListener (new java.awt.event.KeyAdapter () {
+            @Override
             public void keyPressed (java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode () == java.awt.event.KeyEvent.VK_ENTER) {
                     sendMessage ("user", MessageArea.getText(), "date");
@@ -46,16 +64,9 @@ public class MessagePanel extends javax.swing.JPanel {
     
     private void sendMessage (String sender, String content, String time) {
         Message message = new Message (sender, content, time);
+        MessageDisplay.revalidate();
         addMsgToDisplay (message);
         MessageArea.setText("");
-    }
-    
-    public static void main(String[] args) {
-        JFrame test = new JFrame();
-        test.add (new MessagePanel());
-        test.pack();
-        test.setVisible(true);
-        test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**

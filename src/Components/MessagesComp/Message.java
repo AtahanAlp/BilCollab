@@ -48,6 +48,8 @@ public class Message extends javax.swing.JPanel {
         MessageContent.setColumns(20);
         MessageContent.setRows(5);
         MessageContent.setText("your message here");
+        MessageContent.setMaximumSize(new java.awt.Dimension(232, 84));
+        MessageContent.setMinimumSize(new java.awt.Dimension(232, 84));
         jScrollPane1.setViewportView(MessageContent);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
