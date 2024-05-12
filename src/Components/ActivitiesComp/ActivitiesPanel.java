@@ -28,6 +28,8 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
     public ActivitiesPanel() {
         initComponents();
         
+        searchBar.setCharLimit(50);
+        
         setOpaque(false);
         JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
         scrollBar.setOpaque(false);

@@ -4,6 +4,7 @@
  */
 package Components.SettingsComp;
 
+import Components.AppFrame;
 import Components.RefreshablePanel;
 
 /**
@@ -11,7 +12,8 @@ import Components.RefreshablePanel;
  * @author Atahan
  */
 public class SettingsPanel extends javax.swing.JPanel implements RefreshablePanel{
-
+    AppFrame appFrame;
+    
     /**
      * Creates new form ActivitiesPage
      */
@@ -19,8 +21,14 @@ public class SettingsPanel extends javax.swing.JPanel implements RefreshablePane
         initComponents();
     }
     
+    public void setAppFrame(AppFrame appFrame){
+        this.appFrame = appFrame;
+    }
+    
     public void refresh(){
-        //TODO
+        aboutUsPnl.setVisible(false);
+        buttonPnl.setVisible(true);
+        revalidate();
     }
 
     /**
@@ -32,24 +40,211 @@ public class SettingsPanel extends javax.swing.JPanel implements RefreshablePane
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
+        roundedPanel1 = new Components.RoundedPanel();
+        aboutUsPnl = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        button3 = new Components.Button();
+        jLabel7 = new javax.swing.JLabel();
+        buttonPnl = new javax.swing.JPanel();
+        button1 = new Components.Button();
+        button2 = new Components.Button();
+
+        jScrollPane1.setViewportView(jEditorPane1);
+
         setBackground(new java.awt.Color(255, 204, 204));
-        setMaximumSize(new java.awt.Dimension(1000, 800));
-        setMinimumSize(new java.awt.Dimension(1000, 800));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
+        setMaximumSize(new java.awt.Dimension(1150, 800));
+        setMinimumSize(new java.awt.Dimension(1150, 800));
+        setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(1150, 800));
+
+        roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        roundedPanel1.setLayout(new java.awt.CardLayout());
+
+        aboutUsPnl.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setText("Contributors:");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Atahan Alp");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setText("Ali Emir Alsırt");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Eren Gökalp");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("Deniz Çağlar");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("Zuhal Aksoy");
+
+        button3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/backArrow.png"))); // NOI18N
+        button3.setText("Return");
+        button3.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        button3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        button3.setIconTextGap(16);
+        button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button3ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel7.setText("İhsan Doğramacı University CS-102 Spring 2024 Project");
+
+        javax.swing.GroupLayout aboutUsPnlLayout = new javax.swing.GroupLayout(aboutUsPnl);
+        aboutUsPnl.setLayout(aboutUsPnlLayout);
+        aboutUsPnlLayout.setHorizontalGroup(
+            aboutUsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(button3, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
+            .addGroup(aboutUsPnlLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(aboutUsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(aboutUsPnlLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(aboutUsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)))
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        aboutUsPnlLayout.setVerticalGroup(
+            aboutUsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutUsPnlLayout.createSequentialGroup()
+                .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(315, Short.MAX_VALUE))
+        );
+
+        roundedPanel1.add(aboutUsPnl, "card3");
+
+        buttonPnl.setOpaque(false);
+
+        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/info.png"))); // NOI18N
+        button1.setText("About Us");
+        button1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        button1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        button1.setIconTextGap(16);
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
+        button2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/exit.png"))); // NOI18N
+        button2.setText("Exit Program");
+        button2.setAlignmentX(0.1F);
+        button2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        button2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        button2.setIconTextGap(16);
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout buttonPnlLayout = new javax.swing.GroupLayout(buttonPnl);
+        buttonPnl.setLayout(buttonPnlLayout);
+        buttonPnlLayout.setHorizontalGroup(
+            buttonPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(button1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(button2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        buttonPnlLayout.setVerticalGroup(
+            buttonPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonPnlLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
+                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+
+        roundedPanel1.add(buttonPnl, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        appFrame.dispose();
+    }//GEN-LAST:event_button2ActionPerformed
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        buttonPnl.setVisible(false);
+        aboutUsPnl.setVisible(true);
+        revalidate();
+    }//GEN-LAST:event_button1ActionPerformed
+
+    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
+        aboutUsPnl.setVisible(false);
+        buttonPnl.setVisible(true);
+        revalidate();
+    }//GEN-LAST:event_button3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel aboutUsPnl;
+    private Components.Button button1;
+    private Components.Button button2;
+    private Components.Button button3;
+    private javax.swing.JPanel buttonPnl;
+    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private Components.RoundedPanel roundedPanel1;
     // End of variables declaration//GEN-END:variables
 }

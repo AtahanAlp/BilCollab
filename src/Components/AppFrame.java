@@ -16,7 +16,8 @@ import javax.swing.border.MatteBorder;
  * @author Atahan
  */
 public class AppFrame extends javax.swing.JFrame {
-    User user;
+    private User user;
+        private SideMenu sideMenu1;
     
     /**
      * Creates new form AppFrame
@@ -26,12 +27,14 @@ public class AppFrame extends javax.swing.JFrame {
         
         initComponents();
         setTitle("BilCollab");
-        setIconImage(new ImageIcon(getClass().getResource("/Icons/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Icons/iconLogo.png")).getImage());
         
         //my init components
         notificationsPanel.setUser(user);
         activitiesPanel.setUser(user);
         profilePanel.setUser(user);
+        
+        settingsPanel.setAppFrame(this);
         
         sideMenu1 = new Components.SideMenu(this);
         appPanel.add(sideMenu1, java.awt.BorderLayout.WEST);
@@ -72,11 +75,6 @@ public class AppFrame extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1480, 800));
         setPreferredSize(new java.awt.Dimension(1620, 1024));
         setSize(new java.awt.Dimension(1640, 1024));
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                formMousePressed(evt);
-            }
-        });
         getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
         getContentPane().add(notificationsPanel);
 
@@ -132,36 +130,8 @@ public class AppFrame extends javax.swing.JFrame {
         showPane.setBackground(new java.awt.Color(235, 240, 255));
         showPane.setLayout(new java.awt.CardLayout());
         showPane.add(activitiesPanel, "card8");
-
-        settingsPanel.setBackground(new java.awt.Color(204, 255, 255));
-
-        javax.swing.GroupLayout settingsPanelLayout = new javax.swing.GroupLayout(settingsPanel);
-        settingsPanel.setLayout(settingsPanelLayout);
-        settingsPanelLayout.setHorizontalGroup(
-            settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1640, Short.MAX_VALUE)
-        );
-        settingsPanelLayout.setVerticalGroup(
-            settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 944, Short.MAX_VALUE)
-        );
-
-        showPane.add(settingsPanel, "card7");
-
-        createActPanel.setBackground(new java.awt.Color(204, 255, 204));
-
-        javax.swing.GroupLayout createActPanelLayout = new javax.swing.GroupLayout(createActPanel);
-        createActPanel.setLayout(createActPanelLayout);
-        createActPanelLayout.setHorizontalGroup(
-            createActPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1640, Short.MAX_VALUE)
-        );
-        createActPanelLayout.setVerticalGroup(
-            createActPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 944, Short.MAX_VALUE)
-        );
-
-        showPane.add(createActPanel, "card6");
+        showPane.add(settingsPanel, "card8");
+        showPane.add(createActPanel, "card8");
         showPane.add(profilePanel, "card8");
         showPane.add(messagesPanel, "card8");
 
@@ -193,16 +163,16 @@ public class AppFrame extends javax.swing.JFrame {
     private void notificationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationBtnActionPerformed
         notificationsPanel.openNotifications();
     }//GEN-LAST:event_notificationBtnActionPerformed
-
-    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        
-    }//GEN-LAST:event_formMousePressed
    
     public void switchPanels(JPanel selectedPanel){
         for (Component component : showPane.getComponents()) {
             component.setVisible(false);
         }
         selectedPanel.setVisible(true);
+    }
+    
+    public SideMenu getSideMenu(){
+        return sideMenu1;
     }
     
     public JPanel getShowPanel(){
@@ -291,5 +261,4 @@ public class AppFrame extends javax.swing.JFrame {
     private Components.SettingsComp.SettingsPanel settingsPanel;
     private javax.swing.JPanel showPane;
     // End of variables declaration//GEN-END:variables
-    private JPanel sideMenu1;
 }

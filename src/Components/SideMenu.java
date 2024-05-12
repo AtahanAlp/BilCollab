@@ -225,8 +225,8 @@ public class SideMenu extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Components.Button activitiesBtn;
-    private Components.Button createBtn;
+    public Components.Button activitiesBtn;
+    public Components.Button createBtn;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
@@ -235,9 +235,9 @@ public class SideMenu extends javax.swing.JPanel {
     private javax.swing.Box.Filler filler6;
     private javax.swing.Box.Filler filler7;
     private javax.swing.JLabel logo;
-    private Components.Button messagesBtn;
-    private Components.Button profileBtn;
-    private Components.Button schedulerBtn;
+    public Components.Button messagesBtn;
+    public Components.Button profileBtn;
+    public Components.Button schedulerBtn;
     private Components.Button settingsBtn;
     // End of variables declaration//GEN-END:variables
 }

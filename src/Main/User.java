@@ -7,6 +7,7 @@ package Main;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.imageio.ImageIO;
 
 /**
@@ -168,5 +169,19 @@ public class User {
     
     public void comparePlans(User user){
         //TODO
+    }
+    
+    public boolean createActivity(String title, String description, Date startDate, Date endDate, int quota, boolean isPublic, String category){
+        if (!title.trim().equals("") && description.trim().equals("") && checkDateCollision(startDate, endDate)) {//TODO: &&check collisions!!!
+            //TODO database part!!!
+            createdActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
+            return true;
+        }
+        return false;
+    }
+    
+    private boolean checkDateCollision(Date startDate, Date endDate){
+        //TODO
+        return true;
     }
 }

@@ -36,6 +36,8 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         displayName.setBackground(new Color(0,0,0,0));
         displayName.setDocument(new TextCharLimit(20));
         
+        searchBar.setCharLimit(22);
+        
         buttonGroup.add(yourActBtn);
         buttonGroup.add(joinedActBtn);
         
@@ -66,7 +68,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         yourActBtn.setSelected(true);
         displayName.setText(user.getDisplayName());
         description.setText(user.getDescription());
-        searchBar2.setText("");
+        searchBar.setText("");
     }
     
     public void setActivityCounter(){
@@ -120,7 +122,6 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
         buttonGroup = new javax.swing.ButtonGroup();
         imageAvatar = new Components.ImageAvatar();
         buttonPanel = new javax.swing.JPanel();
@@ -136,21 +137,8 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         FriendsTxt = new javax.swing.JLabel();
         friendsNo = new javax.swing.JLabel();
         editBtn = new Components.SelectionButton();
-        searchBar2 = new Components.SearchBar();
+        searchBar = new Components.SearchBar();
         descriptionLbl = new javax.swing.JLabel();
-
-        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 582, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 31, Short.MAX_VALUE)
-        );
 
         setBackground(new java.awt.Color(102, 255, 255));
         setMaximumSize(new java.awt.Dimension(1150, 800));
@@ -253,7 +241,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
             }
         });
 
-        searchBar2.setHint("Search Profiles");
+        searchBar.setHint("Search Profiles");
 
         descriptionLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         descriptionLbl.setForeground(new java.awt.Color(153, 153, 153));
@@ -279,7 +267,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(displayName, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(activityNo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -310,7 +298,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(displayName)
                             .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(username)
                         .addGap(55, 55, 55)
@@ -368,11 +356,10 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     private Components.SelectionButton editBtn;
     private javax.swing.JLabel friendsNo;
     private Components.ImageAvatar imageAvatar;
-    private javax.swing.JPanel jPanel2;
     private Components.SelectionButton joinedActBtn;
     private javax.swing.JPanel outputPanel;
     private javax.swing.JScrollPane scrollPane;
-    private Components.SearchBar searchBar2;
+    private Components.SearchBar searchBar;
     private javax.swing.JLabel username;
     private Components.SelectionButton yourActBtn;
     // End of variables declaration//GEN-END:variables

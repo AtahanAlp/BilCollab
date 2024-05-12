@@ -18,6 +18,8 @@ import javax.swing.border.EmptyBorder;
  * @author Atahan
  */
 public class HintTextField extends JTextField {
+    public static final int DEFAULT_CHAR_LIMIT = 100;
+    
     public HintTextField() {
         this("");
     }
@@ -27,6 +29,7 @@ public class HintTextField extends JTextField {
         setOpaque(false);
         setBorder(new EmptyBorder(5, 5, 5, 5));
         this.hint = hint;
+        setDocument(new TextCharLimit(DEFAULT_CHAR_LIMIT));
     }
 
     public String getHint() {

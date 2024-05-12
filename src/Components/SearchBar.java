@@ -32,6 +32,10 @@ public class SearchBar extends javax.swing.JPanel {
         hintTextField.setText(str);
     }
     
+    public void setCharLimit(int maxCharNo){
+        hintTextField.setDocument(new TextCharLimit(maxCharNo));
+    }
+    
     public String getText(){
         return hintTextField.getText();
     }
