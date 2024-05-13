@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Components.MessagesComp;
+
+import Components.RoundedPanel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -13,6 +12,7 @@ public class Message extends javax.swing.JPanel {
     private String content;
     private String sender;
     private String time;
+    private boolean isSeen;
     
     /**
      * Creates new form Message
@@ -22,7 +22,10 @@ public class Message extends javax.swing.JPanel {
         this.sender = sender;
         this.content = content;
         this.time = time;
+        this.isSeen = false;
         MessageContent.setText (this.content);
+        
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 0, 20, 0));
     }
     
     public String getContent () {
@@ -31,6 +34,14 @@ public class Message extends javax.swing.JPanel {
 
     public String getSender () {
         return this.sender;
+    }
+    
+    public JTextArea getTextArea () {
+        return this.MessageContent;
+    }
+    
+    public RoundedPanel getRoundedPanel () {
+        return this.roundedPanel1;
     }
 
     /**
@@ -42,25 +53,56 @@ public class Message extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        roundedPanel1 = new Components.RoundedPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         MessageContent = new javax.swing.JTextArea();
+
+        setOpaque(false);
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         MessageContent.setColumns(20);
         MessageContent.setRows(5);
         MessageContent.setText("your message here");
+        MessageContent.setBorder(null);
         MessageContent.setMaximumSize(new java.awt.Dimension(232, 84));
         MessageContent.setMinimumSize(new java.awt.Dimension(232, 84));
         jScrollPane1.setViewportView(MessageContent);
+
+        javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
+        roundedPanel1.setLayout(roundedPanel1Layout);
+        roundedPanel1Layout.setHorizontalGroup(
+            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        roundedPanel1Layout.setVerticalGroup(
+            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -68,5 +110,6 @@ public class Message extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea MessageContent;
     private javax.swing.JScrollPane jScrollPane1;
+    private Components.RoundedPanel roundedPanel1;
     // End of variables declaration//GEN-END:variables
 }
