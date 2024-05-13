@@ -5,13 +5,17 @@
 package Components.SchedulerComp;
 
 import Components.RefreshablePanel;
+import java.util.ArrayList;
 
 /**
  *
  * @author Atahan
  */
 public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePanel{
-
+    
+    WeeklySchedule ws = new WeeklySchedule();
+    private ArrayList<Plan> plans;
+    
     /**
      * Creates new form ActivitiesPage
      */
@@ -33,7 +37,17 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable_Scheduler = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        button1 = new Components.Button();
+        jTextField_Name = new javax.swing.JTextField();
+        jTextField_Day = new javax.swing.JTextField();
+        jTextField_StartTime = new javax.swing.JTextField();
+        jTextField_EndTime = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(1000, 800));
@@ -41,7 +55,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1000, 800));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Scheduler.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -64,32 +78,176 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTable_Scheduler.setRowHeight(30);
+        jTable_Scheduler.setShowGrid(false);
+        jTable_Scheduler.setShowHorizontalLines(true);
+        jTable_Scheduler.setShowVerticalLines(true);
+        jScrollPane1.setViewportView(jTable_Scheduler);
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+
+        button1.setText("Add");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
+        jTextField_Name.setText("Name");
+        jTextField_Name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_NameActionPerformed(evt);
+            }
+        });
+
+        jTextField_Day.setText("Day");
+        jTextField_Day.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_DayActionPerformed(evt);
+            }
+        });
+
+        jTextField_StartTime.setText("Start");
+        jTextField_StartTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_StartTimeActionPerformed(evt);
+            }
+        });
+
+        jTextField_EndTime.setText("End");
+        jTextField_EndTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_EndTimeActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Name");
+
+        jLabel2.setText("Day");
+
+        jLabel3.setText("End Time");
+
+        jLabel4.setText("Start Time");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_StartTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_EndTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_Day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_Day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_StartTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_EndTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(181, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addGap(155, 155, 155))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        
+        String day = jTextField_Day.getText();
+        int dayInt = Integer.parseInt(day);
+        
+        String startTime = jTextField_StartTime.getText();
+        int startInt = Integer.parseInt(startTime);
+        
+        String name = jTextField_Name.getText();
+        
+        Plan p = new Plan(name,dayInt,startInt);
+        //plans.add(p);
+            
+        jTable_Scheduler.setValueAt(name,dayInt, startInt);
+        
+        
+        
+    }//GEN-LAST:event_button1ActionPerformed
+
+    public void setValueAt(Object aValue, int row, int column) {
+        jTable_Scheduler.setValueAt(aValue, row, column);
+    }
+
+    private void jTextField_StartTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_StartTimeActionPerformed
+
+    }//GEN-LAST:event_jTextField_StartTimeActionPerformed
+
+    private void jTextField_EndTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_EndTimeActionPerformed
+       
+    }//GEN-LAST:event_jTextField_EndTimeActionPerformed
+
+    private void jTextField_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NameActionPerformed
+       
+    }//GEN-LAST:event_jTextField_NameActionPerformed
+
+    private void jTextField_DayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_DayActionPerformed
+       
+    }//GEN-LAST:event_jTextField_DayActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Components.Button button1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable_Scheduler;
+    private javax.swing.JTextField jTextField_Day;
+    private javax.swing.JTextField jTextField_EndTime;
+    private javax.swing.JTextField jTextField_Name;
+    private javax.swing.JTextField jTextField_StartTime;
     // End of variables declaration//GEN-END:variables
 }

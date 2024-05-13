@@ -35,6 +35,18 @@ public class Plan {
         return time;
     }
 
+      public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+    
     public Boolean getCompleted() {
         return completed;
     }
