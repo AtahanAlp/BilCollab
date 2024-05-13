@@ -5,14 +5,20 @@
 package Components.SchedulerComp;
 
 import Components.RefreshablePanel;
+import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
- * @author Atahan
+ * @author zuhalaksoy
  */
 public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePanel{
     
+
     private ArrayList<Plan> plans;
     
     /**
@@ -27,6 +33,23 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
     public void refresh(){
         //TODO
     }
+    
+ 
+    /*public Component getTableCellRendererComponent(
+                            JTable table, Object value,
+                            boolean isSelected, boolean hasFocus,
+                            int row, int column) {
+ 
+        //if(column == 4){
+        
+            if ((table.getValueAt(row, column).toString()) != null )
+            {
+                setBackground(Color.PINK);
+                //setForeground(Color.BLACK);
+            }
+        //}
+        return this;
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,10 +123,10 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         jTable_Scheduler.setEnabled(false);
         jTable_Scheduler.setGridColor(new java.awt.Color(153, 153, 153));
         jTable_Scheduler.setRowHeight(30);
-        jTable_Scheduler.setRowSelectionAllowed(false);
-        jTable_Scheduler.setSelectionBackground(new java.awt.Color(204, 102, 255));
-        jTable_Scheduler.setSelectionForeground(new java.awt.Color(204, 0, 153));
-        jTable_Scheduler.setShowGrid(false);
+        jTable_Scheduler.setSelectionBackground(new java.awt.Color(255, 204, 204));
+        jTable_Scheduler.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTable_Scheduler.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        jTable_Scheduler.setShowGrid(true);
         jTable_Scheduler.setShowHorizontalLines(true);
         jTable_Scheduler.setShowVerticalLines(true);
         jScrollPane1.setViewportView(jTable_Scheduler);
@@ -147,9 +170,9 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
 
         jLabel1.setText("Name");
 
-        jLabel2.setText("Day");
+        jLabel2.setText("Day (Monday - Sunday)");
 
-        jLabel3.setText("End Time 09.00 - 00.00");
+        jLabel3.setText("End Time (09.00 - 00.00)");
 
         jLabel4.setText("Start Time (08.00 - 23.00)");
 
@@ -165,25 +188,25 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField_EndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(button_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(button_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField_EndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField_StartTime, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField_StartTime, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextField_Day, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                         .addComponent(jTextField_Name, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(16, 16, 16))
@@ -195,19 +218,19 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField_Day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField_StartTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(63, 63, 63)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField_EndTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,7 +350,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel21)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -352,15 +375,22 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         String startTime = jTextField_StartTime.getText();
         int startInt = Integer.parseInt(startTime);
         
+        String endTime = jTextField_EndTime.getText();
+        int endInt = Integer.parseInt(endTime);
+        
         String name = jTextField_Name.getText();
         
         Plan p = new Plan(name,dayInt,startInt);
         plans.add(p);
+        
+        for(int i = startInt; i < endInt; i++){
+            jTable_Scheduler.setValueAt(name, i - 8, dayInt);
+        }
             
-        jTable_Scheduler.setValueAt(name, startInt - 8, dayInt);
+        //jTable_Scheduler.setValueAt(name, startInt - 8, dayInt);
+        //jTable_Scheduler.setValueAt(name, endInt - 8, dayInt);
         
-        
-        
+
     }//GEN-LAST:event_button_AddActionPerformed
 
     public void setValueAt(Object aValue, int row, int column) {
