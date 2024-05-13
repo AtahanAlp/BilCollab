@@ -16,7 +16,8 @@ public class WeeklySchedule {
     private ArrayList<Plan> plans;
     
     public WeeklySchedule(){
-           plans = new ArrayList<>(HOURS_IN_PLANNER);
+           plans = new ArrayList<Plan>(HOURS_IN_PLANNER);
+           
     }
 
     public static int getHOURS_IN_PLANNER() {
