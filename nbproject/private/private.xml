@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Components/ActivitiesComp/CreateActivityPanel.java</file>
             <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Components/AppFrame.java</file>
             <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Components/SchedulerComp/SchedulerPanel.java</file>
@@ -13,6 +14,9 @@
             <file>file:/C:/Users/aeren/Desktop/Java%20projecc/labs2/BilCollab/src/Components/MessagesComp/Chat.java</file>
             <file>file:/C:/Users/aeren/Desktop/Java%20projecc/labs2/BilCollab/src/Components/MessagesComp/MessagePanel.java</file>
 >>>>>>> 25d0a871414923c032c04236c0cd59261dad007d
+=======
+            <file>file:/Users/zuhalaksoy/Desktop/BilCollab/src/Components/SchedulerComp/SchedulerPanel.java</file>
+>>>>>>> 9a34393 (Scheduler)
         </group>
     </open-files>
 </project-private>
