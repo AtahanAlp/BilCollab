@@ -178,9 +178,6 @@
                   </Constraints>
                 </Component>
                 <Component class="Components.MessagesComp.MessagesPanel" name="messagesPanel">
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Components.MessagesComp.MessagesPanel(this)"/>
-                  </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card8"/>

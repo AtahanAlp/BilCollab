@@ -22,11 +22,10 @@ import java.util.List;
 public class MessagesPanel extends javax.swing.JPanel implements RefreshablePanel{
 
     private List<User> friends;
-    private final AppFrame a;
+    private AppFrame appFrame;
     
-    public MessagesPanel (AppFrame a) {
+    public MessagesPanel () {
         initComponents();
-        this.a = a;
         
         Chats.setLayout(new GridBagLayout());
         Chats.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -104,8 +103,12 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         Chats.revalidate();  
     }
     
-    public AppFrame getAppFrame () {
-        return this.a;
+    public void setAppFrame(AppFrame appFrame) {
+        this.appFrame = appFrame;
+    }
+    
+    protected AppFrame getAppFrame () {
+        return this.appFrame;
     }
 
     /**
