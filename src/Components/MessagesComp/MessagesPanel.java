@@ -47,6 +47,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
     }
     
     private List<User> fetchFriendsFromServer() {
+        //TODO
         
         List<User> friends = new ArrayList<>();
         friends.add(new User("Friend1", "friend1@example.com", "password1"));
@@ -97,7 +98,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
             ChatsScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         } else {
             displayAllChats();
-            ChatsScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            ChatsScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         }
         
         Chats.revalidate();  
@@ -173,6 +174,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
     // End of variables declaration//GEN-END:variables
 
     private Date getLastMessageTimeForUser(User friend) {
+        //TODO
         return new Date();
     }
 }
