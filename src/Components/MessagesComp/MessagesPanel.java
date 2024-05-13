@@ -93,6 +93,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(1150, 800));
         setMinimumSize(new java.awt.Dimension(1150, 800));
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1150, 800));
 
         ChatsScrollPane.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,16 +121,15 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addComponent(ChatsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1009, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(ChatsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(ChatsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

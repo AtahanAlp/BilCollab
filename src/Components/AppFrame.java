@@ -134,21 +134,7 @@ public class AppFrame extends javax.swing.JFrame {
         showPane.add(createActPanel, "card8");
         showPane.add(profilePanel, "card8");
         showPane.add(messagesPanel, "card8");
-
-        schedulerPanel.setBackground(new java.awt.Color(153, 153, 255));
-
-        javax.swing.GroupLayout schedulerPanelLayout = new javax.swing.GroupLayout(schedulerPanel);
-        schedulerPanel.setLayout(schedulerPanelLayout);
-        schedulerPanelLayout.setHorizontalGroup(
-            schedulerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1640, Short.MAX_VALUE)
-        );
-        schedulerPanelLayout.setVerticalGroup(
-            schedulerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 944, Short.MAX_VALUE)
-        );
-
-        showPane.add(schedulerPanel, "card4");
+        showPane.add(schedulerPanel, "card7");
 
         featuresPanel.add(showPane, java.awt.BorderLayout.CENTER);
 
