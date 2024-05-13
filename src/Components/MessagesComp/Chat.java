@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Components.MessagesComp;
 
+import Main.User;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,18 +14,21 @@ import javax.swing.JPanel;
  */
 public class Chat extends JPanel {
 
-    public Chat (String name, String pfp, String message, MessagesPanel m) {
+    private int unseenMessages;
+    
+    public Chat (User friend, String pfp, String message, MessagesPanel m) {
         initComponents();
         
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 
-                m.displayChat(new MessagePanel(m));
+                m.updateDisplay(new MessagePanel(m, friend));
                 
             }
         });
         
-        jLabel3.setText(name);
+        jLabel2.setText("Last sent message");
+        jLabel3.setText(friend.getDisplayName());
         repaint();
     }
     
@@ -67,7 +67,7 @@ public class Chat extends JPanel {
         jLabel3 = new javax.swing.JLabel();
         imageAvatar1 = new Components.ImageAvatar();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(250, 250, 250));
         setOpaque(false);
 
         jLabel2.setText("LAST_SENT_MESSAGE");
@@ -81,13 +81,13 @@ public class Chat extends JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -8,7 +8,10 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import Components.ScrollBarUI;
+import Main.User;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,9 +21,12 @@ public class MessagePanel extends javax.swing.JPanel {
 
     private int messageCount = 0;
     private MessagesPanel m;
+    private User friend;
+    private List<Message> messages = new ArrayList<>();
     
-    public MessagePanel(MessagesPanel m) {
+    public MessagePanel(MessagesPanel m, User friend) {
         this.m = m;
+        this.friend = friend;
         setLayout (new BorderLayout ());
         initComponents();
         initMessageArea ();
@@ -43,18 +49,38 @@ public class MessagePanel extends javax.swing.JPanel {
             }
         });
         
+        jLabel1.setText(friend.getDisplayName());
+        //loadLastMessages(); will be implemented after database
+        
     }
+    
+    /* will be implemented after database
+    private void loadLastMessages() {
+        List<Message> lastMessages = Database.getLastMessagesBetweenUserAndFriend (user, friend, 10);
+        for (Message msg : lastMessages) {
+            addMsgToDisplay(msg);
+        }
+    }
+    */
     
     public void addMsgToDisplay (Message m) {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = messageCount++; // Increment the y-coordinate for each message
         
-        //To be done with SQL later
+        //To be done with the database later
         if (messageCount%2 == 0) {
-           gbc.anchor = GridBagConstraints.LINE_START; 
-        } else {
+            m.setBackground (Color.decode("#F50C43"));
+            m.setForeground (Color.WHITE);
+            m.getTextArea().setBackground(Color.decode("#D9D9D9"));
+            m.getRoundedPanel().setBackground(Color.decode("#D9D9D9"));
             gbc.anchor = GridBagConstraints.LINE_END;
+        } else {
+            m.setBackground (Color.decode("#F50C43"));
+            m.setForeground (Color.BLACK);
+            m.getTextArea().setBackground(Color.decode("#F50C43"));
+            m.getRoundedPanel().setBackground(Color.decode("#F50C43"));
+            gbc.anchor = GridBagConstraints.LINE_START; 
         }
         
         gbc.weightx = 1.0;
@@ -135,7 +161,7 @@ public class MessagePanel extends javax.swing.JPanel {
         imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/profilePic.png"))); // NOI18N
 
         button1.setBackground(new java.awt.Color(220, 220, 220));
-        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/up.png"))); // NOI18N
+        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/backArrow.png"))); // NOI18N
         button1.setBgColor(new java.awt.Color(220, 220, 220));
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,8 +177,8 @@ public class MessagePanel extends javax.swing.JPanel {
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel1Layout.createSequentialGroup()
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -160,11 +186,15 @@ public class MessagePanel extends javax.swing.JPanel {
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(button1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(imageAvatar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(47, 47, 47))
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel1)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         MessageDisplayPane.setBackground(new java.awt.Color(255, 255, 255));
@@ -246,7 +276,7 @@ public class MessagePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        m.displayChat(null);
+        m.updateDisplay(null);
     }//GEN-LAST:event_button1ActionPerformed
 
 

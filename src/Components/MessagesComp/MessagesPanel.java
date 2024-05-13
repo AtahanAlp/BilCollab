@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Components.MessagesComp;
 
 import Components.RefreshablePanel;
@@ -12,6 +8,9 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import Main.User;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,11 +18,11 @@ import java.awt.Insets;
  */
 public class MessagesPanel extends javax.swing.JPanel implements RefreshablePanel{
 
-    /**
-     * Creates new form ActivitiesPage
-     */
+    private List<User> friends;
+    
     public MessagesPanel() {
         initComponents();
+        
         Chats.setLayout(new GridBagLayout());
         Chats.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -34,11 +33,8 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         ChatsScrollPane.getVerticalScrollBar().setUI(new ScrollBarUI());
         ChatsScrollPane.getViewport().setBackground(new Color(255, 255, 255));
         
-        addChat ("Eren");   
-        addChat ("Atahan");
-        addChat ("Emir");
-        addChat ("Deniz");
-        addChat ("Zuhal");
+        this.friends = fetchFriendsFromServer();
+        displayAllChats();
         
     }
     
@@ -46,8 +42,27 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         //TODO
     }
     
-    private void addChat (String name) {
-        Chat c = new Chat (name, "e", "e", this);
+    private List<User> fetchFriendsFromServer() {
+        
+        List<User> friends = new ArrayList<>();
+        friends.add(new User("Friend1", "friend1@example.com", "password1"));
+        friends.add(new User("Friend2", "friend2@example.com", "password2"));
+        friends.add(new User("Friend3", "friend3@example.com", "password3"));
+        friends.add(new User("Friend4", "friend4@example.com", "password4"));
+        friends.add(new User("Friend5", "friend5@example.com", "password5"));
+
+        return friends;
+    }
+    
+    private void displayAllChats () {
+        for (User friend : friends) {
+            addChat(friend);
+        }
+    }
+
+    
+    private void addChat (User friend) {
+        Chat c = new Chat (friend, "e", "e", this);
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -59,7 +74,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         Chats.revalidate();
     }
     
-    public void displayChat (MessagePanel m) {
+    public void updateDisplay (MessagePanel m) {
         Chats.removeAll();
         if (m != null) {
             m.setBorder(BorderFactory.createLineBorder(null));
@@ -67,11 +82,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
             Chats.add(m);
             ChatsScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         } else {
-            addChat("Eren");
-            addChat("Atahan");
-            addChat("Emir");
-            addChat("Deniz");
-            addChat("Zuhal");
+            displayAllChats();
             ChatsScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         }
         
