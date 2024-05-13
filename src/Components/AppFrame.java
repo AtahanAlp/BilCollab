@@ -68,7 +68,7 @@ public class AppFrame extends javax.swing.JFrame {
         settingsPanel = new Components.SettingsComp.SettingsPanel();
         createActPanel = new Components.ActivitiesComp.CreateActivityPanel();
         profilePanel = new Components.ProfileComp.ProfilePanel();
-        messagesPanel = new Components.MessagesComp.MessagesPanel();
+        messagesPanel = new Components.MessagesComp.MessagesPanel(this);
         schedulerPanel = new Components.SchedulerComp.SchedulerPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -161,6 +161,10 @@ public class AppFrame extends javax.swing.JFrame {
     
     public SideMenu getSideMenu(){
         return sideMenu1;
+    }
+    
+    public User getCurrentUser() {
+        return this.user;
     }
     
     public JPanel getShowPanel(){

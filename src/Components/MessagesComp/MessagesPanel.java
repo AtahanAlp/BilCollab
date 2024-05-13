@@ -1,5 +1,6 @@
 package Components.MessagesComp;
 
+import Components.AppFrame;
 import Components.RefreshablePanel;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
@@ -10,6 +11,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import Main.User;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,9 +22,11 @@ import java.util.List;
 public class MessagesPanel extends javax.swing.JPanel implements RefreshablePanel{
 
     private List<User> friends;
+    private final AppFrame a;
     
-    public MessagesPanel() {
+    public MessagesPanel (AppFrame a) {
         initComponents();
+        this.a = a;
         
         Chats.setLayout(new GridBagLayout());
         Chats.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -54,23 +59,33 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         return friends;
     }
     
-    private void displayAllChats () {
-        for (User friend : friends) {
-            addChat(friend);
-        }
-    }
+    private void displayAllChats() {
+        
+        List<Chat> chatList = new ArrayList<>();
 
-    
-    private void addChat (User friend) {
-        Chat c = new Chat (friend, "e", "e", this);
-        
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = GridBagConstraints.RELATIVE;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(5, 5, 5, 5);
-        
-        Chats.add(c, gbc);
+        for (User friend : friends) {
+            Date lastMessageTime = getLastMessageTimeForUser(friend);
+            Chat chat = new Chat(friend, "e", "e", this, lastMessageTime);
+            chatList.add(chat);
+        }
+
+        // Sort chatList based on the last sent message time
+        Collections.sort(chatList);
+
+        // Clear existing components in Chats
+        Chats.removeAll();
+
+        // Add sorted chats back to Chats panel
+        for (Chat chat : chatList) {
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = GridBagConstraints.RELATIVE;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.insets = new Insets(5, 5, 5, 5);
+
+            Chats.add(chat, gbc);
+        }
+
         Chats.revalidate();
     }
     
@@ -87,6 +102,10 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         }
         
         Chats.revalidate();  
+    }
+    
+    public AppFrame getAppFrame () {
+        return this.a;
     }
 
     /**
@@ -149,4 +168,8 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
     private Components.RoundedPanel Chats;
     private javax.swing.JScrollPane ChatsScrollPane;
     // End of variables declaration//GEN-END:variables
+
+    private Date getLastMessageTimeForUser(User friend) {
+        return new Date();
+    }
 }

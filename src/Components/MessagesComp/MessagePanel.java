@@ -10,6 +10,8 @@ import javax.swing.SwingUtilities;
 import Components.ScrollBarUI;
 import Main.User;
 import java.awt.Color;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +23,14 @@ public class MessagePanel extends javax.swing.JPanel {
 
     private int messageCount = 0;
     private MessagesPanel m;
-    private User friend;
+    private int friendID;
+    private User currentUser;
     private List<Message> messages = new ArrayList<>();
     
     public MessagePanel(MessagesPanel m, User friend) {
         this.m = m;
-        this.friend = friend;
+        this.friendID = friend.getId();
+        this.currentUser = m.getAppFrame().getCurrentUser();
         setLayout (new BorderLayout ());
         initComponents();
         initMessageArea ();
@@ -50,18 +54,16 @@ public class MessagePanel extends javax.swing.JPanel {
         });
         
         jLabel1.setText(friend.getDisplayName());
-        //loadLastMessages(); will be implemented after database
+        //loadLastMessages();
         
     }
     
-    /* will be implemented after database
+
     private void loadLastMessages() {
-        List<Message> lastMessages = Database.getLastMessagesBetweenUserAndFriend (user, friend, 10);
-        for (Message msg : lastMessages) {
-            addMsgToDisplay(msg);
-        }
+        List<Message> messages = new ArrayList<>();
+        //TO DO
     }
-    */
+
     
     public void addMsgToDisplay (Message m) {
         GridBagConstraints gbc = new GridBagConstraints();
@@ -69,7 +71,7 @@ public class MessagePanel extends javax.swing.JPanel {
         gbc.gridy = messageCount++; // Increment the y-coordinate for each message
         
         //To be done with the database later
-        if (messageCount%2 == 0) {
+        if (m.getSender().equals(currentUser)) {
             m.setBackground (Color.decode("#F50C43"));
             m.setForeground (Color.WHITE);
             m.getTextArea().setBackground(Color.decode("#D9D9D9"));
@@ -95,12 +97,15 @@ public class MessagePanel extends javax.swing.JPanel {
     
     private void initMessageArea () {
         MessageArea.setText("Enter your message here");
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formattedTime = currentTime.format(formatter);
         
         MessageArea.addKeyListener (new java.awt.event.KeyAdapter () {
             @Override
             public void keyPressed (java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode () == java.awt.event.KeyEvent.VK_ENTER) {
-                    sendMessage ("user", MessageArea.getText(), "date");
+                    sendMessage (currentUser, MessageArea.getText(), formattedTime);
                     evt.consume ();
                 }
             }
@@ -124,11 +129,12 @@ public class MessagePanel extends javax.swing.JPanel {
         
     }
     
-    private void sendMessage (String sender, String content, String time) {
+    private void sendMessage (User sender, String content, String time) {
         Message message = new Message (sender, content, time);
         MessageDisplay.revalidate();
         addMsgToDisplay (message);
         MessageArea.setText("");
+        //Add row to table
     }
 
     /**
@@ -223,6 +229,7 @@ public class MessagePanel extends javax.swing.JPanel {
 
         MessageArea.setBackground(new java.awt.Color(220, 220, 220));
         MessageArea.setColumns(20);
+        MessageArea.setForeground(new java.awt.Color(60, 60, 60));
         MessageArea.setRows(5);
         jScrollPane2.setViewportView(MessageArea);
 

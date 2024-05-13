@@ -2,22 +2,26 @@ package Components.MessagesComp;
 
 import Main.User;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
+import java.util.Date;
 import javax.swing.JPanel;
 
 /**
  *
  * @author aeren
  */
-public class Chat extends JPanel {
+public class Chat extends JPanel implements Comparable<Chat> {
 
     private int unseenMessages;
+    private Date lastMessageTime;
     
-    public Chat (User friend, String pfp, String message, MessagesPanel m) {
+    public Chat (User friend, String pfp, String message, MessagesPanel m, Date lastMessageTime) {
         initComponents();
+        this.lastMessageTime = lastMessageTime;
         
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -27,7 +31,7 @@ public class Chat extends JPanel {
             }
         });
         
-        jLabel2.setText("Last sent message");
+        setLastMessageArea();
         jLabel3.setText(friend.getDisplayName());
         repaint();
     }
@@ -52,7 +56,24 @@ public class Chat extends JPanel {
         g2d.dispose();
     }
     
-    
+    private void setLastMessageArea () {
+        
+        if (hasMessagesBetweenUsers()) {
+            if (unseenMessages > 0) {
+                Font boldFont = new Font(jLabel2.getFont().getFamily(), Font.BOLD, jLabel2.getFont().getSize());
+                jLabel2.setFont(boldFont);
+            }
+
+            if (unseenMessages > 1) {
+                jLabel2.setText("2+ unread messages");
+            } else {
+                jLabel2.setText("Last sent message"); //todo
+            }
+            
+        } else {
+            jLabel2.setText("");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,4 +130,22 @@ public class Chat extends JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public int compareTo(Chat otherChat) {
+        if (this.lastMessageTime == null && otherChat.lastMessageTime == null) {
+            return 0; // Both lastMessageTimes are null, consider them equal
+        } else if (this.lastMessageTime == null) {
+            return 1; // This chat has no lastMessageTime, consider it greater
+        } else if (otherChat.lastMessageTime == null) {
+            return -1; // otherChat has no lastMessageTime, consider it greater
+        } else {
+            // Compare chats based on last sent message time
+            return otherChat.lastMessageTime.compareTo(this.lastMessageTime);
+        }
+    }
+    
+    private boolean hasMessagesBetweenUsers() {
+        return true; // dummy value
+    }
 }
