@@ -17,7 +17,7 @@ import javax.swing.border.MatteBorder;
  */
 public class AppFrame extends javax.swing.JFrame {
     private User user;
-        private SideMenu sideMenu1;
+    private SideMenu sideMenu1;
     
     /**
      * Creates new form AppFrame
@@ -33,7 +33,9 @@ public class AppFrame extends javax.swing.JFrame {
         notificationsPanel.setUser(user);
         activitiesPanel.setUser(user);
         profilePanel.setUser(user);
+        createActPanel.setUser(user);
         
+        createActPanel.setAppFrame(this);
         settingsPanel.setAppFrame(this);
         
         sideMenu1 = new Components.SideMenu(this);

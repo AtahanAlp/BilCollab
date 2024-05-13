@@ -4,7 +4,6 @@
  */
 package Components.ActivitiesComp;
 
-import Components.SettingsComp.*;
 import Components.AppFrame;
 import Components.RefreshablePanel;
 import Components.TextCharLimit;
@@ -37,6 +36,18 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         privateBtn.setColorSelected(new Color(0,0,0,0));
         buttonGroup1.add(publicBtn);
         buttonGroup1.add(privateBtn);
+        
+        monthBox.setItemNo(12);
+        dayBox.setItemNo(31);
+        yearBox.setStartValue(2024);
+        yearBox.setItemNo(3);
+        minuteBox.setItemNo(59);
+        hourBox.setItemNo(23);
+        durationBox.setStartValue(5);
+        durationBox.setItemNo(24);
+        durationBox.setIncrementValue(5);
+        quotaBox.setStartValue(2);
+        quotaBox.setItemNo(20);
     }
     
     public void setAppFrame(AppFrame appFrame){
@@ -51,7 +62,15 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         titleField.setText("");
         description.setText("");
         publicBtn.setSelected(true);
-        //TODO
+        
+        monthBox.setSelectedIndex(0);
+        dayBox.setSelectedIndex(0);
+        minuteBox.setSelectedIndex(0);
+        yearBox.setSelectedIndex(0);
+        hourBox.setSelectedIndex(0);
+        durationBox.setSelectedIndex(0);
+        quotaBox.setSelectedIndex(0);
+        
         warning.setVisible(false);
     }
     
@@ -78,18 +97,24 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         description = new javax.swing.JTextArea();
         descriptionLbl = new javax.swing.JLabel();
         timeLbl = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         quotaLbl = new javax.swing.JLabel();
         createBtn = new Components.Button();
         publicBtn = new Components.SelectionButton();
         privateBtn = new Components.SelectionButton();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jComboBox9 = new javax.swing.JComboBox<>();
-        jComboBox10 = new javax.swing.JComboBox<>();
-        jComboBox11 = new javax.swing.JComboBox<>();
-        jComboBox12 = new javax.swing.JComboBox<>();
-        jComboBox13 = new javax.swing.JComboBox<>();
         warning = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        monthBox = new Components.intComboBox();
+        dayBox = new Components.intComboBox();
+        yearBox = new Components.intComboBox();
+        hourBox = new Components.intComboBox();
+        minuteBox = new Components.intComboBox();
+        durationBox = new Components.intComboBox();
+        quotaBox = new Components.intComboBox();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(1150, 800));
@@ -130,8 +155,6 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         timeLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         timeLbl.setForeground(new java.awt.Color(102, 102, 102));
         timeLbl.setText("Time:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         quotaLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         quotaLbl.setForeground(new java.awt.Color(102, 102, 102));
@@ -179,21 +202,28 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
             }
         });
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        warning.setForeground(new java.awt.Color(51, 51, 51));
+        warning.setForeground(new java.awt.Color(245, 12, 67));
+        warning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         warning.setText("This activity cannot be created!");
         warning.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1.setText("Month");
+
+        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2.setText("Day");
+
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3.setText("Year");
+
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4.setText("Hour");
+
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setText("Minute");
+
+        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel6.setText("Duration (min)");
 
         javax.swing.GroupLayout roundedPanelLayout = new javax.swing.GroupLayout(roundedPanel);
         roundedPanel.setLayout(roundedPanelLayout);
@@ -202,14 +232,6 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
             .addGroup(roundedPanelLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundedPanelLayout.createSequentialGroup()
-                        .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(roundedPanelLayout.createSequentialGroup()
-                        .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(roundedPanelLayout.createSequentialGroup()
                         .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,12 +245,20 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                                 .addComponent(categoryLbl))
                             .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(roundedPanelLayout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(monthBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(roundedPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(134, 134, 134)
+                                        .addComponent(jLabel3))
+                                    .addGroup(roundedPanelLayout.createSequentialGroup()
+                                        .addComponent(dayBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(yearBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(quotaBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
                         .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(createBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,7 +266,23 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                                 .addComponent(privateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(publicBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(warning, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51))))
+                        .addGap(51, 51, 51))
+                    .addGroup(roundedPanelLayout.createSequentialGroup()
+                        .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(durationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addGroup(roundedPanelLayout.createSequentialGroup()
+                                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(roundedPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(127, 127, 127))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanelLayout.createSequentialGroup()
+                                        .addComponent(hourBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(minuteBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         roundedPanelLayout.setVerticalGroup(
             roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,27 +306,38 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                 .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(dateLbl)
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(monthBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dayBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(timeLbl)
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(3, 3, 3)
+                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hourBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minuteBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(durationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(quotaLbl)
                     .addComponent(warning))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(quotaBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -321,15 +378,15 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
     }//GEN-LAST:event_privateBtnItemStateChanged
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        Date startDate = new Date((int)jComboBox10.getSelectedItem(), (int)jComboBox10.getSelectedItem(), 
-                        (int)jComboBox10.getSelectedItem(), (int)jComboBox10.getSelectedItem(), (int)jComboBox10.getSelectedItem());
+        Date startDate =new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
+                        (int)dayBox.getSelectedItem(), (int)hourBox.getSelectedItem(), (int)minuteBox.getSelectedItem());
         
-        int durationHour = jComboBox10.getSelectedIndex() / 60;
-        int durationMinutes = jComboBox10.getSelectedIndex() % 60;
-        Date endDate = new Date((int)jComboBox10.getSelectedItem(), (int)jComboBox10.getSelectedItem(), 
-                        (int)jComboBox10.getSelectedItem(), (int)jComboBox10.getSelectedItem() + durationHour, (int)jComboBox10.getSelectedItem() + durationMinutes);
+        int durationHour = hourBox.getSelectedIndex() / 60;
+        int durationMinutes = hourBox.getSelectedIndex() % 60;
+        Date endDate = new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
+                        (int)dayBox.getSelectedItem(), (int)hourBox.getSelectedItem() + durationHour, (int)minuteBox.getSelectedItem() + durationMinutes);
         
-        if (user.createActivity(titleField.getText(), description.getText(), startDate, endDate, (int)jComboBox10.getSelectedItem(), publicBtn.isSelected(), getCategory())) {//TODO: &&check collisions!!!
+        if (user.createActivity(titleField.getText(), description.getText(), startDate, endDate, (int)quotaBox.getSelectedItem(), publicBtn.isSelected(), getCategory())) {//TODO: &&check collisions!!!
             appFrame.getSideMenu().setSelectedPage(appFrame.getSideMenu().profileBtn, appFrame.getProfilePanel());
             refresh();
         }
@@ -345,21 +402,27 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
     private javax.swing.JLabel categoryLbl;
     private Components.Button createBtn;
     private javax.swing.JLabel dateLbl;
+    private Components.intComboBox dayBox;
     private javax.swing.JTextArea description;
     private javax.swing.JLabel descriptionLbl;
-    private javax.swing.JComboBox<String> jComboBox10;
-    private javax.swing.JComboBox<String> jComboBox11;
-    private javax.swing.JComboBox<String> jComboBox12;
-    private javax.swing.JComboBox<String> jComboBox13;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
+    private Components.intComboBox durationBox;
+    private Components.intComboBox hourBox;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private Components.intComboBox minuteBox;
+    private Components.intComboBox monthBox;
     private Components.SelectionButton privateBtn;
     private Components.SelectionButton publicBtn;
+    private Components.intComboBox quotaBox;
     private javax.swing.JLabel quotaLbl;
     private Components.RoundedPanel roundedPanel;
     private javax.swing.JLabel timeLbl;
     private Components.HintTextField titleField;
     private javax.swing.JLabel warning;
+    private Components.intComboBox yearBox;
     // End of variables declaration//GEN-END:variables
 }
