@@ -8,9 +8,18 @@ package Main;
  *
  * @author Atahan
  */
+
 public class Notification {
     String description;
     User sender;
+    String type;
+    
+    public Notification(String description, User sender, String type) {
+        this.description = description;
+        this.sender = sender;
+        this.type = type;
+               
+    }
 
     public String getDescription() {
         return description;
@@ -27,6 +36,5 @@ public class Notification {
     public void setSender(User sender) {
         this.sender = sender;
     }
-    
     
 }

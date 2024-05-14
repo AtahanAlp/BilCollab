@@ -86,7 +86,7 @@ public class User {
           
 
     }
-
+  
     //getter methods
     public int getId() {
         return id;
@@ -266,8 +266,8 @@ public class User {
         //TODO
     }
 
-    public boolean createActivity(String title, String description, Date startDate, Date endDate, int quota, boolean isPublic, String category) {
-        if (!title.trim().equals("") && description.trim().equals("") && checkDateCollision(startDate, endDate)) {//TODO: &&check collisions!!!
+    public boolean createActivity(String title, String description, String startDate, String endDate, int quota, boolean isPublic, String category) {
+        if (!title.trim().equals("") && description.trim().equals("") ) {//TODO: &&check collisions!!!
             //TODO database part!!!
             createdActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
             return true;

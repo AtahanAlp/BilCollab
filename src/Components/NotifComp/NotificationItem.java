@@ -34,7 +34,7 @@ public class NotificationItem extends javax.swing.JPanel {
         this.description.setText(notification.getDescription());
         this.senderName.setText(notification.getSender().getDisplayName());
     }
-
+    
     public void setDescription(String str){
         this.description.setText(str);
     }
