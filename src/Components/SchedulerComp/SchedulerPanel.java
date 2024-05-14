@@ -4,9 +4,12 @@
  */
 package Components.SchedulerComp;
 
+import Main.Plan;
 import Components.RefreshablePanel;
+import Main.User;
+import java.awt.Color;
 import java.util.ArrayList;
-
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -14,38 +17,33 @@ import java.util.ArrayList;
  */
 public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePanel{
     
+    boolean isFull;
+    Object label = "-";
+    String zero = " ";
+    
 
+    private User user;
     private ArrayList<Plan> plans;
+    TableCellRenderer renderer = new CustomTableCellRenderer();
+    
     
     /**
      * Creates new form ActivitiesPage
      */
     public SchedulerPanel() {
         initComponents();
-        WeeklySchedule ws = new WeeklySchedule();
-        this.plans = ws.getPlans();
+        
     }
     
+    public void setUser(User user){
+       this.user = user;
+       plans = user.getPlans();
+    }
+     
     public void refresh(){
         //TODO
     }
-    
- 
-    /*public Component getTableCellRendererComponent(
-                            JTable table, Object value,
-                            boolean isSelected, boolean hasFocus,
-                            int row, int column) {
- 
-        //if(column == 4){
-        
-            if ((table.getValueAt(row, column).toString()) != null )
-            {
-                setBackground(Color.PINK);
-                //setForeground(Color.BLACK);
-            }
-        //}
-        return this;
-    }*/
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,23 +67,6 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         button_Remove = new Components.Button();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(1000, 800));
@@ -95,30 +76,30 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         jTable_Scheduler.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable_Scheduler.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {"08.00-09.00", " ", " ", " ", " ", " ", " ", " "},
+                {"09.00-10.00", " ", " ", " ", " ", " ", " ", " "},
+                {"10.00-11.00", " ", " ", " ", " ", " ", " ", " "},
+                {"11.00-12.00", " ", " ", " ", " ", " ", " ", " "},
+                {"12.00-13.00", " ", " ", " ", " ", " ", " ", " "},
+                {"13.00-14.00", " ", " ", " ", " ", " ", " ", " "},
+                {"14.00-15.00", " ", " ", " ", " ", " ", " ", " "},
+                {"15.00.16.00", " ", " ", " ", " ", " ", " ", " "},
+                {"16.00.17.00", " ", " ", " ", " ", " ", " ", " "},
+                {"17.00.18.00", " ", " ", " ", " ", " ", " ", " "},
+                {"18.00-19.00", " ", " ", " ", " ", " ", " ", " "},
+                {"19.00.20.00", " ", " ", " ", " ", " ", " ", " "},
+                {"20.00.21.00", " ", " ", " ", " ", " ", " ", " "},
+                {"21.00-22.00", " ", " ", " ", " ", " ", " ", " "},
+                {"22.00-23.00", " ", " ", " ", " ", " ", " ", " "},
+                {"23.00-00.00", " ", " ", " ", " ", " ", " ", " "}
             },
             new String [] {
-                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+                "Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
             }
         ));
         jTable_Scheduler.setEnabled(false);
         jTable_Scheduler.setGridColor(new java.awt.Color(153, 153, 153));
-        jTable_Scheduler.setRowHeight(30);
+        jTable_Scheduler.setRowHeight(40);
         jTable_Scheduler.setSelectionBackground(new java.awt.Color(255, 204, 204));
         jTable_Scheduler.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable_Scheduler.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -185,9 +166,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField_EndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel3)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(19, Short.MAX_VALUE)
@@ -206,6 +185,10 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                         .addComponent(jTextField_Day, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                         .addComponent(jTextField_Name, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(16, 16, 16))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField_EndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,120 +216,25 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                 .addGap(20, 20, 20))
         );
 
-        jLabel5.setText("09.00");
-
-        jLabel6.setText("08.00");
-
-        jLabel7.setText("10.00");
-
-        jLabel8.setText("11.00");
-
-        jLabel9.setText("12.00");
-
-        jLabel10.setText("13.00");
-
-        jLabel11.setText("14.00");
-
-        jLabel12.setText("15.00");
-
-        jLabel13.setText("16.00");
-
-        jLabel14.setText("17.00");
-
-        jLabel15.setText("18.00");
-
-        jLabel16.setText("19.00");
-
-        jLabel17.setText("20.00");
-
-        jLabel18.setText("21.00");
-
-        jLabel19.setText("22.00");
-
-        jLabel20.setText("23.00");
-
-        jLabel21.setText("00.00");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel17)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel9)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel14)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel19)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel21)))
-                .addContainerGap(235, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -358,14 +246,14 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         day = day.toUpperCase();
         
         dayInt = switch (day) {
-            case "MONDAY" -> 0;
-            case "TUESDAY" -> 1;
-            case "WEDNESDAY" -> 2;
-            case "THURSDAY" -> 3;
-            case "FRİDAT" -> 4;
-            case "SATURDAY" -> 5;
-            case "SUNDAY" -> 6;
-            default -> 0;
+            case "MONDAY" -> 1;
+            case "TUESDAY" -> 2;
+            case "WEDNESDAY" -> 3;
+            case "THURSDAY" -> 4;
+            case "FRİDAT" -> 5;
+            case "SATURDAY" -> 6;
+            case "SUNDAY" -> 7;
+            default -> 1;
         };
           
         String startTime = jTextField_StartTime.getText();
@@ -382,13 +270,16 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         Plan p = new Plan(name,dayInt,startInt,endInt);
         plans.add(p);
         
+        
         for(int i = startInt; i < endInt; i++){
             jTable_Scheduler.setValueAt(name, i - 8, dayInt);
+            //Object value = jTable_Scheduler.getValueAt(i - 8, dayInt);
+            //value.setForeGround(Color.PINK);   
         }
-            
-        //jTable_Scheduler.setValueAt(name, startInt - 8, dayInt);
-        //jTable_Scheduler.setValueAt(name, endInt - 8, dayInt);
         
+        //jTable_Scheduler.setDefaultRenderer(String.class, new CustomCellRenderer());
+        
+        jTable_Scheduler.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
 
     }//GEN-LAST:event_button_AddActionPerformed
 
@@ -419,14 +310,14 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         day = day.toUpperCase();
         
         dayInt = switch (day) {
-            case "MONDAY" -> 0;
-            case "TUESDAY" -> 1;
-            case "WEDNESDAY" -> 2;
-            case "THURSDAY" -> 3;
-            case "FRİDAT" -> 4;
-            case "SATURDAY" -> 5;
-            case "SUNDAY" -> 6;
-            default -> 0;
+            case "MONDAY" -> 1;
+            case "TUESDAY" -> 2;
+            case "WEDNESDAY" -> 3;
+            case "THURSDAY" -> 4;
+            case "FRİDAT" -> 5;
+            case "SATURDAY" -> 6;
+            case "SUNDAY" -> 7;
+            default -> 1;
         };
         
         String startTime = jTextField_StartTime.getText();
@@ -442,7 +333,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         
         
         for(int i = startInt; i < endInt; i++){
-            jTable_Scheduler.setValueAt(null, i - 8, dayInt);
+            jTable_Scheduler.setValueAt(" ", i - 8, dayInt);
         }
         
         int index = 0;
@@ -452,8 +343,10 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                 index = i;
             }
         }
-        
+
         plans.remove(plans.get(index));
+         
+        jTable_Scheduler.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
     }//GEN-LAST:event_button_RemoveActionPerformed
 
 
@@ -461,26 +354,9 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
     private Components.Button button_Add;
     private Components.Button button_Remove;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_Scheduler;
@@ -489,4 +365,5 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
     private javax.swing.JTextField jTextField_Name;
     private javax.swing.JTextField jTextField_StartTime;
     // End of variables declaration//GEN-END:variables
+
 }

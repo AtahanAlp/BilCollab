@@ -2,15 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Components.SchedulerComp;
+/*package Components.SchedulerComp;
 
-import java.util.ArrayList;
+import Main.Plan;
+import java.util.ArrayList;*/
 
 /**
  *
  * @author zuhalaksoy
  */
-public class DaySchedule {
+/*public class DaySchedule {
     private ArrayList<Plan> plans;
     public static final int HOURS_IN_PLANNER = 19;
     
@@ -54,4 +55,4 @@ public class DaySchedule {
     }
      
     
-}
+}*/

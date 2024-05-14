@@ -31,92 +31,23 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel18" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel19" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel20" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel21" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="636" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="743" max="-2" attributes="0"/>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="507" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="669" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="235" max="32767" attributes="0"/>
+              <EmptySpace pref="92" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -137,18 +68,160 @@
               </Border>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="16">
-                <Column editable="true" title="Monday" type="java.lang.Object"/>
-                <Column editable="true" title="Tuesday" type="java.lang.Object"/>
-                <Column editable="true" title="Wednesday" type="java.lang.Object"/>
-                <Column editable="true" title="Thursday" type="java.lang.Object"/>
-                <Column editable="true" title="Friday" type="java.lang.Object"/>
-                <Column editable="true" title="Saturday" type="java.lang.Object"/>
-                <Column editable="true" title="Sunday" type="java.lang.Object"/>
+              <Table columnCount="8" rowCount="16">
+                <Column editable="true" title="Time" type="java.lang.Object">
+                  <Data value="08.00-09.00"/>
+                  <Data value="09.00-10.00"/>
+                  <Data value="10.00-11.00"/>
+                  <Data value="11.00-12.00"/>
+                  <Data value="12.00-13.00"/>
+                  <Data value="13.00-14.00"/>
+                  <Data value="14.00-15.00"/>
+                  <Data value="15.00.16.00"/>
+                  <Data value="16.00.17.00"/>
+                  <Data value="17.00.18.00"/>
+                  <Data value="18.00-19.00"/>
+                  <Data value="19.00.20.00"/>
+                  <Data value="20.00.21.00"/>
+                  <Data value="21.00-22.00"/>
+                  <Data value="22.00-23.00"/>
+                  <Data value="23.00-00.00"/>
+                </Column>
+                <Column editable="true" title="Monday" type="java.lang.Object">
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                </Column>
+                <Column editable="true" title="Tuesday" type="java.lang.Object">
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                </Column>
+                <Column editable="true" title="Wednesday" type="java.lang.Object">
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                </Column>
+                <Column editable="true" title="Thursday" type="java.lang.Object">
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                </Column>
+                <Column editable="true" title="Friday" type="java.lang.Object">
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                </Column>
+                <Column editable="true" title="Saturday" type="java.lang.Object">
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                </Column>
+                <Column editable="true" title="Sunday" type="java.lang.Object">
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                  <Data value=" "/>
+                </Column>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -190,7 +263,7 @@
             <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
-            <Property name="rowHeight" type="int" value="30"/>
+            <Property name="rowHeight" type="int" value="40"/>
             <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="ff" type="rgb"/>
             </Property>
@@ -220,10 +293,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField_EndTime" min="-2" pref="125" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
@@ -246,6 +316,11 @@
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jTextField_EndTime" min="-2" pref="130" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -349,90 +424,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="09.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="08.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="10.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="11.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="12.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel10">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="13.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel11">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="14.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel12">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="15.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel13">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="16.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel14">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="17.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel15">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="18.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel16">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="19.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel17">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="20.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel18">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="21.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel19">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="22.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel20">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="23.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel21">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="00.00"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>
