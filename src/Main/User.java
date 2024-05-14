@@ -119,11 +119,11 @@ public class User {
         ArrayList<User> userFriends = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM users WHERE id != ?";
+            String query = "SELECT * FROM user WHERE id != ?";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, getId());
 
-                ResultSet rs = stmt.executeQuery();
+                ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
                     int friendId = rs.getInt("id");
                     String name = rs.getString("name");
