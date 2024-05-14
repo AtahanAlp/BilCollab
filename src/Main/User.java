@@ -316,13 +316,16 @@ public class User {
         //TODO
     }
 
-    public void checkFriend(User user) {
-        //TODO
+    public boolean checkFriend(User user) {
+        for(User u: this.getFriends()){
+            if(u.getId() == user.getId()){
+                return true;
+            }
+            
+        }
+        return false;
     }
 
-    public void comparePlans(User user) {
-        //TODO
-    }
 
     public boolean createActivity(String title, String description, String startDate, String endDate, int quota, boolean isPublic, String category) {
         if (!title.trim().equals("") && description.trim().equals("") ) {//TODO: &&check collisions!!!
