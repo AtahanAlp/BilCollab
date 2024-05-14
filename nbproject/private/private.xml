@@ -1,33 +1,19 @@
-<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Components/LoginComp/Login.java</file>
-            <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Components/ActivitiesComp/ActivitiesPanel.java</file>
-            <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Main/Main.java</file>
-            <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Components/ActivitiesComp/CreateActivityPanel.java</file>
-            <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Components/ProfileComp/ProfilePanel.java</file>
-            <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Components/AppFrame.java</file>
-            <file>file:/C:/Users/Atahan/Desktop/Üniversite/CS102/BilCollab/src/Components/SchedulerComp/SchedulerPanel.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Components/ActivitiesComp/CreateActivityPanel.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Components/Button.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Components/ActivitiesComp/ActivitiesPanel.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Components/AppFrame.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Components/LoginComp/Login.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Main/DatabaseConnection.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Components/MessagesComp/Chat.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Components/MessagesComp/Message.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Icons/chill.png</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Main/Main.java</file>
+            <file>file:/Users/denizcaglar/Desktop/untitled%20folder/BilCollab/src/Components/MessagesComp/MessagePanel.java</file>
         </group>
     </open-files>
 </project-private>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/aeren/Desktop/Java%20projecc/labs2/BilCollab/src/Main/DatabaseConnection.java</file>
-            <file>file:/C:/Users/aeren/Desktop/Java%20projecc/labs2/BilCollab/src/Components/MessagesComp/Message.java</file>
-            <file>file:/C:/Users/aeren/Desktop/Java%20projecc/labs2/BilCollab/src/Components/MessagesComp/MessagesPanel.java</file>
-            <file>file:/C:/Users/aeren/Desktop/Java%20projecc/labs2/BilCollab/src/Main/User.java</file>
-            <file>file:/C:/Users/aeren/Desktop/Java%20projecc/labs2/BilCollab/src/Components/MessagesComp/Chat.java</file>
-            <file>file:/C:/Users/aeren/Desktop/Java%20projecc/labs2/BilCollab/src/Components/AppFrame.java</file>
-            <file>file:/C:/Users/aeren/Desktop/Java%20projecc/labs2/BilCollab/src/Components/MessagesComp/MessagePanel.java</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> Stashed changes
