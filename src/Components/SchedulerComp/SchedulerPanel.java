@@ -7,6 +7,8 @@ package Components.SchedulerComp;
 import Main.Plan;
 import Components.RefreshablePanel;
 import Main.User;
+import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.table.TableCellRenderer;
 
@@ -64,16 +66,13 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         jLabel1 = new javax.swing.JLabel();
         roundedPanel4 = new Components.RoundedPanel();
         jLabel2 = new javax.swing.JLabel();
-        roundedPanel3 = new Components.RoundedPanel();
-        jTextField_Day = new Components.HintTextField();
         roundedPanel5 = new Components.RoundedPanel();
         jLabel4 = new javax.swing.JLabel();
-        roundedPanel6 = new Components.RoundedPanel();
-        jTextField_StartTime = new Components.HintTextField();
         roundedPanel7 = new Components.RoundedPanel();
         jLabel3 = new javax.swing.JLabel();
-        roundedPanel8 = new Components.RoundedPanel();
-        jTextField_EndTime = new Components.HintTextField();
+        jComboBox_Day = new javax.swing.JComboBox<>();
+        jComboBox_Start = new javax.swing.JComboBox<>();
+        jComboBox_End = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(1000, 800));
@@ -145,8 +144,8 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField_Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,30 +199,6 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        roundedPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTextField_Day.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField_Day.setHint("Day");
-        jTextField_Day.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_DayActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundedPanel3Layout = new javax.swing.GroupLayout(roundedPanel3);
-        roundedPanel3.setLayout(roundedPanel3Layout);
-        roundedPanel3Layout.setHorizontalGroup(
-            roundedPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField_Day, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundedPanel3Layout.setVerticalGroup(
-            roundedPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField_Day, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-        );
-
         roundedPanel5.setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
@@ -234,41 +209,17 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         roundedPanel5.setLayout(roundedPanel5Layout);
         roundedPanel5Layout.setHorizontalGroup(
             roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         roundedPanel5Layout.setVerticalGroup(
             roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        roundedPanel6.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTextField_StartTime.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField_StartTime.setHint("Start Time");
-        jTextField_StartTime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_StartTimeActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundedPanel6Layout = new javax.swing.GroupLayout(roundedPanel6);
-        roundedPanel6.setLayout(roundedPanel6Layout);
-        roundedPanel6Layout.setHorizontalGroup(
-            roundedPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField_StartTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-        );
-        roundedPanel6Layout.setVerticalGroup(
-            roundedPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField_StartTime, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
         roundedPanel7.setBackground(new java.awt.Color(255, 204, 204));
@@ -283,39 +234,42 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
             .addGroup(roundedPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         roundedPanel7Layout.setVerticalGroup(
             roundedPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel7Layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
         );
 
-        roundedPanel8.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTextField_EndTime.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField_EndTime.setHint("End Time");
-        jTextField_EndTime.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_Day.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" }));
+        jComboBox_Day.setSelectedIndex(-1);
+        jComboBox_Day.setBorder(null);
+        jComboBox_Day.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_EndTimeActionPerformed(evt);
+                jComboBox_DayActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout roundedPanel8Layout = new javax.swing.GroupLayout(roundedPanel8);
-        roundedPanel8.setLayout(roundedPanel8Layout);
-        roundedPanel8Layout.setHorizontalGroup(
-            roundedPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField_EndTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundedPanel8Layout.setVerticalGroup(
-            roundedPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField_EndTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-        );
+        jComboBox_Start.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00", "20.00", "21.00", "22.00", "23.00", " " }));
+        jComboBox_Start.setSelectedIndex(-1);
+        jComboBox_Start.setBorder(null);
+        jComboBox_Start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_StartActionPerformed(evt);
+            }
+        });
+
+        jComboBox_End.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00", "20.00", "21.00", "22.00", "23.00", "00.00", " " }));
+        jComboBox_End.setSelectedIndex(-1);
+        jComboBox_End.setBorder(null);
+        jComboBox_End.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_EndActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -331,41 +285,43 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                         .addComponent(button_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(roundedPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundedPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundedPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundedPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundedPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundedPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundedPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(roundedPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(roundedPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(roundedPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(roundedPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(roundedPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jComboBox_End, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox_Start, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox_Day, javax.swing.GroupLayout.Alignment.LEADING, 0, 147, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(37, 37, 37)
                 .addComponent(roundedPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(33, 33, 33)
                 .addComponent(roundedPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roundedPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox_Day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(roundedPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roundedPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addComponent(jComboBox_Start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(roundedPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(roundedPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox_End, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -392,11 +348,9 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
 
     private void button_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_AddActionPerformed
         
-        String day = jTextField_Day.getText();
+        String day = (String) jComboBox_Day.getSelectedItem();
         int dayInt;
-        
         day = day.toUpperCase();
-        
         dayInt = switch (day) {
             case "MONDAY" -> 1;
             case "TUESDAY" -> 2;
@@ -408,10 +362,12 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
             default -> 1;
         };
           
-        String startTime = jTextField_StartTime.getText();
+        String startTime = (String) jComboBox_Start.getSelectedItem();
+        startTime = startTime.substring(0,2);
         int startInt = Integer.parseInt(startTime);
         
-        String endTime = jTextField_EndTime.getText();
+        String endTime = (String) jComboBox_End.getSelectedItem();
+        endTime = endTime.substring(0,2);
         int endInt = Integer.parseInt(endTime);
         if(endInt == 0){
             endInt = 24;
@@ -422,13 +378,12 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         Plan p = new Plan(name,dayInt,startInt,endInt);
         plans.add(p);
         
-        
         for(int i = startInt; i < endInt; i++){
             jTable_Scheduler.setValueAt(jTextField_Name.getText(), i - 8, dayInt);
    
         }
         
-        jTable_Scheduler.setDefaultRenderer(Object.class, renderer);
+        jTable_Scheduler.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
        
     }//GEN-LAST:event_button_AddActionPerformed
 
@@ -437,11 +392,10 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
     }
 
     private void button_RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_RemoveActionPerformed
-        String day = jTextField_Day.getText();
+        
+        String day = (String) jComboBox_Day.getSelectedItem();
         int dayInt;
-        
         day = day.toUpperCase();
-        
         dayInt = switch (day) {
             case "MONDAY" -> 1;
             case "TUESDAY" -> 2;
@@ -452,18 +406,20 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
             case "SUNDAY" -> 7;
             default -> 1;
         };
+       
         
-        String startTime = jTextField_StartTime.getText();
+        String startTime = (String) jComboBox_Start.getSelectedItem();
+        startTime = startTime.substring(0,2);
         int startInt = Integer.parseInt(startTime);
         
-        String endTime = jTextField_EndTime.getText();
+        String endTime = (String) jComboBox_End.getSelectedItem();
+        endTime = endTime.substring(0,2);
         int endInt = Integer.parseInt(endTime);
         if(endInt == 0){
             endInt = 24;
         }
         
         String name = jTextField_Name.getText();
-        
         
         for(int i = startInt; i < endInt; i++){
             jTable_Scheduler.setValueAt(" ", i - 8, dayInt);
@@ -478,30 +434,33 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         }
 
         plans.remove(plans.get(index));
-         
-        jTable_Scheduler.setDefaultRenderer(Object.class, renderer);
+        
+        jTable_Scheduler.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
     }//GEN-LAST:event_button_RemoveActionPerformed
 
     private void jTextField_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NameActionPerformed
        
     }//GEN-LAST:event_jTextField_NameActionPerformed
 
-    private void jTextField_DayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_DayActionPerformed
+    private void jComboBox_DayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_DayActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_DayActionPerformed
+    }//GEN-LAST:event_jComboBox_DayActionPerformed
 
-    private void jTextField_StartTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_StartTimeActionPerformed
+    private void jComboBox_StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_StartActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_StartTimeActionPerformed
+    }//GEN-LAST:event_jComboBox_StartActionPerformed
 
-    private void jTextField_EndTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_EndTimeActionPerformed
+    private void jComboBox_EndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_EndActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_EndTimeActionPerformed
+    }//GEN-LAST:event_jComboBox_EndActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Components.Button button_Add;
     private Components.Button button_Remove;
+    private javax.swing.JComboBox<String> jComboBox_Day;
+    private javax.swing.JComboBox<String> jComboBox_End;
+    private javax.swing.JComboBox<String> jComboBox_Start;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -509,18 +468,12 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_Scheduler;
-    private Components.HintTextField jTextField_Day;
-    private Components.HintTextField jTextField_EndTime;
     private Components.HintTextField jTextField_Name;
-    private Components.HintTextField jTextField_StartTime;
     private Components.RoundedPanel roundedPanel1;
     private Components.RoundedPanel roundedPanel2;
-    private Components.RoundedPanel roundedPanel3;
     private Components.RoundedPanel roundedPanel4;
     private Components.RoundedPanel roundedPanel5;
-    private Components.RoundedPanel roundedPanel6;
     private Components.RoundedPanel roundedPanel7;
-    private Components.RoundedPanel roundedPanel8;
     // End of variables declaration//GEN-END:variables
 
 }
