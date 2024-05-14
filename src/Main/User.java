@@ -211,8 +211,7 @@ public class User {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-       
+        }     
     }
 
     public void addActivity(Activity activity) {
