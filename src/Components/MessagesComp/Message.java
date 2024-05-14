@@ -1,10 +1,16 @@
 package Components.MessagesComp;
 
 import Components.RoundedPanel;
+import Main.DatabaseConnection;
 import java.awt.Color;
+import java.sql.Connection;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JTextArea;
+import java.time.LocalDateTime;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+
 
 /**
  *
@@ -53,6 +59,22 @@ public class Message extends javax.swing.JPanel {
         timeLabel.setText (time);
     }
     
+    public void database() {
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "INSERT INTO Messages (id, content, creationDate, sender_id, receiver_id, isSeen) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, id); 
+                stmt.setString(2, content);
+                stmt.setString(3, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                stmt.setInt(4, senderId);
+                stmt.setInt(5,receiverId );
+                stmt.setBoolean(6, seen);
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public String getContent() {
         return content;
     }

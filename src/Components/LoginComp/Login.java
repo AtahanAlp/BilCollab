@@ -437,6 +437,7 @@ public class Login extends javax.swing.JFrame {
         ResultSet rs = null;
         User user = null;
         boolean authenticated = false;
+        
 
         try {
             Connection conn = DatabaseConnection.getConnection();

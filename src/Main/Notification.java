@@ -12,13 +12,10 @@ package Main;
 public class Notification {
     String description;
     User sender;
-    String type;
     
-    public Notification(String description, User sender, String type) {
+    public Notification(String description, User sender) {
         this.description = description;
         this.sender = sender;
-        this.type = type;
-               
     }
 
     public String getDescription() {
