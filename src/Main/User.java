@@ -235,7 +235,7 @@ public class User {
 
         try {
             conn = DatabaseConnection.getConnection();
-            String query = "SELECT * FROM user WHERE id IN (SELECT CAST(value AS UNSIGNED) FROM STRING_SPLIT(friends, '/'))";
+            String query = "SELECT * FROM user WHERE FIND_IN_SET(id, REPLACE(friends, '/', ',')) > 0";
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
             while (rs.next()) {
