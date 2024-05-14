@@ -138,6 +138,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         setBackground(new java.awt.Color(235, 240, 255));
         setMaximumSize(new java.awt.Dimension(1150, 800));
         setMinimumSize(new java.awt.Dimension(1150, 800));
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1150, 800));
 
         ancorPanel.setBackground(new java.awt.Color(255, 204, 204));
