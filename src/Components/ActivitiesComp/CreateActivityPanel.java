@@ -9,7 +9,7 @@ import Components.RefreshablePanel;
 import Components.TextCharLimit;
 import Main.User;
 import java.awt.Color;
-import java.util.Date;
+import java.sql.*;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.border.EmptyBorder;
@@ -398,13 +398,15 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
     }//GEN-LAST:event_privateBtnItemStateChanged
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        Date startDate =new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
-                        (int)dayBox.getSelectedItem(), (int)hourBox.getSelectedItem(), (int)minuteBox.getSelectedItem());
+        Date startDate = new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
+                        (int)dayBox.getSelectedItem());
+        Date endDate = startDate;
+        
+        Time startTime = new Time((int)hourBox.getSelectedItem(), (int)minuteBox.getSelectedItem(), 0);
         
         int durationHour = hourBox.getSelectedIndex() / 60;
         int durationMinutes = hourBox.getSelectedIndex() % 60;
-        Date endDate = new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
-                        (int)dayBox.getSelectedItem(), (int)hourBox.getSelectedItem() + durationHour, (int)minuteBox.getSelectedItem() + durationMinutes);
+        Time endTime = new Time((int)hourBox.getSelectedItem() + durationHour, (int)minuteBox.getSelectedItem() + durationMinutes, 0);
         
         if (user.createActivity(titleField.getText(), description.getText(), startDate, endDate, (int)quotaBox.getSelectedItem(), publicBtn.isSelected(), getCategory())) {//TODO: &&check collisions!!!
             appFrame.getSideMenu().setSelectedPage(appFrame.getSideMenu().profileBtn, appFrame.getProfilePanel());
