@@ -7,6 +7,7 @@ package Components.ActivitiesComp;
 import Components.AppFrame;
 import Components.RefreshablePanel;
 import Components.TextCharLimit;
+import Main.Notification;
 import Main.User;
 import java.awt.Color;
 import java.sql.*;
@@ -411,24 +412,26 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         if (user.createActivity(titleField.getText(), description.getText(), startDate, endDate, (int)quotaBox.getSelectedItem(), publicBtn.isSelected(), getCategory())) {//TODO: &&check collisions!!!
             appFrame.getSideMenu().setSelectedPage(appFrame.getSideMenu().profileBtn, appFrame.getProfilePanel());
             refresh();
+           
+            
+            
         }
         else{
             warning.setVisible(true);
         }
+        
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void categoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_categoryBtnActionPerformed
      private void setButtonIcon(String category) {
-    String imagePath = "/icons/" + category + ".png";
-    ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
-    categoryBtn.setIcon(icon);
-
+        String imagePath = "/icons/" + category + ".png";
+        ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
+        categoryBtn.setIcon(icon);
     }
      
-     private String getCategoryImagePath(String category) {
-   
+     private String getCategoryImagePath(String category) { 
         return  category + ".png";
     }
     private void CategoryBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryBoxActionPerformed

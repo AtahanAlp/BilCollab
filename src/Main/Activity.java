@@ -120,9 +120,15 @@ public class Activity {
                     String email = rs.getString("email");
                     String friendPassword = rs.getString("password");
 
+<<<<<<< HEAD
                     User friend = new User(name, email, friendPassword);
                     friend.setId(participantID);
                     participants.add(friend);
+=======
+                    User participant = new User(name, email, friendPassword);
+                    participant.setId(participantID);
+                    participants.add(participant);
+>>>>>>> 9acac4e92a69558414e652b319915354d9bbd7c1
                 }
             }
         } catch (SQLException e) {

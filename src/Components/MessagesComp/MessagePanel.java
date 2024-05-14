@@ -10,8 +10,6 @@ import javax.swing.SwingUtilities;
 import Components.ScrollBarUI;
 import Main.User;
 import java.awt.Color;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -83,7 +81,7 @@ public class MessagePanel extends javax.swing.JPanel {
                     String sentAt = rs.getString("sent_at");
                     boolean isSeen = rs.getBoolean("is_seen");
 
-                    Message message = new Message(messageId, senderId, receiverId, messageText, sentAt, isSeen);
+                    Message message = new Message(senderId, receiverId, messageText, messageId, sentAt, isSeen);
                     dbMessages.add(message);
                 }
             }
@@ -97,29 +95,26 @@ public class MessagePanel extends javax.swing.JPanel {
     public void addMsgToDisplay (Message m) {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = messageCount++; // Increment the y-coordinate for each message
-        
-        //To be done with the database later
-        if (messageCount%2 == 1) {
-            m.setBackground (Color.decode("#F50C43"));
-            m.getTextArea().setForeground (Color.BLACK);
-            m.getTextArea().setBackground(Color.decode("#D9D9D9"));
-            m.getRoundedPanel().setBackground(Color.decode("#D9D9D9"));
-            gbc.anchor = GridBagConstraints.LINE_START;
-        } else {
+        gbc.gridy = messageCount++;
+
+        if (m.getSenderId() != currentUser.getId()) {
             m.setBackground (Color.decode("#F50C43"));
             m.getTextArea().setForeground (Color.WHITE);
             m.getTextArea().setBackground(Color.decode("#F50C43"));
             m.getRoundedPanel().setBackground(Color.decode("#F50C43"));
             m.setTimeColor(Color.decode("#9C2947"));
             gbc.anchor = GridBagConstraints.LINE_END; 
+        } else {
+            m.setBackground (Color.decode("#F50C43"));
+            m.getTextArea().setForeground (Color.BLACK);
+            m.getTextArea().setBackground(Color.decode("#D9D9D9"));
+            m.getRoundedPanel().setBackground(Color.decode("#D9D9D9"));
+            gbc.anchor = GridBagConstraints.LINE_START;
         }
         
         gbc.weightx = 1.0;
         gbc.insets = new Insets(2, 2, 2, 2);
         MessageDisplay.add(m, gbc);
-        
-        
         
         SwingUtilities.invokeLater(() -> {
             JScrollBar verticalScrollBar = MessageDisplayPane.getVerticalScrollBar();
@@ -134,10 +129,7 @@ public class MessagePanel extends javax.swing.JPanel {
             @Override
             public void keyPressed (java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode () == java.awt.event.KeyEvent.VK_ENTER) {
-                    LocalTime currentTime = LocalTime.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                    String formattedTime = currentTime.format(formatter);
-                    sendMessage ("user", MessageArea.getText(), formattedTime);
+                    sendMessage (currentUser, friend, MessageArea.getText());
                     evt.consume ();
                 }
             }
@@ -161,11 +153,28 @@ public class MessagePanel extends javax.swing.JPanel {
         
     }
     
-    private void sendMessage (String sender, String content, String time) {
-        Message message = new Message (sender, content, time);
-        MessageDisplay.revalidate();
-        addMsgToDisplay (message);
+    private void sendMessage(User sender, User receiver, String content) {
+
+        Message message = new Message(sender.getId(), receiver.getId(), content);
+        addMsgToDisplay(message);
         MessageArea.setText("");
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "INSERT INTO messages (message_id, content, time, sender_id, receiver_id, is_seen) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, message.getId());
+                stmt.setString(2, message.getContent());
+                stmt.setString(3, message.getTime());
+                stmt.setInt(4, currentUser.getId());
+                stmt.setInt(5, friend.getId());
+                stmt.setBoolean(6, false);
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        receiver.createNotification(null);
+        MessageDisplay.revalidate();
     }
 
     /**
