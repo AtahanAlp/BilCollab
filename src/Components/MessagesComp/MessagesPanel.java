@@ -5,12 +5,19 @@ import Components.RefreshablePanel;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import Components.ScrollBarUI;
+import Main.DatabaseConnection;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import Main.User;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
@@ -41,12 +48,44 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         displayAllChats();
     }
     
-    private void displayAllChats () {
+    private void displayAllChats() {
+        Collections.sort(friends, new Comparator<User>() {
+            @Override
+            public int compare(User user1, User user2) {
+                // Compare the timestamps of the last messages
+                long timestamp1 = getLastMessageTimestamp(user1.getId());
+                long timestamp2 = getLastMessageTimestamp(user2.getId());
+                // Sort in descending order
+                return Long.compare(timestamp2, timestamp1);
+            }
+        });
+
+        // Display the sorted chats
         for (User friend : friends) {
             addChat(friend);
         }
     }
 
+    private long getLastMessageTimestamp(int friendID) {
+        long lastMessageTimestamp = 0;
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "SELECT sent_at FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at DESC LIMIT 1";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, curr.getId());
+                stmt.setInt(2, friendID);
+                stmt.setInt(3, friendID);
+                stmt.setInt(4, curr.getId());
+
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    lastMessageTimestamp = rs.getTimestamp("sent_at").getTime();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lastMessageTimestamp;
+    }
     
     private void addChat (User friend) {
         Chat c = new Chat (friend, "e", "e", this);
