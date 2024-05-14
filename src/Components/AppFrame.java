@@ -35,6 +35,7 @@ public class AppFrame extends javax.swing.JFrame {
         profilePanel.setUser(user);
         createActPanel.setUser(user);
         schedulerPanel.setUser(user);
+        messagesPanel.setUser(user);
         
         createActPanel.setAppFrame(this);
         settingsPanel.setAppFrame(this);
