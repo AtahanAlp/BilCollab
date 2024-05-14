@@ -20,7 +20,7 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
        
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "A646138a646138");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/bilCollab", "root", "A646138a646138");
     }
     
     public static void close(Connection connection, Statement st, ResultSet result){
