@@ -139,7 +139,27 @@ public class User {
     }
 
     public ArrayList<Notification> getNotifications() {
-        return notifications;
+        
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            connection = DatabaseConnection.getConnection();
+            
+            String sql = "SELECT information FROM notification WHERE receiver = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                String info = rs.getString("information");
+                notifications.add(info);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{           
+            DatabaseConnection.close(connection, stmt, rs);
+        }
     }
 
     public ArrayList<FriendRequest> getFriendRequests() {
