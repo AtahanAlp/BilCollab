@@ -4,10 +4,16 @@
  */
 package Main;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.imageio.ImageIO;
 
 /**
@@ -114,7 +120,30 @@ public class User {
     }
 
     public ArrayList<User> getFriends() {
-        return friends;
+        ArrayList<User> userFriends = new ArrayList<>();
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "SELECT * FROM users WHERE id != ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, getId());
+
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    int friendId = rs.getInt("id");
+                    String name = rs.getString("name");
+                    String email = rs.getString("email");
+                    String friendPassword = rs.getString("password");
+
+                    User friend = new User(name, email, friendPassword);
+                    friend.setId(friendId);
+                    userFriends.add(friend);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+
+        return userFriends;
     }
     
     //setter methods
@@ -132,6 +161,10 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    private void setId (int i) {
+        this.id = i;
     }
     
     //other methods
