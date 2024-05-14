@@ -121,7 +121,7 @@ public class Activity {
                     String friendPassword = rs.getString("password");
 
                     User friend = new User(name, email, friendPassword);
-                    friend.setId(friendId);
+                    friend.setId(participantID);
                     participants.add(friend);
                 }
             }

@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class User {
 
-    public static int count = 0;
+
     //public static final BufferedImage DEFAULT_PROFILE_PIC = ImageIO.read(new File("profilePic.png"));
 
     private int id;
@@ -190,7 +190,7 @@ public class User {
         this.description = description;
     }
 
-    private void setId(int i) {
+    public void setId(int i) {
         this.id = i;
     }
 
