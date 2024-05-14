@@ -156,7 +156,14 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Categoty");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setBackground(new java.awt.Color(204, 204, 204));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chill", "Food", "Hobby", "Sport", "Study", "Outdoor", "Other" }));
+        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
@@ -386,6 +393,10 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         filter.setVisible(false);
     }//GEN-LAST:event_button2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
