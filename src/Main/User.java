@@ -136,6 +136,10 @@ public class User {
     public String getDisplayName() {
         return displayName;
     }
+    
+    public String getDescription() {
+        return description;
+    }
 
     public BufferedImage getProfilePic() {
         return profilePic;
