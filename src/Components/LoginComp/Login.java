@@ -24,13 +24,12 @@ public class Login extends javax.swing.JFrame {
         signupPanel.setVisible(false);
         backBtn.setVisible(false);
         
-        TextCharLimit charLimit = new TextCharLimit(20);
-        mailField.setDocument(charLimit);
-        passwordField.setDocument(charLimit);
-        newUserField.setDocument(charLimit);
-        newMailField.setDocument(charLimit);
-        newPassField.setDocument(charLimit);
-        againPassField.setDocument(charLimit);
+        mailField.setDocument(new TextCharLimit(20));
+        passwordField.setDocument(new TextCharLimit(20));
+        newUserField.setDocument(new TextCharLimit(20));
+        newMailField.setDocument(new TextCharLimit(20));
+        newPassField.setDocument(new TextCharLimit(20));
+        againPassField.setDocument(new TextCharLimit(20));
     }
 
     /**
