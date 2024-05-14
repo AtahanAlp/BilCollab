@@ -5,6 +5,7 @@
 package Components.SchedulerComp;
 import java.awt.Component;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 

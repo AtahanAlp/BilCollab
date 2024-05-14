@@ -12,7 +12,6 @@ public class Plan {
     // Plan with name, time, day and whether it is completed
     
     private String name;
-    private Boolean completed;
     private Integer day;
     private Integer startTime;
     private Integer endTime;
@@ -20,7 +19,6 @@ public class Plan {
     
     public Plan(String name, Integer day, Integer time, Integer endTime) {
         this.name = name;
-        completed = false;
         this.day = day;
         this.startTime = time;
         this.endTime = endTime;
@@ -49,17 +47,15 @@ public class Plan {
         this.day = day;
     }
     
-    public Boolean getCompleted() {
-        return completed;
+    public boolean isIntersects(Plan other){
+        boolean isIntersect;
+    
+        return((endTime > other.getStartTime() && startTime < other.getEndTime()) || 
+               (other.getEndTime() > startTime && other.getStartTime() < endTime));
     }
     
-     public void complete() {
-        completed = true;
-    }
-     
-     public boolean equals(Plan compare) {
-        return (name.equals(compare.getName()) && completed == compare.getCompleted()
-                && day == compare.getDay() && startTime == compare.getStartTime() && endTime == compare.getEndTime());
+     public boolean equals(Plan p) {
+        return (name.equals(p.getName()) && day == p.getDay() && startTime == p.getStartTime() && endTime == p.getEndTime());
     }
     
 }

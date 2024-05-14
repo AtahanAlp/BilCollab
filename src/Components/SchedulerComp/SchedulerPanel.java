@@ -8,6 +8,7 @@ import Main.Plan;
 import Components.RefreshablePanel;
 import Main.User;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.table.TableCellRenderer;
 
@@ -272,12 +273,10 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         
         
         for(int i = startInt; i < endInt; i++){
-            jTable_Scheduler.setValueAt(name, i - 8, dayInt);
-            //Object value = jTable_Scheduler.getValueAt(i - 8, dayInt);
-            //value.setForeGround(Color.PINK);   
+            jTable_Scheduler.setValueAt(jTextField_Name.getText(), i - 8, dayInt);
+   
         }
         
-        //jTable_Scheduler.setDefaultRenderer(String.class, new CustomCellRenderer());
         
         jTable_Scheduler.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
 
@@ -296,7 +295,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
     }//GEN-LAST:event_jTextField_EndTimeActionPerformed
 
     private void jTextField_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NameActionPerformed
-       
+
     }//GEN-LAST:event_jTextField_NameActionPerformed
 
     private void jTextField_DayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_DayActionPerformed
