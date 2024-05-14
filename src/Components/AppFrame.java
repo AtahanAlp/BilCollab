@@ -6,6 +6,11 @@ package Components;
 import Main.User;
 import java.awt.Color;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,9 +40,11 @@ public class AppFrame extends javax.swing.JFrame {
         profilePanel.setUser(user);
         createActPanel.setUser(user);
         schedulerPanel.setUser(user);
+        messagesPanel.setUser(user);
         
         createActPanel.setAppFrame(this);
         settingsPanel.setAppFrame(this);
+        messagesPanel.setAppframe(this);
         
         sideMenu1 = new Components.SideMenu(this);
         appPanel.add(sideMenu1, java.awt.BorderLayout.WEST);
@@ -192,6 +199,10 @@ public class AppFrame extends javax.swing.JFrame {
         return settingsPanel;
     }
     
+    public User getCurrentUser () {
+        return this.user;
+    }
+    
     public JLabel getInfoText(){
         return infoText;
     }
@@ -226,6 +237,54 @@ public class AppFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        Connection conn = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            System.out.println("Veritabanına bağlanılıyor...");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bilCollab", "root", "A646138a646138");
+
+            System.out.println("Sorgu yürütülüyor...");
+            stmt = conn.createStatement();
+
+            String sql = "SELECT * FROM User";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String name = rs.getString("name");
+                String mail = rs.getString("mail");
+
+                System.out.println("ID: " + id);
+                System.out.println("Kullanıcı Adı: " + username);
+                System.out.println("Adı: " + name);
+                System.out.println("E-Posta: " + mail);
+                System.out.println();
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            
+            try {
+                if (stmt != null) stmt.close();
+            } catch (SQLException se2) {
+            }
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        System.out.println("İşlem tamamlandı.");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

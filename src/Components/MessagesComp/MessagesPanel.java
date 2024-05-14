@@ -1,5 +1,6 @@
 package Components.MessagesComp;
 
+import Components.AppFrame;
 import Components.RefreshablePanel;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
@@ -9,7 +10,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import Main.User;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +19,8 @@ import java.util.List;
 public class MessagesPanel extends javax.swing.JPanel implements RefreshablePanel{
 
     private List<User> friends;
+    private AppFrame a;
+    private User curr;
     
     public MessagesPanel() {
         initComponents();
@@ -32,26 +34,11 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         ChatsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         ChatsScrollPane.getVerticalScrollBar().setUI(new ScrollBarUI());
         ChatsScrollPane.getViewport().setBackground(new Color(255, 255, 255));
-        
-        this.friends = fetchFriendsFromServer();
-        displayAllChats();
-        
     }
     
     public void refresh(){
-        //TODO
-    }
-    
-    private List<User> fetchFriendsFromServer() {
-        
-        List<User> friends = new ArrayList<>();
-        friends.add(new User("Friend1", "friend1@example.com", "password1"));
-        friends.add(new User("Friend2", "friend2@example.com", "password2"));
-        friends.add(new User("Friend3", "friend3@example.com", "password3"));
-        friends.add(new User("Friend4", "friend4@example.com", "password4"));
-        friends.add(new User("Friend5", "friend5@example.com", "password5"));
-
-        return friends;
+        this.friends = curr.getFriends();
+        displayAllChats();
     }
     
     private void displayAllChats () {
@@ -87,6 +74,18 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         }
         
         Chats.revalidate();  
+    }
+    
+    public void setAppframe (AppFrame a) {
+        this.a = a;
+    }
+    
+    public void setUser (User u) {
+        this.curr = u;
+    }
+    
+    public AppFrame getAppFrame () {
+        return a;
     }
 
     /**
