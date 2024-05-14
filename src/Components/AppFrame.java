@@ -38,6 +38,7 @@ public class AppFrame extends javax.swing.JFrame {
         
         createActPanel.setAppFrame(this);
         settingsPanel.setAppFrame(this);
+        messagesPanel.setAppframe(this);
         
         sideMenu1 = new Components.SideMenu(this);
         appPanel.add(sideMenu1, java.awt.BorderLayout.WEST);
@@ -190,6 +191,10 @@ public class AppFrame extends javax.swing.JFrame {
     
     public RefreshablePanel getSettingsPanel(){
         return settingsPanel;
+    }
+    
+    public User getCurrentUser () {
+        return this.user;
     }
     
     public JLabel getInfoText(){

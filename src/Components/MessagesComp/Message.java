@@ -1,6 +1,7 @@
 package Components.MessagesComp;
 
 import Components.RoundedPanel;
+import java.awt.Color;
 import javax.swing.JTextArea;
 
 /**
@@ -26,6 +27,7 @@ public class Message extends javax.swing.JPanel {
         MessageContent.setText (this.content);
         
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        timeLabel.setText (time);
     }
     
     public String getContent () {
@@ -36,12 +38,20 @@ public class Message extends javax.swing.JPanel {
         return this.sender;
     }
     
+    public String getTime () {
+        return this.time;
+    }
+    
     public JTextArea getTextArea () {
         return this.MessageContent;
     }
     
     public RoundedPanel getRoundedPanel () {
         return this.roundedPanel1;
+    }
+    
+    public void setTimeColor (Color c) {
+        timeLabel.setForeground(c);
     }
 
     /**
@@ -56,6 +66,7 @@ public class Message extends javax.swing.JPanel {
         roundedPanel1 = new Components.RoundedPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         MessageContent = new javax.swing.JTextArea();
+        timeLabel = new javax.swing.JLabel();
 
         setOpaque(false);
 
@@ -71,6 +82,9 @@ public class Message extends javax.swing.JPanel {
         MessageContent.setMinimumSize(new java.awt.Dimension(232, 84));
         jScrollPane1.setViewportView(MessageContent);
 
+        timeLabel.setForeground(new java.awt.Color(102, 102, 102));
+        timeLabel.setText("jLabel1");
+
         javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
         roundedPanel1Layout.setHorizontalGroup(
@@ -78,6 +92,8 @@ public class Message extends javax.swing.JPanel {
             .addGroup(roundedPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(timeLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundedPanel1Layout.setVerticalGroup(
@@ -86,6 +102,10 @@ public class Message extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(timeLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -95,7 +115,7 @@ public class Message extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,5 +131,6 @@ public class Message extends javax.swing.JPanel {
     private javax.swing.JTextArea MessageContent;
     private javax.swing.JScrollPane jScrollPane1;
     private Components.RoundedPanel roundedPanel1;
+    private javax.swing.JLabel timeLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,8 @@ import javax.swing.SwingUtilities;
 import Components.ScrollBarUI;
 import Main.User;
 import java.awt.Color;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +24,13 @@ public class MessagePanel extends javax.swing.JPanel {
     private int messageCount = 0;
     private MessagesPanel m;
     private User friend;
+    private User currentUser;
     private List<Message> messages = new ArrayList<>();
     
     public MessagePanel(MessagesPanel m, User friend) {
         this.m = m;
         this.friend = friend;
+        this.currentUser = m.getAppFrame().getCurrentUser();
         setLayout (new BorderLayout ());
         initComponents();
         initMessageArea ();
@@ -69,23 +73,26 @@ public class MessagePanel extends javax.swing.JPanel {
         gbc.gridy = messageCount++; // Increment the y-coordinate for each message
         
         //To be done with the database later
-        if (messageCount%2 == 0) {
+        if (messageCount%2 == 1) {
             m.setBackground (Color.decode("#F50C43"));
-            m.setForeground (Color.WHITE);
+            m.getTextArea().setForeground (Color.BLACK);
             m.getTextArea().setBackground(Color.decode("#D9D9D9"));
             m.getRoundedPanel().setBackground(Color.decode("#D9D9D9"));
-            gbc.anchor = GridBagConstraints.LINE_END;
+            gbc.anchor = GridBagConstraints.LINE_START;
         } else {
             m.setBackground (Color.decode("#F50C43"));
-            m.setForeground (Color.BLACK);
+            m.getTextArea().setForeground (Color.WHITE);
             m.getTextArea().setBackground(Color.decode("#F50C43"));
             m.getRoundedPanel().setBackground(Color.decode("#F50C43"));
-            gbc.anchor = GridBagConstraints.LINE_START; 
+            m.setTimeColor(Color.decode("#9C2947"));
+            gbc.anchor = GridBagConstraints.LINE_END; 
         }
         
         gbc.weightx = 1.0;
         gbc.insets = new Insets(2, 2, 2, 2);
         MessageDisplay.add(m, gbc);
+        
+        
         
         SwingUtilities.invokeLater(() -> {
             JScrollBar verticalScrollBar = MessageDisplayPane.getVerticalScrollBar();
@@ -100,7 +107,10 @@ public class MessagePanel extends javax.swing.JPanel {
             @Override
             public void keyPressed (java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode () == java.awt.event.KeyEvent.VK_ENTER) {
-                    sendMessage ("user", MessageArea.getText(), "date");
+                    LocalTime currentTime = LocalTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                    String formattedTime = currentTime.format(formatter);
+                    sendMessage ("user", MessageArea.getText(), formattedTime);
                     evt.consume ();
                 }
             }

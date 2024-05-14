@@ -1,5 +1,6 @@
 package Components.MessagesComp;
 
+import Components.AppFrame;
 import Components.RefreshablePanel;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
@@ -19,6 +20,7 @@ import java.util.List;
 public class MessagesPanel extends javax.swing.JPanel implements RefreshablePanel{
 
     private List<User> friends;
+    private AppFrame a;
     
     public MessagesPanel() {
         initComponents();
@@ -87,6 +89,14 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
         }
         
         Chats.revalidate();  
+    }
+    
+    public void setAppframe (AppFrame a) {
+        this.a = a;
+    }
+    
+    protected AppFrame getAppFrame () {
+        return a;
     }
 
     /**
