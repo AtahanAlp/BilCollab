@@ -4,9 +4,7 @@
  */
 package Main;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 /**
  *
  * @author emir_mac
@@ -14,7 +12,33 @@ import java.sql.SQLException;
 public class DatabaseConnection {
     
     public static Connection getConnection() throws SQLException {
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
        
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "A646138a646138");
+    }
+    
+    public static void close(Connection connection, Statement st, ResultSet result){
+        
+        try{
+            
+            if(result != null){
+                result.close();
+            }
+            if(st != null){
+                st.close();
+            }
+            if(connection != null){
+                connection.close();
+            }
+        }
+        catch(SQLException se){
+            se.printStackTrace();
+        }
     }
 }
