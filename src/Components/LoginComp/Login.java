@@ -4,8 +4,12 @@
  */
 package Components.LoginComp;
 
+import Components.AppFrame;
 import Components.TextCharLimit;
+import Main.DatabaseConnection;
+import Main.User;
 import javax.swing.ImageIcon;
+import java.sql.*;
 /**
  *
  * @author Atahan
@@ -132,6 +136,11 @@ public class Login extends javax.swing.JFrame {
         loginBtn.setColorClicked(new java.awt.Color(255, 255, 255));
         loginBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         loginBtn.setTextColor(new java.awt.Color(255, 255, 255));
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
 
         signupPageBtn.setText("Dont have an account yet? Click here to sign up.");
         signupPageBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -423,10 +432,42 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-    private boolean authenticate(String username, String password) {
-        // şimdilik böyle burası
+    private User authenticate(String mail, String password) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        User user = null;
+        boolean authenticated = false;
 
-        return username.equals("deniz") && password.equals("123");
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            
+            String sql = "SELECT COUNT(*) AS count FROM User WHERE mail=? AND password=?";
+            stmt = conn.prepareStatement(sql);
+            
+            stmt.setString(1, mail);
+            stmt.setString(2, password);
+            
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                int bool = rs.getInt("count");
+                String username = rs.getString("username");
+                authenticated = (bool == 1);
+                if (authenticated) {
+                    user = new User(username, mail, password);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return user;
     }
     
     private void newMailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMailFieldActionPerformed
@@ -465,6 +506,15 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_signUpBtnActionPerformed
 
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        User user = authenticate(mailField.getText().trim(), passwordField.getText().trim());
+        if (user != null) {
+            AppFrame appFrame = new AppFrame(user);
+            appFrame.pack();
+            appFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_loginBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Components.HintPasswordField againPassField;
@@ -490,15 +540,7 @@ public class Login extends javax.swing.JFrame {
     private Components.HintPasswordField newPassField;
     private Components.HintTextField newUserField;
     private Components.HintPasswordField passwordField;
-    private Components.HintPasswordField passwordField2;
-    private Components.HintPasswordField passwordField3;
-    private Components.HintPasswordField passwordField4;
-    private Components.HintPasswordField passwordField5;
     private Components.RoundedPanel passwordPanel1;
-    private Components.RoundedPanel passwordPanel2;
-    private Components.RoundedPanel passwordPanel3;
-    private Components.RoundedPanel passwordPanel4;
-    private Components.RoundedPanel passwordPanel5;
     private Components.RoundedPanel passwordPanel6;
     private Components.RoundedPanel passwordPanel7;
     private Components.Button signUpBtn;
