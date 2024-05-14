@@ -2,6 +2,8 @@ package Components.MessagesComp;
 
 import Components.RoundedPanel;
 import java.awt.Color;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JTextArea;
 
 /**
@@ -11,41 +13,88 @@ import javax.swing.JTextArea;
 public class Message extends javax.swing.JPanel {
 
     private String content;
-    private String sender;
+    private int senderId;
+    private int receiverId;
     private String time;
-    private boolean isSeen;
+    private boolean seen;
+    private int id;
     
     /**
      * Creates new form Message
      */
-    public Message(String sender, String content, String time) {
+    public Message(int senderId, int receiverId, String content) {
         initComponents();
-        this.sender = sender;
+        
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM HH:mm");
+        String formattedTime = currentTime.format(formatter);
+        
+        this.senderId = senderId;
+        this.receiverId = receiverId;
         this.content = content;
-        this.time = time;
-        this.isSeen = false;
+        this.time = formattedTime;
+        this.seen = false;
         MessageContent.setText (this.content);
         
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 0, 20, 0));
         timeLabel.setText (time);
     }
     
-    //Second constructor
-    public Message (int messageId, int senderId, int receiverId, String messageText, String sentAt, boolean isSeen) {
+    public Message (int senderId, int receiverId, String content, int id, String time, boolean seen) {
         initComponents();
+        this.senderId = senderId;
+        this.receiverId = receiverId;
+        this.content = content;
+        this.time = time;
+        this.seen = false;
+        MessageContent.setText (this.content);
         
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        timeLabel.setText (time);
     }
     
-    public String getContent () {
-        return this.content;
+    public String getContent() {
+        return content;
     }
 
-    public String getSender () {
-        return this.sender;
+    public void setContent(String content) {
+        this.content = content;
+    }
+    
+    public int getId() {
+        return this.id;
+    }
+    
+    public int getSenderId() {
+        return senderId;
+    }
+    
+    public void setSenderId (int id) {
+        this.senderId = id;
+    }
+    
+    public int getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(int receiverId) {
+        this.receiverId = receiverId;
     }
     
     public String getTime () {
         return this.time;
+    }
+    
+    public void setTime (String t) {
+        this.time = t;
+    }
+    
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
     
     public JTextArea getTextArea () {
