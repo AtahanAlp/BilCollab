@@ -7,8 +7,6 @@ package Components.SchedulerComp;
 import Main.Plan;
 import Components.RefreshablePanel;
 import Main.User;
-import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.table.TableCellRenderer;
 
@@ -17,9 +15,6 @@ import javax.swing.table.TableCellRenderer;
  * @author zuhalaksoy
  */
 public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePanel{
-    
-    
-    
     boolean isFull;
     Object label = "-";
     String zero = " ";
