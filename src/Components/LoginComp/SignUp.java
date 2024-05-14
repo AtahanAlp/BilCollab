@@ -8,12 +8,12 @@ package Components.LoginComp;
  *
  * @author Atahan
  */
-public class SignIn extends javax.swing.JPanel {
+public class SignUp extends javax.swing.JPanel {
 
     /**
      * Creates new form SignIn
      */
-    public SignIn() {
+    public SignUp() {
         initComponents();
     }
 
