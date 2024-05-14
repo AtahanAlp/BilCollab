@@ -14,13 +14,16 @@ public class Plan {
     private String name;
     private Boolean completed;
     private Integer day;
-    private Integer time;
+    private Integer startTime;
+    private Integer endTime;
     
-    public Plan(String name, Integer day, Integer time) {
+    
+    public Plan(String name, Integer day, Integer time, Integer endTime) {
         this.name = name;
         completed = false;
         this.day = day;
-        this.time = time;
+        this.startTime = time;
+        this.endTime = endTime;
     }
     
       public String getName() {
@@ -31,8 +34,11 @@ public class Plan {
         return day;
     }
 
-    public Integer getTime() {
-        return time;
+    public Integer getStartTime() {
+        return startTime;
+    }
+    public Integer getEndTime() {
+        return endTime;
     }
 
       public void setName(String name) {
@@ -41,10 +47,6 @@ public class Plan {
 
     public void setDay(int day) {
         this.day = day;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
     }
     
     public Boolean getCompleted() {
@@ -57,7 +59,7 @@ public class Plan {
      
      public boolean equals(Plan compare) {
         return (name.equals(compare.getName()) && completed == compare.getCompleted()
-                && day == compare.getDay() && time == compare.getTime());
+                && day == compare.getDay() && startTime == compare.getStartTime() && endTime == compare.getEndTime());
     }
     
 }

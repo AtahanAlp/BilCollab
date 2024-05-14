@@ -27,8 +27,8 @@ public class WeeklyPlanner {
     }
      
      public void addEvent(int dayIndex, int time, String eventName) {
-        Plan plan = new Plan(eventName, dayIndex, time);
-        addEvent(dayIndex, time, plan);
+        //Plan plan = new Plan(eventName, dayIndex, time);
+        //addEvent(dayIndex, time, plan);
     }
      
       public void removeEvent(int dayIndex, int time) {

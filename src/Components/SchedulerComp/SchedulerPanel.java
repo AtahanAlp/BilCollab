@@ -5,12 +5,8 @@
 package Components.SchedulerComp;
 
 import Components.RefreshablePanel;
-import java.awt.Color;
-import java.awt.Component;
 import java.util.ArrayList;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.table.TableCellRenderer;
+
 
 /**
  *
@@ -377,10 +373,13 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         
         String endTime = jTextField_EndTime.getText();
         int endInt = Integer.parseInt(endTime);
+        if(endInt == 0){
+            endInt = 24;
+        }
         
         String name = jTextField_Name.getText();
         
-        Plan p = new Plan(name,dayInt,startInt);
+        Plan p = new Plan(name,dayInt,startInt,endInt);
         plans.add(p);
         
         for(int i = startInt; i < endInt; i++){
@@ -433,10 +432,28 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         String startTime = jTextField_StartTime.getText();
         int startInt = Integer.parseInt(startTime);
         
+        String endTime = jTextField_EndTime.getText();
+        int endInt = Integer.parseInt(endTime);
+        if(endInt == 0){
+            endInt = 24;
+        }
+        
         String name = jTextField_Name.getText();
         
         
-          jTable_Scheduler.setValueAt(null, startInt - 8, dayInt);
+        for(int i = startInt; i < endInt; i++){
+            jTable_Scheduler.setValueAt(null, i - 8, dayInt);
+        }
+        
+        int index = 0;
+        
+        for(int i = 0; i < plans.size(); i++){
+            if(name.equals(plans.get(i).getName()) && day.equals(plans.get(i).getDay()) && startTime.equals(plans.get(i).getStartTime())){
+                index = i;
+            }
+        }
+        
+        plans.remove(plans.get(index));
     }//GEN-LAST:event_button_RemoveActionPerformed
 
 
