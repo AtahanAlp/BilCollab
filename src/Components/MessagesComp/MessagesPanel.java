@@ -87,6 +87,10 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
     public AppFrame getAppFrame () {
         return a;
     }
+    
+    public User getCurrentUser () {
+        return curr;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

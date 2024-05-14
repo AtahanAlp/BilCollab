@@ -59,12 +59,37 @@ public class MessagePanel extends javax.swing.JPanel {
     }
     
     /* will be implemented after database
-    private void loadLastMessages() {
-        List<Message> lastMessages = Database.getLastMessagesBetweenUserAndFriend (user, friend, 10);
-        for (Message msg : lastMessages) {
-            addMsgToDisplay(msg);
+    public List<Message> loadLastMessages(int currentUserID, int friendID) {
+        List<Message> messages = new ArrayList<>();
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "SELECT * FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at DESC LIMIT 10";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, currentUserID);
+                stmt.setInt(2, friendID);
+                stmt.setInt(3, friendID);
+                stmt.setInt(4, currentUserID);
+
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    int messageId = rs.getInt("id");
+                    int senderId = rs.getInt("sender_id");
+                    int receiverId = rs.getInt("receiver_id");
+                    String messageText = rs.getString("message_text");
+                    Timestamp sentAt = rs.getTimestamp("sent_at");
+                    boolean isSeen = rs.getBoolean("is_seen");
+
+                    Message message = new Message(messageId, senderId, receiverId, messageText, sentAt, isSeen);
+                    messages.add(message);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        return messages;
     }
+
     */
     
     public void addMsgToDisplay (Message m) {

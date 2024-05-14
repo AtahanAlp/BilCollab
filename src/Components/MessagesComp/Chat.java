@@ -1,12 +1,17 @@
 package Components.MessagesComp;
 
+import Main.DatabaseConnection;
 import Main.User;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.Connection;
 import javax.swing.JPanel;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
@@ -15,9 +20,11 @@ import javax.swing.JPanel;
 public class Chat extends JPanel {
 
     private int unseenMessages;
+    private MessagesPanel messagesPanel;
     
     public Chat (User friend, String pfp, String message, MessagesPanel m) {
         initComponents();
+        this.messagesPanel = m;
         
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -51,8 +58,31 @@ public class Chat extends JPanel {
 
         g2d.dispose();
     }
-    
-    
+
+/*    
+    private void loadLastMessage(int friendID) {
+        
+        String lastSentMessage = "";
+        
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "SELECT message_text FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at DESC LIMIT 1";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, messagesPanel.getCurrentUser().getId());
+                stmt.setInt(2, friendID);
+                stmt.setInt(3, friendID);
+                stmt.setInt(4, messagesPanel.getCurrentUser().getId());
+
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    lastSentMessage = rs.getString("message_text");
+                    jLabel2.setText(lastSentMessage);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+*/
 
     /**
      * This method is called from within the constructor to initialize the form.
