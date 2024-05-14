@@ -28,12 +28,12 @@ public class Login extends javax.swing.JFrame {
         signupPanel.setVisible(false);
         backBtn.setVisible(false);
         
-        mailField.setDocument(new TextCharLimit(20));
-        passwordField.setDocument(new TextCharLimit(20));
-        newUserField.setDocument(new TextCharLimit(20));
-        newMailField.setDocument(new TextCharLimit(20));
-        newPassField.setDocument(new TextCharLimit(20));
-        againPassField.setDocument(new TextCharLimit(20));
+        mailField.setDocument(new TextCharLimit(30));
+        passwordField.setDocument(new TextCharLimit(30));
+        newUserField.setDocument(new TextCharLimit(30));
+        newMailField.setDocument(new TextCharLimit(30));
+        newPassField.setDocument(new TextCharLimit(30));
+        againPassField.setDocument(new TextCharLimit(30));
     }
 
     /**
@@ -450,12 +450,21 @@ public class Login extends javax.swing.JFrame {
             rs = stmt.executeQuery();
             if (rs.next()) {
                 int bool = rs.getInt("count");
-                String username = rs.getString("username");
                 authenticated = (bool == 1);
-                if (authenticated) {
+            }
+            
+            if(authenticated){
+                sql = "SELECT username from user where mail=?";
+                stmt = conn.prepareStatement(sql);
+                stmt.setString(1, mail);
+                rs = stmt.executeQuery();
+                
+                if (rs.next()) {
+                    String username = rs.getString("username");  
                     user = new User(username, mail, password);
                 }
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -512,6 +521,10 @@ public class Login extends javax.swing.JFrame {
             AppFrame appFrame = new AppFrame(user);
             appFrame.pack();
             appFrame.setVisible(true);
+        }
+        else{
+            System.out.println("Pompaaaaaaa");
+                    
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 
