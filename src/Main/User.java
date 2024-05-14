@@ -21,7 +21,7 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private String eMail;
+    private String mail;
     private String displayName;
     private BufferedImage profilePic;
     private String description;
@@ -36,9 +36,9 @@ public class User {
         this("ali", "mail", "123");
     }
 
-    public User(String username, String eMail, String password) {
+    public User(String username, String mail, String password) {
         this.username = username;
-        this.eMail = eMail;
+        this.mail = mail;
         this.password = password;
         displayName = username;
         // = DEFAULT_PROFILE_PIC;
@@ -67,7 +67,7 @@ public class User {
             
             pStatement.setString(1, username);
             pStatement.setString(2, password);
-            pStatement.setString(3, eMail);
+            pStatement.setString(3, mail);
             pStatement.executeUpdate();
                     
             rSet = pStatement.getGeneratedKeys();
@@ -99,8 +99,8 @@ public class User {
         return password;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getMail() {
+        return mail;
     }
 
     public String getDisplayName() {
