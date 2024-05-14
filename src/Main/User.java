@@ -14,8 +14,6 @@ import java.util.Date;
  * @author Atahan
  */
 public class User {
-
-    public static int count = 0;
     //public static final BufferedImage DEFAULT_PROFILE_PIC = ImageIO.read(new File("profilePic.png"));
 
     private int id;
@@ -42,7 +40,7 @@ public class User {
         this.password = password;
         displayName = username;
         // = DEFAULT_PROFILE_PIC;
-        description = "";
+        setDescription();
 
         createdActivities = new ArrayList<Activity>();
         joinedActivities = new ArrayList<Activity>();
@@ -86,6 +84,37 @@ public class User {
           
 
     }
+    
+    public static User getUserWithId(int id){ 
+        User user = null; 
+         
+        Connection connection = null; 
+        PreparedStatement stmt = null; 
+        ResultSet rs = null; 
+ 
+        try { 
+            connection = DatabaseConnection.getConnection(); 
+             
+            String sql = "SELECT * FROM User WHERE id = ?"; 
+            stmt = connection.prepareStatement(sql); 
+            stmt.setInt(1, id); 
+            rs = stmt.executeQuery(); 
+            if (rs.next()) { 
+                String username = rs.getString("username"); 
+                String mail = rs.getString("mail"); 
+                String password = rs.getString("password"); 
+                 
+                user = new User(username, mail, password); 
+                user.setId(id); 
+            } 
+        } catch (SQLException e) { 
+            e.printStackTrace(); 
+        } finally{            
+            DatabaseConnection.close(connection, stmt, rs); 
+        } 
+         
+        return user; 
+    } 
   
     //getter methods
     public int getId() {
@@ -112,8 +141,31 @@ public class User {
         return profilePic;
     }
 
-    public String getDescription() {
-        return description;
+    public String setDescription() { 
+        String description = ""; 
+         
+        Connection connection = null; 
+        PreparedStatement stmt = null; 
+        ResultSet rs = null; 
+ 
+        try { 
+            connection = DatabaseConnection.getConnection(); 
+             
+            String sql = "SELECT description FROM User WHERE username = ?"; 
+            stmt = connection.prepareStatement(sql); 
+            stmt.setString(1, username); 
+            rs = stmt.executeQuery(); 
+            if (rs.next()) { 
+                description  = rs.getString("description"); 
+            } 
+        } catch (SQLException e) { 
+            e.printStackTrace(); 
+        } finally{            
+            DatabaseConnection.close(connection, stmt, rs); 
+        } 
+         
+        this.description = description; 
+        return description; 
     }
 
     public ArrayList<Activity> getCreatedActivities() {
@@ -139,7 +191,32 @@ public class User {
     }
 
     public ArrayList<Notification> getNotifications() {
-        return notifications;
+         notifications = new ArrayList<Notification>(); 
+         
+        Connection connection = null; 
+        PreparedStatement stmt = null; 
+        ResultSet rs = null; 
+ 
+        try { 
+            connection = DatabaseConnection.getConnection(); 
+             
+            String sql = "SELECT information, sender_id FROM notification WHERE receiver_id = ?"; 
+            stmt = connection.prepareStatement(sql); 
+            stmt.setInt(1, id); 
+            rs = stmt.executeQuery(); 
+            while (rs.next()) { 
+                String info = rs.getString("information"); 
+                int senderId = rs.getInt("sender_id"); 
+                User sender = getUserWithId(senderId); 
+                notifications.add(new Notification(info, sender)); 
+            } 
+        } catch (SQLException e) { 
+            e.printStackTrace(); 
+        } finally{            
+            DatabaseConnection.close(connection, stmt, rs); 
+        } 
+         
+        return notifications; 
     }
 
     public ArrayList<FriendRequest> getFriendRequests() {
@@ -190,7 +267,7 @@ public class User {
         this.description = description;
     }
 
-    void setId(int i) {
+    public void setId(int i) {
         this.id = i;
     }
 
