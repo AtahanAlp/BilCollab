@@ -10,12 +10,12 @@ package Main;
  */
 public class FriendRequest {
     String description;
-    User reciever;
+    User receiver;
     User sender;
 
-    public FriendRequest(User reciever, User sender) {
+    public FriendRequest(User receiver, User sender) {
         this.description = sender.getDisplayName() + "sent you a friend request.";
-        this.reciever = reciever;
+        this.receiver = receiver;
         this.sender = sender;
     }
 
@@ -36,11 +36,11 @@ public class FriendRequest {
     }
     
     public void acceptRequest(){
-        reciever.addFriend(sender);
-        reciever.removeRequest(this);
+        receiver.acceptRequest(this);
+        receiver.removeRequest(this);
     }
     
     public void denyRequest(){
-        reciever.removeRequest(this);
+        receiver.removeRequest(this);
     }
 }
