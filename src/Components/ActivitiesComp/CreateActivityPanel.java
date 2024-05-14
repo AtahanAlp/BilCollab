@@ -132,6 +132,11 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         categoryBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         categoryBtn.setIconTextGap(0);
         categoryBtn.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        categoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryBtnActionPerformed(evt);
+            }
+        });
 
         titleField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         titleField.setHint("Add title");
@@ -394,6 +399,10 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
             warning.setVisible(true);
         }
     }//GEN-LAST:event_createBtnActionPerformed
+
+    private void categoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoryBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

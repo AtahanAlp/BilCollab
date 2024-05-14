@@ -5,6 +5,7 @@
 package Components.SchedulerComp;
 import java.awt.Component;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -23,13 +24,16 @@ public class CustomTableCellRenderer extends DefaultTableCellRenderer
         
             if( !value.equals(" ") )
             {
-                cell.setBackground( new Color(255,0,0,30) );
+                cell.setBackground( new Color(243,12,67) );
                 // You can also customize the Font and Foreground this way
 
                 cell.setForeground(Color.WHITE);
 
                 //cell.setForeground(new Color(255,0,0,30));
                 // cell.setFont();
+            }
+            else if(!value.equals(" ") ){
+                 cell.setBackground( Color.WHITE );
             }
 
         

@@ -8,6 +8,7 @@ import Main.Plan;
 import Components.RefreshablePanel;
 import Main.User;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.table.TableCellRenderer;
 
@@ -16,6 +17,8 @@ import javax.swing.table.TableCellRenderer;
  * @author zuhalaksoy
  */
 public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePanel{
+    
+    
     
     boolean isFull;
     Object label = "-";
@@ -32,6 +35,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
      */
     public SchedulerPanel() {
         initComponents();
+        //jTable_Scheduler.setDefaultRenderer(Object.class, renderer);
         
     }
     
@@ -41,7 +45,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
     }
      
     public void refresh(){
-        //TODO
+        //jTable_Scheduler.setDefaultRenderer(Object.class, renderer);
     }
 
 
@@ -58,15 +62,23 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         jTable_Scheduler = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         button_Add = new Components.Button();
-        jTextField_Name = new javax.swing.JTextField();
-        jTextField_Day = new javax.swing.JTextField();
-        jTextField_StartTime = new javax.swing.JTextField();
-        jTextField_EndTime = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         button_Remove = new Components.Button();
+        roundedPanel1 = new Components.RoundedPanel();
+        jTextField_Name = new Components.HintTextField();
+        roundedPanel2 = new Components.RoundedPanel();
+        jLabel1 = new javax.swing.JLabel();
+        roundedPanel4 = new Components.RoundedPanel();
+        jLabel2 = new javax.swing.JLabel();
+        roundedPanel3 = new Components.RoundedPanel();
+        jTextField_Day = new Components.HintTextField();
+        roundedPanel5 = new Components.RoundedPanel();
+        jLabel4 = new javax.swing.JLabel();
+        roundedPanel6 = new Components.RoundedPanel();
+        jTextField_StartTime = new Components.HintTextField();
+        roundedPanel7 = new Components.RoundedPanel();
+        jLabel3 = new javax.swing.JLabel();
+        roundedPanel8 = new Components.RoundedPanel();
+        jTextField_EndTime = new Components.HintTextField();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(1000, 800));
@@ -104,54 +116,17 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         jTable_Scheduler.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable_Scheduler.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jTable_Scheduler.setShowGrid(true);
-        jTable_Scheduler.setShowHorizontalLines(true);
-        jTable_Scheduler.setShowVerticalLines(true);
         jScrollPane1.setViewportView(jTable_Scheduler);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
+        button_Add.setForeground(new java.awt.Color(102, 102, 102));
         button_Add.setText("Add");
         button_Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_AddActionPerformed(evt);
             }
         });
-
-        jTextField_Name.setText("Name");
-        jTextField_Name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_NameActionPerformed(evt);
-            }
-        });
-
-        jTextField_Day.setText("Day");
-        jTextField_Day.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_DayActionPerformed(evt);
-            }
-        });
-
-        jTextField_StartTime.setText("Start");
-        jTextField_StartTime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_StartTimeActionPerformed(evt);
-            }
-        });
-
-        jTextField_EndTime.setText("End");
-        jTextField_EndTime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_EndTimeActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Name");
-
-        jLabel2.setText("Day (Monday - Sunday)");
-
-        jLabel3.setText("End Time (09.00 - 00.00)");
-
-        jLabel4.setText("Start Time (08.00 - 23.00)");
 
         button_Remove.setText("Remove");
         button_Remove.addActionListener(new java.awt.event.ActionListener() {
@@ -160,35 +135,217 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
             }
         });
 
+        roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTextField_Name.setHint("Name");
+        jTextField_Name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_NameActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
+        roundedPanel1.setLayout(roundedPanel1Layout);
+        roundedPanel1Layout.setHorizontalGroup(
+            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField_Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        roundedPanel1Layout.setVerticalGroup(
+            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        roundedPanel2.setBackground(new java.awt.Color(255, 204, 204));
+
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Name:");
+
+        javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
+        roundedPanel2.setLayout(roundedPanel2Layout);
+        roundedPanel2Layout.setHorizontalGroup(
+            roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+        );
+        roundedPanel2Layout.setVerticalGroup(
+            roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        roundedPanel4.setBackground(new java.awt.Color(255, 204, 204));
+
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Day (Monday - Sunday):");
+
+        javax.swing.GroupLayout roundedPanel4Layout = new javax.swing.GroupLayout(roundedPanel4);
+        roundedPanel4.setLayout(roundedPanel4Layout);
+        roundedPanel4Layout.setHorizontalGroup(
+            roundedPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        roundedPanel4Layout.setVerticalGroup(
+            roundedPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+
+        roundedPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTextField_Day.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField_Day.setHint("Day");
+        jTextField_Day.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_DayActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout roundedPanel3Layout = new javax.swing.GroupLayout(roundedPanel3);
+        roundedPanel3.setLayout(roundedPanel3Layout);
+        roundedPanel3Layout.setHorizontalGroup(
+            roundedPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField_Day, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        roundedPanel3Layout.setVerticalGroup(
+            roundedPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextField_Day, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+        );
+
+        roundedPanel5.setBackground(new java.awt.Color(255, 204, 204));
+
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("Start Time (8 - 23):");
+
+        javax.swing.GroupLayout roundedPanel5Layout = new javax.swing.GroupLayout(roundedPanel5);
+        roundedPanel5.setLayout(roundedPanel5Layout);
+        roundedPanel5Layout.setHorizontalGroup(
+            roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        roundedPanel5Layout.setVerticalGroup(
+            roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        roundedPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTextField_StartTime.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField_StartTime.setHint("Start Time");
+        jTextField_StartTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_StartTimeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout roundedPanel6Layout = new javax.swing.GroupLayout(roundedPanel6);
+        roundedPanel6.setLayout(roundedPanel6Layout);
+        roundedPanel6Layout.setHorizontalGroup(
+            roundedPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField_StartTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        roundedPanel6Layout.setVerticalGroup(
+            roundedPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextField_StartTime, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+        );
+
+        roundedPanel7.setBackground(new java.awt.Color(255, 204, 204));
+
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setText("End Time (9 - 00):");
+
+        javax.swing.GroupLayout roundedPanel7Layout = new javax.swing.GroupLayout(roundedPanel7);
+        roundedPanel7.setLayout(roundedPanel7Layout);
+        roundedPanel7Layout.setHorizontalGroup(
+            roundedPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        roundedPanel7Layout.setVerticalGroup(
+            roundedPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel7Layout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap())
+        );
+
+        roundedPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTextField_EndTime.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField_EndTime.setHint("End Time");
+        jTextField_EndTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_EndTimeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout roundedPanel8Layout = new javax.swing.GroupLayout(roundedPanel8);
+        roundedPanel8.setLayout(roundedPanel8Layout);
+        roundedPanel8Layout.setHorizontalGroup(
+            roundedPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField_EndTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        roundedPanel8Layout.setVerticalGroup(
+            roundedPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextField_EndTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(button_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(button_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField_StartTime, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField_Day, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                        .addComponent(jTextField_Name, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(16, 16, 16))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField_EndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 13, Short.MAX_VALUE)
+                        .addComponent(button_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(button_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(roundedPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(roundedPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(roundedPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(roundedPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(roundedPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(roundedPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roundedPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,23 +354,23 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
+                .addGap(20, 20, 20)
+                .addComponent(roundedPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jLabel2)
+                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(roundedPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_Day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jLabel4)
+                .addComponent(roundedPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(roundedPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_StartTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField_EndTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(roundedPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(roundedPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(roundedPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -272,36 +429,17 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         
         
         for(int i = startInt; i < endInt; i++){
-            jTable_Scheduler.setValueAt(name, i - 8, dayInt);
-            //Object value = jTable_Scheduler.getValueAt(i - 8, dayInt);
-            //value.setForeGround(Color.PINK);   
+            jTable_Scheduler.setValueAt(jTextField_Name.getText(), i - 8, dayInt);
+   
         }
         
-        //jTable_Scheduler.setDefaultRenderer(String.class, new CustomCellRenderer());
-        
-        jTable_Scheduler.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
-
+        jTable_Scheduler.setDefaultRenderer(Object.class, renderer);
+       
     }//GEN-LAST:event_button_AddActionPerformed
 
     public void setValueAt(Object aValue, int row, int column) {
         jTable_Scheduler.setValueAt(aValue, row, column);
     }
-
-    private void jTextField_StartTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_StartTimeActionPerformed
-
-    }//GEN-LAST:event_jTextField_StartTimeActionPerformed
-
-    private void jTextField_EndTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_EndTimeActionPerformed
-       
-    }//GEN-LAST:event_jTextField_EndTimeActionPerformed
-
-    private void jTextField_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NameActionPerformed
-       
-    }//GEN-LAST:event_jTextField_NameActionPerformed
-
-    private void jTextField_DayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_DayActionPerformed
-       
-    }//GEN-LAST:event_jTextField_DayActionPerformed
 
     private void button_RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_RemoveActionPerformed
         String day = jTextField_Day.getText();
@@ -346,8 +484,24 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
 
         plans.remove(plans.get(index));
          
-        jTable_Scheduler.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+        jTable_Scheduler.setDefaultRenderer(Object.class, renderer);
     }//GEN-LAST:event_button_RemoveActionPerformed
+
+    private void jTextField_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NameActionPerformed
+       
+    }//GEN-LAST:event_jTextField_NameActionPerformed
+
+    private void jTextField_DayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_DayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_DayActionPerformed
+
+    private void jTextField_StartTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_StartTimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_StartTimeActionPerformed
+
+    private void jTextField_EndTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_EndTimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_EndTimeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -360,10 +514,18 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_Scheduler;
-    private javax.swing.JTextField jTextField_Day;
-    private javax.swing.JTextField jTextField_EndTime;
-    private javax.swing.JTextField jTextField_Name;
-    private javax.swing.JTextField jTextField_StartTime;
+    private Components.HintTextField jTextField_Day;
+    private Components.HintTextField jTextField_EndTime;
+    private Components.HintTextField jTextField_Name;
+    private Components.HintTextField jTextField_StartTime;
+    private Components.RoundedPanel roundedPanel1;
+    private Components.RoundedPanel roundedPanel2;
+    private Components.RoundedPanel roundedPanel3;
+    private Components.RoundedPanel roundedPanel4;
+    private Components.RoundedPanel roundedPanel5;
+    private Components.RoundedPanel roundedPanel6;
+    private Components.RoundedPanel roundedPanel7;
+    private Components.RoundedPanel roundedPanel8;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -4,6 +4,7 @@
  */
 package Components.SchedulerComp;
 
+import Main.Plan;
 import Main.User;
 
 /**
@@ -14,15 +15,30 @@ public class Synchronized extends javax.swing.JPanel {
     
     User user;
     User other;
-    SchedulerPanel scheduler;
     
     public void setUsers(User user, User other){
     this.user = user;
     this.other = other;
     }
     
+    int userPlans = user.getPlans().size();
+    int otherPlans = other.getPlans().size();
     
-
+    
+    
+    public void intersect(){
+        for(int i = 0; i < userPlans; i++){
+            for(int j = 0; j < otherPlans; j++){
+                if( user.getPlans().get(i).isIntersects(other.getPlans().get(j))){
+                    
+                }
+            }
+        }
+    }
+    
+    
+    
+    
     /**
      * Creates new form Synchronized
      */
