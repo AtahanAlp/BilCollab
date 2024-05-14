@@ -67,7 +67,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         yourActBtn.setSelected(false);
         yourActBtn.setSelected(true);
         displayName.setText(user.getDisplayName());
-        description.setText(user.getDescription());
+        description.setText(user.setDescription());
         searchBar.setText("");
     }
     
