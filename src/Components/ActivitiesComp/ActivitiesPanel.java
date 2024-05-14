@@ -50,6 +50,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
     }
     
     public void refresh(){
+        filter.setVisible(false);
         searchBar.setText("");
         ascendingDate  = true;
         loadActivities();
@@ -75,7 +76,22 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         setactivityCounter(activities.size());
     }
     
-    public void loadSearchActivities(){
+    //TODO
+    public void loadSearchActivities(String searchTxt){
+        outputPanel.removeAll();        
+        scrollPane.getVerticalScrollBar().setValue(0);
+        
+        ArrayList<Activity> activities = user.getSpecificActivities(searchBar.getText().trim());
+        
+        for (int i = activities.size()-1; i >= 0; i--) {
+            outputPanel.add(new ActivityItem(activities.get(i)));
+        }
+
+        setactivityCounter(activities.size());
+    }
+    
+    //TODO
+    public void loadCategoryActivities(String categoty){
         outputPanel.removeAll();        
         scrollPane.getVerticalScrollBar().setValue(0);
         
@@ -100,6 +116,14 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ancorPanel = new javax.swing.JPanel();
+        filterPanel = new javax.swing.JPanel();
+        filter = new Components.RoundedPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        button1 = new Components.Button();
+        button2 = new Components.Button();
         centererPanel = new javax.swing.JPanel();
         searchPanel = new javax.swing.JPanel();
         activityCounter = new javax.swing.JLabel();
@@ -115,6 +139,101 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         setMaximumSize(new java.awt.Dimension(1150, 800));
         setMinimumSize(new java.awt.Dimension(1150, 800));
         setPreferredSize(new java.awt.Dimension(1150, 800));
+
+        ancorPanel.setBackground(new java.awt.Color(255, 204, 204));
+        ancorPanel.setMaximumSize(new java.awt.Dimension(1100, 4000));
+        ancorPanel.setMinimumSize(new java.awt.Dimension(1100, 300));
+        ancorPanel.setOpaque(false);
+        ancorPanel.setPreferredSize(new java.awt.Dimension(1100, 600));
+        ancorPanel.setLayout(new javax.swing.OverlayLayout(ancorPanel));
+
+        filterPanel.setOpaque(false);
+
+        filter.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Categoty");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Filter");
+
+        button1.setBorder(null);
+        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/close.png"))); // NOI18N
+        button1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        button1.setMargin(new java.awt.Insets(14, 14, 14, 14));
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
+        button2.setBackground(new java.awt.Color(245, 12, 67));
+        button2.setForeground(new java.awt.Color(255, 255, 255));
+        button2.setText("Set Filter");
+        button2.setBgColor(new java.awt.Color(245, 12, 67));
+        button2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        button2.setTextColor(new java.awt.Color(255, 255, 255));
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout filterLayout = new javax.swing.GroupLayout(filter);
+        filter.setLayout(filterLayout);
+        filterLayout.setHorizontalGroup(
+            filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filterLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, filterLayout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(button2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+        );
+        filterLayout.setVerticalGroup(
+            filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filterLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+
+        javax.swing.GroupLayout filterPanelLayout = new javax.swing.GroupLayout(filterPanel);
+        filterPanel.setLayout(filterPanelLayout);
+        filterPanelLayout.setHorizontalGroup(
+            filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterPanelLayout.createSequentialGroup()
+                .addContainerGap(186, Short.MAX_VALUE)
+                .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(172, Short.MAX_VALUE))
+        );
+        filterPanelLayout.setVerticalGroup(
+            filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filterPanelLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(389, Short.MAX_VALUE))
+        );
+
+        ancorPanel.add(filterPanel);
 
         centererPanel.setBackground(new java.awt.Color(255, 204, 204));
         centererPanel.setMaximumSize(new java.awt.Dimension(1100, 4000));
@@ -145,6 +264,11 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         filterBtn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         filterBtn.setIconTextGap(5);
         filterBtn.setMargin(new java.awt.Insets(2, 10, 3, 18));
+        filterBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -193,7 +317,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         outputPanel.setLayout(outputPanelLayout);
         outputPanelLayout.setHorizontalGroup(
             outputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1100, Short.MAX_VALUE)
+            .addGap(0, 1102, Short.MAX_VALUE)
         );
         outputPanelLayout.setVerticalGroup(
             outputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +330,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         belowPanel.setLayout(belowPanelLayout);
         belowPanelLayout.setHorizontalGroup(
             belowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
         );
         belowPanelLayout.setVerticalGroup(
             belowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,27 +354,52 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
                 .addComponent(belowPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        ancorPanel.add(centererPanel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(centererPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(ancorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(centererPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(ancorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        filter.setVisible(false);
+    }//GEN-LAST:event_button1ActionPerformed
+
+    private void filterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterBtnActionPerformed
+        filter.setVisible(true);
+    }//GEN-LAST:event_filterBtnActionPerformed
+
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        filter.setVisible(false);
+    }//GEN-LAST:event_button2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityCounter;
+    private javax.swing.JPanel ancorPanel;
     private javax.swing.JPanel belowPanel;
+    private Components.Button button1;
+    private Components.Button button2;
     private javax.swing.JPanel centererPanel;
+    private Components.RoundedPanel filter;
     private Components.Button filterBtn;
+    private javax.swing.JPanel filterPanel;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel outputPanel;
     private javax.swing.JScrollPane scrollPane;
     private Components.SearchBar searchBar;
