@@ -62,12 +62,13 @@ public class User {
             connection = DatabaseConnection.getConnection();
             
             
-            String sql = "INSERT INTO user (username, password, mail) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO user (username, password, mail,name) VALUES (?, ?, ?, ?)";
             pStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             pStatement.setString(1, username);
             pStatement.setString(2, password);
             pStatement.setString(3, mail);
+            pStatement.setString(4, username);
             pStatement.executeUpdate();
                     
             rSet = pStatement.getGeneratedKeys();

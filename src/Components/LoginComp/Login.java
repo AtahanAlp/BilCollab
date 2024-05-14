@@ -519,7 +519,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_newUserFieldActionPerformed
 
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
-        User user = signUp(newMailField.getText().trim(), newUserField.getText().trim(), newPassField.getText().trim());
+        User user = signUp(newUserField.getText().trim(), newMailField.getText().trim(), newPassField.getText().trim());
         if (user != null) {
             AppFrame appFrame = new AppFrame(user);
             appFrame.pack();
