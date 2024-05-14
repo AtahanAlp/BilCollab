@@ -190,7 +190,7 @@ public class User {
         this.description = description;
     }
 
-    private void setId(int i) {
+    void setId(int i) {
         this.id = i;
     }
 
