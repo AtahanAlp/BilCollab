@@ -58,8 +58,7 @@ public class Chat extends JPanel {
 
         g2d.dispose();
     }
-
-/*    
+    
     private void loadLastMessage(int friendID) {
         
         String lastSentMessage = "";
@@ -82,7 +81,6 @@ public class Chat extends JPanel {
             e.printStackTrace();
         }
     }
-*/
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -30,6 +30,12 @@ public class Message extends javax.swing.JPanel {
         timeLabel.setText (time);
     }
     
+    //Second constructor
+    public Message (int messageId, int senderId, int receiverId, String messageText, String sentAt, boolean isSeen) {
+        initComponents();
+        
+    }
+    
     public String getContent () {
         return this.content;
     }

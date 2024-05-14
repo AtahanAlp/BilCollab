@@ -146,14 +146,13 @@ public class User {
     }
 
     public ArrayList<User> getFriends() {
+        
         ArrayList<User> userFriends = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM user WHERE id != ?";
+            String query = "SELECT * FROM user WHERE id IN (SELECT CAST(value AS UNSIGNED) FROM STRING_SPLIT(friends, '/'))";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, getId());
-
-                ResultSet rs = stmt.executeQuery(query);
+                ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
                     int friendId = rs.getInt("id");
                     String name = rs.getString("name");
@@ -171,6 +170,7 @@ public class User {
 
         return userFriends;
     }
+
 
     //setter methods
     public void setPassword(String password) {

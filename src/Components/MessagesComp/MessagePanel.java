@@ -14,6 +14,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import Main.DatabaseConnection;
 
 /**
  *
@@ -58,9 +63,8 @@ public class MessagePanel extends javax.swing.JPanel {
         
     }
     
-    /* will be implemented after database
     public List<Message> loadLastMessages(int currentUserID, int friendID) {
-        List<Message> messages = new ArrayList<>();
+        List<Message> dbMessages = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             String query = "SELECT * FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at DESC LIMIT 10";
@@ -76,21 +80,19 @@ public class MessagePanel extends javax.swing.JPanel {
                     int senderId = rs.getInt("sender_id");
                     int receiverId = rs.getInt("receiver_id");
                     String messageText = rs.getString("message_text");
-                    Timestamp sentAt = rs.getTimestamp("sent_at");
+                    String sentAt = rs.getString("sent_at");
                     boolean isSeen = rs.getBoolean("is_seen");
 
                     Message message = new Message(messageId, senderId, receiverId, messageText, sentAt, isSeen);
-                    messages.add(message);
+                    dbMessages.add(message);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return messages;
+        return dbMessages;
     }
-
-    */
     
     public void addMsgToDisplay (Message m) {
         GridBagConstraints gbc = new GridBagConstraints();
