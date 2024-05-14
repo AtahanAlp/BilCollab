@@ -52,7 +52,7 @@ public class User {
         friends = new ArrayList<User>();
     }
 
-    private void saveToDatabase() {
+    public void saveToDatabase() {
 
         Connection connection = null;
         PreparedStatement pStatement = null;
@@ -62,12 +62,13 @@ public class User {
             connection = DatabaseConnection.getConnection();
             
             
-            String sql = "INSERT INTO user (username, password, mail) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO user (username, password, mail,name) VALUES (?, ?, ?, ?)";
             pStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             pStatement.setString(1, username);
             pStatement.setString(2, password);
             pStatement.setString(3, mail);
+            pStatement.setString(4, username);
             pStatement.executeUpdate();
                     
             rSet = pStatement.getGeneratedKeys();
@@ -196,6 +197,22 @@ public class User {
     //other methods
     public void addPlan(Plan plan) {
         //TODO
+    }
+    
+    public void acceptRequest (FriendRequest request) {
+       addFriend(request.getSender()); 
+       try (Connection conn = DatabaseConnection.getConnection()) {
+           
+            String query = "UPDATE users SET friends = CONCAT(friends, ?) WHERE id = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, "/" + request.getSender().getId());
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+       
     }
 
     public void addActivity(Activity activity) {

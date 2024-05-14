@@ -4,8 +4,8 @@
  */
 package Main;
 
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -21,6 +21,7 @@ public class Activity {
     private int quota;
     private ArrayList<User> participants;
     private boolean isPublic;
+    private int id;
 
     public Activity(Date startDate, Date endDate, String title, User creator, String description, String category, int quota, boolean isPublic) {
         this.startDate = startDate;
@@ -33,6 +34,44 @@ public class Activity {
         this.participants = new ArrayList<User>();
         participants.add(creator);
         this.isPublic = isPublic;
+    }
+    
+    public void saveToDatabase() {
+
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        ResultSet rSet = null;
+        
+        try{
+            connection = DatabaseConnection.getConnection();
+            
+            
+            String sql = "INSERT INTO activity (startDate, endDate, title,creator_id,category,quota,isPublic) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            pStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
+            pStatement.setDate(1, startDate);
+            pStatement.setDate(2, endDate);
+            pStatement.setString(3, title);
+            pStatement.setInt(4, creator.getId());
+            pStatement.setString(5, category);
+            pStatement.setInt(6, quota);
+            pStatement.setBoolean(7, isPublic);
+            pStatement.executeUpdate();
+                    
+            rSet = pStatement.getGeneratedKeys();
+            if (rSet.next()) {
+                id = rSet.getInt(1);
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        finally{
+            
+            DatabaseConnection.close(connection, pStatement, rSet);
+        }
+          
+
     }
 
     public Date getStartDate() {

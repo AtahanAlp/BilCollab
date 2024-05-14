@@ -9,7 +9,9 @@ import Components.RefreshablePanel;
 import Components.TextCharLimit;
 import Main.User;
 import java.awt.Color;
-import java.util.Date;
+import java.sql.*;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -115,6 +117,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         minuteBox = new Components.intComboBox();
         durationBox = new Components.intComboBox();
         quotaBox = new Components.intComboBox();
+        CategoryBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(1150, 800));
@@ -230,6 +233,13 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setText("Duration (min)");
 
+        CategoryBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chill", "Food", "Hobby", "Sport", "Study", "Outdoor", "Other" }));
+        CategoryBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategoryBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roundedPanelLayout = new javax.swing.GroupLayout(roundedPanel);
         roundedPanel.setLayout(roundedPanelLayout);
         roundedPanelLayout.setHorizontalGroup(
@@ -247,7 +257,9 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                             .addGroup(roundedPanelLayout.createSequentialGroup()
                                 .addComponent(categoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(categoryLbl))
+                                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(categoryLbl)
+                                    .addComponent(CategoryBox, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(roundedPanelLayout.createSequentialGroup()
                                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,7 +310,10 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                         .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
                         .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(categoryLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(roundedPanelLayout.createSequentialGroup()
+                                .addComponent(categoryLbl)
+                                .addGap(4, 4, 4)
+                                .addComponent(CategoryBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(categoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)))
                     .addGroup(roundedPanelLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -309,7 +324,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                 .addComponent(descriptionLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
                 .addComponent(dateLbl)
                 .addGap(5, 5, 5)
                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -335,7 +350,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(durationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(quotaLbl)
                     .addComponent(warning))
@@ -383,13 +398,15 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
     }//GEN-LAST:event_privateBtnItemStateChanged
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        Date startDate =new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
-                        (int)dayBox.getSelectedItem(), (int)hourBox.getSelectedItem(), (int)minuteBox.getSelectedItem());
+        Date startDate = new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
+                        (int)dayBox.getSelectedItem());
+        Date endDate = startDate;
+        
+        Time startTime = new Time((int)hourBox.getSelectedItem(), (int)minuteBox.getSelectedItem(), 0);
         
         int durationHour = hourBox.getSelectedIndex() / 60;
         int durationMinutes = hourBox.getSelectedIndex() % 60;
-        Date endDate = new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
-                        (int)dayBox.getSelectedItem(), (int)hourBox.getSelectedItem() + durationHour, (int)minuteBox.getSelectedItem() + durationMinutes);
+        Time endTime = new Time((int)hourBox.getSelectedItem() + durationHour, (int)minuteBox.getSelectedItem() + durationMinutes, 0);
         
         if (user.createActivity(titleField.getText(), description.getText(), startDate, endDate, (int)quotaBox.getSelectedItem(), publicBtn.isSelected(), getCategory())) {//TODO: &&check collisions!!!
             appFrame.getSideMenu().setSelectedPage(appFrame.getSideMenu().profileBtn, appFrame.getProfilePanel());
@@ -403,9 +420,26 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
     private void categoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_categoryBtnActionPerformed
+     private void setButtonIcon(String category) {
+    String imagePath = "/icons/" + category + ".png";
+    ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
+    categoryBtn.setIcon(icon);
+
+    }
+     
+     private String getCategoryImagePath(String category) {
+   
+        return  category + ".png";
+    }
+    private void CategoryBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryBoxActionPerformed
+       JComboBox<String> comboBox = (JComboBox<String>) evt.getSource();
+       String selectedCategory = (String) comboBox.getSelectedItem();
+       setButtonIcon(selectedCategory);
+    }//GEN-LAST:event_CategoryBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CategoryBox;
     private javax.swing.ButtonGroup buttonGroup1;
     private Components.Button categoryBtn;
     private javax.swing.JLabel categoryLbl;
