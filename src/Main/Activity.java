@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * @author Atahan
  */
 public class Activity {
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private String title;
     private User creator;
     private String description;
@@ -23,7 +23,7 @@ public class Activity {
     private boolean isPublic;
     private int id;
 
-    public Activity(Date startDate, Date endDate, String title, User creator, String description, String category, int quota, boolean isPublic) {
+    public Activity(String startDate, String endDate, String title, User creator, String description, String category, int quota, boolean isPublic) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.title = title;
@@ -46,11 +46,12 @@ public class Activity {
             connection = DatabaseConnection.getConnection();
             
             
-            String sql = "INSERT INTO activity (startDate, endDate, title,creator_id,category,quota,isPublic) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO activity (startDate, endDate, title,creator_id,category,quota,isPublic) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?,)";
             pStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
-            pStatement.setDate(1, startDate);
-            pStatement.setDate(2, endDate);
+            pStatement.setString(1, startDate);
+            pStatement.setString(2, endDate);
             pStatement.setString(3, title);
             pStatement.setInt(4, creator.getId());
             pStatement.setString(5, category);
@@ -74,11 +75,11 @@ public class Activity {
 
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
@@ -107,6 +108,26 @@ public class Activity {
     }
 
     public ArrayList<User> getParticipants() {
+        ArrayList<User> participants = new ArrayList<User>();
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "SELECT * FROM activity WHERE id IN (SELECT CAST(value AS UNSIGNED) FROM STRING_SPLIT(participants, '/'))";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    int participantID = rs.getInt("id");
+                    String name = rs.getString("name");
+                    String email = rs.getString("email");
+                    String friendPassword = rs.getString("password");
+
+                    User friend = new User(name, email, friendPassword);
+                    friend.setId(friendId);
+                    participants.add(friend);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return participants;
     }
 
