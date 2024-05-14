@@ -39,11 +39,8 @@ public class FriendRequest {
     }
     
     public void acceptRequest(){
-<<<<<<< Updated upstream
         receiver.acceptRequest(this);
-=======
         receiver.addFriend(sender);
->>>>>>> Stashed changes
         receiver.removeRequest(this);
     }
     
