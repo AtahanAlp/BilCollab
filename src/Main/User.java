@@ -4,10 +4,7 @@
  */
 package Main;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,14 +14,14 @@ import java.util.Date;
  * @author Atahan
  */
 public class User {
+
     public static int count = 0;
     //public static final BufferedImage DEFAULT_PROFILE_PIC = ImageIO.read(new File("profilePic.png"));
 
-    
     private int id;
     private String username;
     private String password;
-    private String eMail;
+    private String mail;
     private String displayName;
     private BufferedImage profilePic;
     private String description;
@@ -35,19 +32,18 @@ public class User {
     private ArrayList<FriendRequest> friendRequests;
     private ArrayList<User> friends;
 
-    public User(){
+    public User() {
         this("ali", "mail", "123");
     }
-    
-    public User(String username, String eMail, String password){
-        this.id = ++count;
+
+    public User(String username, String mail, String password) {
         this.username = username;
-        this.eMail = eMail;
+        this.mail = mail;
         this.password = password;
         displayName = username;
         // = DEFAULT_PROFILE_PIC;
         description = "";
-        
+
         createdActivities = new ArrayList<Activity>();
         joinedActivities = new ArrayList<Activity>();
         plans = new ArrayList<Plan>();
@@ -55,7 +51,41 @@ public class User {
         friendRequests = new ArrayList<FriendRequest>();
         friends = new ArrayList<User>();
     }
-    
+
+    public void saveToDatabase() {
+
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        ResultSet rSet = null;
+        
+        try{
+            connection = DatabaseConnection.getConnection();
+            
+            
+            String sql = "INSERT INTO user (username, password, mail) VALUES (?, ?, ?)";
+            pStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
+            pStatement.setString(1, username);
+            pStatement.setString(2, password);
+            pStatement.setString(3, mail);
+            pStatement.executeUpdate();
+                    
+            rSet = pStatement.getGeneratedKeys();
+            if (rSet.next()) {
+                id = rSet.getInt(1);
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        finally{
+            
+            DatabaseConnection.close(connection, pStatement, rSet);
+        }
+          
+
+    }
+
     //getter methods
     public int getId() {
         return id;
@@ -69,8 +99,8 @@ public class User {
         return password;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getMail() {
+        return mail;
     }
 
     public String getDisplayName() {
@@ -92,13 +122,13 @@ public class User {
     public ArrayList<Activity> getJoinedActivities() {
         return joinedActivities;
     }
-    
+
     public ArrayList<Activity> getAllActivities() {
         //TODO
         return new ArrayList<Activity>();
     }
-    
-    public ArrayList<Activity> getSpecificActivities(String str){
+
+    public ArrayList<Activity> getSpecificActivities(String str) {
         //TODO
         return new ArrayList<Activity>();
     }
@@ -116,14 +146,13 @@ public class User {
     }
 
     public ArrayList<User> getFriends() {
+        
         ArrayList<User> userFriends = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM user WHERE id != ?";
+            String query = "SELECT * FROM user WHERE id IN (SELECT CAST(value AS UNSIGNED) FROM STRING_SPLIT(friends, '/'))";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, getId());
-
-                ResultSet rs = stmt.executeQuery(query);
+                ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
                     int friendId = rs.getInt("id");
                     String name = rs.getString("name");
@@ -137,11 +166,12 @@ public class User {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } 
+        }
 
         return userFriends;
     }
-    
+
+
     //setter methods
     public void setPassword(String password) {
         this.password = password;
@@ -158,49 +188,49 @@ public class User {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    private void setId (int i) {
+
+    private void setId(int i) {
         this.id = i;
     }
-    
+
     //other methods
-    public void addPlan(Plan plan){
+    public void addPlan(Plan plan) {
         //TODO
     }
-    
-    public void addActivity(Activity activity){
+
+    public void addActivity(Activity activity) {
         joinedActivities.add(activity);
     }
-    
-    public void removeActivity(Activity activity){
+
+    public void removeActivity(Activity activity) {
         joinedActivities.remove(activity);
     }
-    
-    public void addFriend(User user){
+
+    public void addFriend(User user) {
         friends.add(user);
     }
-    
-    public void removeFriend(User friend){
+
+    public void removeFriend(User friend) {
         friends.remove(friend);
     }
-    
-    public void removeRequest(FriendRequest request){
+
+    public void removeRequest(FriendRequest request) {
         friendRequests.remove(request);
     }
-    
-    public void createNotification(Notification notification){
+
+    public void createNotification(Notification notification) {
         //TODO
     }
-    
-    public void checkFriend(User user){
+
+    public void checkFriend(User user) {
         //TODO
     }
-    
-    public void comparePlans(User user){
+
+    public void comparePlans(User user) {
         //TODO
     }
-    
-    public boolean createActivity(String title, String description, Date startDate, Date endDate, int quota, boolean isPublic, String category){
+
+    public boolean createActivity(String title, String description, Date startDate, Date endDate, int quota, boolean isPublic, String category) {
         if (!title.trim().equals("") && description.trim().equals("") && checkDateCollision(startDate, endDate)) {//TODO: &&check collisions!!!
             //TODO database part!!!
             createdActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
@@ -208,8 +238,8 @@ public class User {
         }
         return false;
     }
-    
-    private boolean checkDateCollision(Date startDate, Date endDate){
+
+    private boolean checkDateCollision(Date startDate, Date endDate) {
         //TODO
         return true;
     }
