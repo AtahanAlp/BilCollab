@@ -5,7 +5,9 @@
 package Components.LoginComp;
 import Components.AppFrame;
 import Main.User;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.text.PasswordView;
 
 /**
  *
@@ -18,7 +20,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        
+        signupPanel.setVisible(false);
+        backBtn.setVisible(false);
     }
 
     /**
@@ -30,128 +33,395 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        button1 = new Components.Button();
-        button2 = new Components.Button();
-        roundedPanel1 = new Components.RoundedPanel();
-        hintTextField1 = new Components.HintTextField();
+        infoPanel = new javax.swing.JPanel();
+        backBtn = new Components.Button();
+        infoLbl = new javax.swing.JLabel();
+        mainPanel = new javax.swing.JPanel();
+        loginPanel = new javax.swing.JPanel();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        loginBtn = new Components.Button();
+        signupPageBtn = new Components.Button();
+        mailPanel1 = new Components.RoundedPanel();
+        mailField = new Components.HintTextField();
+        passwordPanel1 = new Components.RoundedPanel();
+        passwordField = new Components.HintPasswordField();
+        bilCollabLogo1 = new javax.swing.JLabel();
+        signupPanel = new javax.swing.JPanel();
+        signUpBtn = new Components.Button();
+        passwordPanel6 = new Components.RoundedPanel();
+        againPassField = new Components.HintPasswordField();
+        usernamePanel = new Components.RoundedPanel();
+        newUserField = new Components.HintTextField();
+        mailPanel = new Components.RoundedPanel();
+        newMailField = new Components.HintTextField();
+        bilCollabLogo = new javax.swing.JLabel();
+        passwordPanel7 = new Components.RoundedPanel();
+        newPassField = new Components.HintPasswordField();
 
-        jCheckBox1.setText("Remember Me");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        infoPanel.setBackground(new java.awt.Color(255, 255, 255));
+        infoPanel.setPreferredSize(new java.awt.Dimension(570, 60));
+
+        backBtn.setBorder(null);
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/backArrow.png"))); // NOI18N
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
-        button1.setText("Login");
-        button1.setBgColor(new java.awt.Color(245, 12, 67));
-        button1.setColorClicked(new java.awt.Color(255, 255, 255));
-        button1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        button1.setTextColor(new java.awt.Color(255, 255, 255));
+        infoLbl.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        infoLbl.setForeground(new java.awt.Color(51, 51, 51));
+        infoLbl.setText("Login Page");
 
-        button2.setText("Dont have an account yet? Click here to sign up.");
+        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
+        infoPanel.setLayout(infoPanelLayout);
+        infoPanelLayout.setHorizontalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(infoLbl)
+                .addContainerGap(401, Short.MAX_VALUE))
+        );
+        infoPanelLayout.setVerticalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(infoLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(8, 8, 8))
+        );
 
-        roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(infoPanel, java.awt.BorderLayout.NORTH);
 
-        hintTextField1.addActionListener(new java.awt.event.ActionListener() {
+        mainPanel.setBackground(new java.awt.Color(235, 240, 255));
+        mainPanel.setMaximumSize(new java.awt.Dimension(570, 800));
+        mainPanel.setMinimumSize(new java.awt.Dimension(570, 800));
+        mainPanel.setLayout(new java.awt.CardLayout());
+
+        loginPanel.setBackground(new java.awt.Color(235, 240, 255));
+        loginPanel.setMaximumSize(new java.awt.Dimension(570, 800));
+        loginPanel.setMinimumSize(new java.awt.Dimension(570, 800));
+
+        jCheckBox2.setText("Remember Me");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hintTextField1ActionPerformed(evt);
+                jCheckBox2ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
-        roundedPanel1.setLayout(roundedPanel1Layout);
-        roundedPanel1Layout.setHorizontalGroup(
-            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(hintTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+        loginBtn.setText("Login");
+        loginBtn.setBgColor(new java.awt.Color(245, 12, 67));
+        loginBtn.setColorClicked(new java.awt.Color(255, 255, 255));
+        loginBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        loginBtn.setTextColor(new java.awt.Color(255, 255, 255));
+
+        signupPageBtn.setText("Dont have an account yet? Click here to sign up.");
+        signupPageBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signupPageBtnActionPerformed(evt);
+            }
+        });
+
+        mailPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        mailField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        mailField.setHint("e-mail");
+        mailField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mailFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mailPanel1Layout = new javax.swing.GroupLayout(mailPanel1);
+        mailPanel1.setLayout(mailPanel1Layout);
+        mailPanel1Layout.setHorizontalGroup(
+            mailPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mailPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mailField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        roundedPanel1Layout.setVerticalGroup(
-            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(hintTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+        mailPanel1Layout.setVerticalGroup(
+            mailPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mailField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(button1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundedPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(95, Short.MAX_VALUE))
+        passwordPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        passwordField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        passwordField.setHint("password");
+
+        javax.swing.GroupLayout passwordPanel1Layout = new javax.swing.GroupLayout(passwordPanel1);
+        passwordPanel1.setLayout(passwordPanel1Layout);
+        passwordPanel1Layout.setHorizontalGroup(
+            passwordPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, passwordPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jLabel2)
-                .addGap(57, 57, 57)
-                .addComponent(jLabel3)
-                .addGap(105, 105, 105)
-                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        passwordPanel1Layout.setVerticalGroup(
+            passwordPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(passwordField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+        );
+
+        bilCollabLogo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bilCollabLogo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logo.png"))); // NOI18N
+        bilCollabLogo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
+        loginPanel.setLayout(loginPanelLayout);
+        loginPanelLayout.setHorizontalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
+                .addContainerGap(146, Short.MAX_VALUE)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jCheckBox2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(signupPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(passwordPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mailPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bilCollabLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(146, 146, 146))
+        );
+        loginPanelLayout.setVerticalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(bilCollabLogo1)
+                .addGap(136, 136, 136)
+                .addComponent(mailPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(passwordPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(jCheckBox2)
                 .addGap(40, 40, 40)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(signupPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        mainPanel.add(loginPanel, "card2");
+
+        signupPanel.setBackground(new java.awt.Color(235, 240, 255));
+        signupPanel.setMaximumSize(new java.awt.Dimension(570, 800));
+        signupPanel.setMinimumSize(new java.awt.Dimension(570, 800));
+
+        signUpBtn.setText("Sign Up");
+        signUpBtn.setBgColor(new java.awt.Color(245, 12, 67));
+        signUpBtn.setColorClicked(new java.awt.Color(255, 255, 255));
+        signUpBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        signUpBtn.setTextColor(new java.awt.Color(255, 255, 255));
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpBtnActionPerformed(evt);
+            }
+        });
+
+        passwordPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        againPassField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        againPassField.setHint("password verify");
+        againPassField.setName("password verify"); // NOI18N
+
+        javax.swing.GroupLayout passwordPanel6Layout = new javax.swing.GroupLayout(passwordPanel6);
+        passwordPanel6.setLayout(passwordPanel6Layout);
+        passwordPanel6Layout.setHorizontalGroup(
+            passwordPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, passwordPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(againPassField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        passwordPanel6Layout.setVerticalGroup(
+            passwordPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(againPassField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
         );
+
+        usernamePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        newUserField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        newUserField.setHint("username");
+        newUserField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newUserFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout usernamePanelLayout = new javax.swing.GroupLayout(usernamePanel);
+        usernamePanel.setLayout(usernamePanelLayout);
+        usernamePanelLayout.setHorizontalGroup(
+            usernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, usernamePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        usernamePanelLayout.setVerticalGroup(
+            usernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(newUserField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        mailPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        newMailField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        newMailField.setHint("e-mail");
+        newMailField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newMailFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mailPanelLayout = new javax.swing.GroupLayout(mailPanel);
+        mailPanel.setLayout(mailPanelLayout);
+        mailPanelLayout.setHorizontalGroup(
+            mailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mailPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newMailField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        mailPanelLayout.setVerticalGroup(
+            mailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(newMailField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        bilCollabLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bilCollabLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logo.png"))); // NOI18N
+        bilCollabLogo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        passwordPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        newPassField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        newPassField.setHint("password");
+
+        javax.swing.GroupLayout passwordPanel7Layout = new javax.swing.GroupLayout(passwordPanel7);
+        passwordPanel7.setLayout(passwordPanel7Layout);
+        passwordPanel7Layout.setHorizontalGroup(
+            passwordPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, passwordPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newPassField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        passwordPanel7Layout.setVerticalGroup(
+            passwordPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(newPassField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout signupPanelLayout = new javax.swing.GroupLayout(signupPanel);
+        signupPanel.setLayout(signupPanelLayout);
+        signupPanelLayout.setHorizontalGroup(
+            signupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(signupPanelLayout.createSequentialGroup()
+                .addContainerGap(143, Short.MAX_VALUE)
+                .addGroup(signupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(usernamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(signUpBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bilCollabLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(passwordPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(passwordPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
+        );
+        signupPanelLayout.setVerticalGroup(
+            signupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, signupPanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(bilCollabLogo)
+                .addGap(83, 83, 83)
+                .addComponent(usernamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(passwordPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(passwordPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
+                .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(256, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(signupPanel, "card3");
+
+        getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     private boolean authenticate(String username, String password) {
         // şimdilik böyle burası
 
         return username.equals("deniz") && password.equals("123");
     }
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void newMailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMailFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_newMailFieldActionPerformed
 
-    private void hintTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintTextField1ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        backBtn.setVisible(false);
+        signupPanel.setVisible(false);
+        loginPanel.setVisible(true);
+        revalidate();
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_hintTextField1ActionPerformed
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void signupPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupPageBtnActionPerformed
+       signupPanel.setVisible(true);
+       backBtn.setVisible(true);
+       loginPanel.setVisible(false);
+       revalidate();
+    }//GEN-LAST:event_signupPageBtnActionPerformed
+
+    private void mailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mailFieldActionPerformed
+
+    private void newUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newUserFieldActionPerformed
+
+    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signUpBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Components.Button button1;
-    private Components.Button button2;
-    private Components.HintTextField hintTextField1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private Components.RoundedPanel roundedPanel1;
+    private Components.HintPasswordField againPassField;
+    private Components.Button backBtn;
+    private javax.swing.JLabel bilCollabLogo;
+    private javax.swing.JLabel bilCollabLogo1;
+    private javax.swing.JLabel infoLbl;
+    private javax.swing.JPanel infoPanel;
+    private javax.swing.JCheckBox jCheckBox2;
+    private Components.Button loginBtn;
+    private javax.swing.JPanel loginPanel;
+    private Components.HintTextField mailField;
+    private Components.RoundedPanel mailPanel;
+    private Components.RoundedPanel mailPanel1;
+    private javax.swing.JPanel mainPanel;
+    private Components.HintTextField newMailField;
+    private Components.HintPasswordField newPassField;
+    private Components.HintTextField newUserField;
+    private Components.HintPasswordField passwordField;
+    private Components.HintPasswordField passwordField2;
+    private Components.HintPasswordField passwordField3;
+    private Components.HintPasswordField passwordField4;
+    private Components.HintPasswordField passwordField5;
+    private Components.RoundedPanel passwordPanel1;
+    private Components.RoundedPanel passwordPanel2;
+    private Components.RoundedPanel passwordPanel3;
+    private Components.RoundedPanel passwordPanel4;
+    private Components.RoundedPanel passwordPanel5;
+    private Components.RoundedPanel passwordPanel6;
+    private Components.RoundedPanel passwordPanel7;
+    private Components.Button signUpBtn;
+    private Components.Button signupPageBtn;
+    private javax.swing.JPanel signupPanel;
+    private Components.RoundedPanel usernamePanel;
     // End of variables declaration//GEN-END:variables
 }
