@@ -4,6 +4,7 @@
  */
 package Main;
 
+
 /**
  *
  * @author Atahan
@@ -17,8 +18,10 @@ public class FriendRequest {
         this.description = sender.getDisplayName() + "sent you a friend request.";
         this.receiver = receiver;
         this.sender = sender;
+        String description = sender.getUsername() + " sent you a friend request.";
+        Notification notification = new Notification(description, sender, "friend_added");
     }
-
+   
     public String getDescription() {
         return description;
     }
@@ -36,7 +39,11 @@ public class FriendRequest {
     }
     
     public void acceptRequest(){
+<<<<<<< Updated upstream
         receiver.acceptRequest(this);
+=======
+        receiver.addFriend(sender);
+>>>>>>> Stashed changes
         receiver.removeRequest(this);
     }
     
