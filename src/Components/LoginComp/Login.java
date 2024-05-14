@@ -442,6 +442,7 @@ public class Login extends javax.swing.JFrame {
         try {
             Connection conn = DatabaseConnection.getConnection();
             
+            //probably dont need this part!
             String sql = "SELECT COUNT(*) AS count FROM User WHERE mail=? AND password=?";
             stmt = conn.prepareStatement(sql);
             
@@ -455,7 +456,7 @@ public class Login extends javax.swing.JFrame {
             }
             
             if(authenticated){
-                sql = "SELECT username from user where mail=?";
+                sql = "SELECT username FROM User WHERE mail=?";
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, mail);
                 rs = stmt.executeQuery();
@@ -482,7 +483,7 @@ public class Login extends javax.swing.JFrame {
     
     private User signUp(String username, String mail, String password){
         User user = new User(username, mail, password);
-        user.saveToDatabase();
+        user.saveNewUserToDatabase();
         
         return user;
     }

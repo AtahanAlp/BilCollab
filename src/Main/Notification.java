@@ -15,7 +15,11 @@ public class Notification {
     
     public Notification(String description, User sender) {
         this.description = description;
+<<<<<<< HEAD
         this.sender = sender;
+=======
+        this.sender = sender;               
+>>>>>>> 2663ec41d95ff193ac5766f91061358fc1b5171b
     }
 
     public String getDescription() {

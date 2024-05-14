@@ -426,14 +426,12 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         // TODO add your handling code here:
     }//GEN-LAST:event_categoryBtnActionPerformed
      private void setButtonIcon(String category) {
-    String imagePath = "/icons/" + category + ".png";
-    ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
-    categoryBtn.setIcon(icon);
-
+        String imagePath = "/icons/" + category + ".png";
+        ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
+        categoryBtn.setIcon(icon);
     }
      
-     private String getCategoryImagePath(String category) {
-   
+     private String getCategoryImagePath(String category) { 
         return  category + ".png";
     }
     private void CategoryBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryBoxActionPerformed

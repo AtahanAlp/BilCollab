@@ -42,7 +42,7 @@ public class User {
         this.password = password;
         displayName = username;
         // = DEFAULT_PROFILE_PIC;
-        description = "";
+        setDescription();
 
         createdActivities = new ArrayList<Activity>();
         joinedActivities = new ArrayList<Activity>();
@@ -52,7 +52,7 @@ public class User {
         friends = new ArrayList<User>();
     }
 
-    public void saveToDatabase() {
+    public void saveNewUserToDatabase() {
 
         Connection connection = null;
         PreparedStatement pStatement = null;
@@ -91,6 +91,37 @@ public class User {
     public int getId() {
         return id;
     }
+    
+    public static User getUserWithId(int id){
+        User user = null;
+        
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            connection = DatabaseConnection.getConnection();
+            
+            String sql = "SELECT * FROM User WHERE id = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                String username = rs.getString("username");
+                String mail = rs.getString("mail");
+                String password = rs.getString("password");
+                
+                user = new User(username, mail, password);
+                user.setId(id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{           
+            DatabaseConnection.close(connection, stmt, rs);
+        }
+        
+        return user;
+    }
 
     public String getUsername() {
         return username;
@@ -112,7 +143,30 @@ public class User {
         return profilePic;
     }
 
-    public String getDescription() {
+    public String setDescription() {
+        String description = "";
+        
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            connection = DatabaseConnection.getConnection();
+            
+            String sql = "SELECT description FROM User WHERE username = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                description  = rs.getString("description");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{           
+            DatabaseConnection.close(connection, stmt, rs);
+        }
+        
+        this.description = description;
         return description;
     }
 
@@ -139,6 +193,31 @@ public class User {
     }
 
     public ArrayList<Notification> getNotifications() {
+        notifications = new ArrayList<Notification>();
+        
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            connection = DatabaseConnection.getConnection();
+            
+            String sql = "SELECT information, sender_id FROM notification WHERE receiver_id = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                String info = rs.getString("information");
+                int senderId = rs.getInt("sender_id");
+                User sender = getUserWithId(senderId);
+                notifications.add(new Notification(info, sender));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{           
+            DatabaseConnection.close(connection, stmt, rs);
+        }
+        
         return notifications;
     }
 
@@ -211,8 +290,7 @@ public class User {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-       
+        }     
     }
 
     public void addActivity(Activity activity) {
