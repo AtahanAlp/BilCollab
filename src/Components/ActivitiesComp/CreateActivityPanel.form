@@ -229,6 +229,9 @@
               <Insets value="[5, 5, 5, 5]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="Components.HintTextField" name="titleField">
           <Properties>
