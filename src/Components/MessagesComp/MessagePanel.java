@@ -167,16 +167,15 @@ public class MessagePanel extends javax.swing.JPanel {
                 stmt.setString(3, message.getTime());
                 stmt.setInt(4, currentUser.getId());
                 stmt.setInt(5, friend.getId());
-                stmt.setBoolean(6, false); // Assuming the message is initially not seen
+                stmt.setBoolean(6, false);
                 stmt.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        receiver.createNotification(null);
         MessageDisplay.revalidate();
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.

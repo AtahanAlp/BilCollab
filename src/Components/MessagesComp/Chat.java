@@ -19,7 +19,6 @@ import java.sql.ResultSet;
  */
 public class Chat extends JPanel {
 
-    private int unseenMessages;
     private MessagesPanel messagesPanel;
     
     public Chat (User friend, String pfp, String message, MessagesPanel m) {
@@ -29,12 +28,12 @@ public class Chat extends JPanel {
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 
-                m.updateDisplay(new MessagePanel(m, friend));
+                messagesPanel.updateDisplay(new MessagePanel(m, friend));
                 
             }
         });
         
-        jLabel2.setText("Last sent message");
+        loadLastMessage(friend.getId());
         jLabel3.setText(friend.getDisplayName());
         repaint();
     }
