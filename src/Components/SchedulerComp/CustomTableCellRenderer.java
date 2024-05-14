@@ -18,10 +18,8 @@ public class CustomTableCellRenderer extends DefaultTableCellRenderer
 {
     public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected,
        boolean hasFocus, int row, int column){
-        Component cell = super.getTableCellRendererComponent
-           (table, value, isSelected, hasFocus, row, column);
-        
-        
+        Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
             if( !value.equals(" ") )
             {
                 cell.setBackground( new Color(243,12,67) );
