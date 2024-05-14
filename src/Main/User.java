@@ -52,7 +52,7 @@ public class User {
         friends = new ArrayList<User>();
     }
 
-    private void saveToDatabase() {
+    public void saveToDatabase() {
 
         Connection connection = null;
         PreparedStatement pStatement = null;

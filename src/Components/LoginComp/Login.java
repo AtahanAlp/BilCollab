@@ -479,6 +479,13 @@ public class Login extends javax.swing.JFrame {
         return user;
     }
     
+    private User signUp(String username, String mail, String password){
+        User user = new User(username, mail, password);
+        user.saveToDatabase();
+        
+        return user;
+    }
+    
     private void newMailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMailFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newMailFieldActionPerformed
@@ -512,7 +519,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_newUserFieldActionPerformed
 
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
-        // TODO add your handling code here:
+        User user = signUp(newMailField.getText().trim(), newUserField.getText().trim(), newPassField.getText().trim());
+        if (user != null) {
+            AppFrame appFrame = new AppFrame(user);
+            appFrame.pack();
+            appFrame.setVisible(true);
+        }
     }//GEN-LAST:event_signUpBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
