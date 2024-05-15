@@ -232,7 +232,7 @@ public class ActivityItem extends javax.swing.JPanel {
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
         User currentUser = getCurrentUser();
         
-        if (activity.getParticipants().contains(currentUser)) {
+        if (activity.getParticipants().contains(user)) {
         joinBtn.setText("ALREADY JOINED");
         joinBtn.setEnabled(false);
         return;
@@ -240,7 +240,7 @@ public class ActivityItem extends javax.swing.JPanel {
         }
         if (activity.getAttendence() < activity.getQuota()) {
         
-        activity.joinUser(currentUser);
+        activity.joinUser(user);
         setQuotaDisplay();
            
         joinBtn.setText("JOINED");

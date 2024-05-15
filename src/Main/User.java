@@ -202,7 +202,7 @@ public class User {
         createdActivities = new ArrayList<Activity>();
         getAllActivities();
         for (Activity activity : allActivities) {
-            if (activity.getCreator() == this) {
+            if (activity.getCreator().getId() == id) {
                 createdActivities.add(activity);
             }
         }
@@ -215,7 +215,7 @@ public class User {
 
          try (Connection conn = DatabaseConnection.getConnection()) {
            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM activity WHERE participants LIKE ?");
-            stmt.setString(1, "%" + "/" + id + "%");
+            stmt.setString(1, "%" +  id + "%");
             
             ResultSet resultSet = stmt.executeQuery();
                while (resultSet.next()) {
@@ -226,8 +226,9 @@ public class User {
                     int quota = resultSet.getInt("quota");
                     boolean isPublic = resultSet.getBoolean("isPublic");
                     String category = resultSet.getString("category");
+                    int userId = resultSet.getInt("creator_id");
 
-                    joinedActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
+                    joinedActivities.add(new Activity(startDate, endDate, title, getUserWithId(userId), description, category, quota, isPublic));
                }
         } catch (SQLException e) {
             // Handle SQLException
@@ -302,8 +303,9 @@ public class User {
                     int quota = resultSet.getInt("quota");
                     boolean isPublic = resultSet.getBoolean("isPublic");
                     String category = resultSet.getString("category");
+                    int userId = resultSet.getInt("creator_id");
 
-                    allActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
+                    allActivities.add(new Activity(startDate, endDate, title, getUserWithId(userId), description, category, quota, isPublic));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
