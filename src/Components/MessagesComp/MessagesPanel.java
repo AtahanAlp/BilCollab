@@ -13,11 +13,11 @@ import java.awt.Insets;
 import Main.User;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,7 +25,7 @@ import java.sql.ResultSet;
  */
 public class MessagesPanel extends javax.swing.JPanel implements RefreshablePanel{
 
-    private List<User> friends;
+    private ArrayList<User> friends;
     private AppFrame a;
     private User curr;
     
