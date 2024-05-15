@@ -235,7 +235,7 @@ public class User {
 
         try {
             conn = DatabaseConnection.getConnection();
-            String query = "SELECT * FROM user WHERE FIND_IN_SET(id, REPLACE(friends, '/', ',')) > 0";
+            String query = "SELECT * FROM user WHERE id IN (SELECT CAST(value AS UNSIGNED) FROM STRING_SPLIT(REPLACE(friends, '/', ','), ','))";
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -251,7 +251,6 @@ public class User {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Close resources
             try {
                 if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
@@ -263,6 +262,7 @@ public class User {
 
         return userFriends;
     }
+
 
 
 
