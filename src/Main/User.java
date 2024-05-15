@@ -250,7 +250,7 @@ public class User {
     }
 
     public ArrayList<Notification> getNotifications() {
-         notifications = new ArrayList<Notification>(); 
+        notifications = new ArrayList<Notification>(); 
          
         Connection connection = null; 
         PreparedStatement stmt = null; 
@@ -261,13 +261,18 @@ public class User {
              
             String sql = "SELECT information, sender_id FROM notification WHERE receiver_id = ?"; 
             stmt = connection.prepareStatement(sql); 
-            stmt.setInt(1, id); 
+            stmt.setInt(2, id); 
             rs = stmt.executeQuery(); 
             while (rs.next()) { 
                 String info = rs.getString("information"); 
                 int senderId = rs.getInt("sender_id"); 
+                int receiverId = rs.getInt("receiverer_id"); 
                 User sender = getUserWithId(senderId); 
+                senderId = sender.getId();
+                User receiver = this;
+                receiverId = this.getId();
                 notifications.add(new Notification(info, sender)); 
+                stmt.setInt(1, senderId);
             } 
         } catch (SQLException e) { 
             e.printStackTrace(); 
@@ -282,8 +287,8 @@ public class User {
         return friendRequests;
     }
 
-    public String getAllFriendsAsString(int userId) {
-        String friendIds = "";
+    public ArrayList<User> getFriends(int userId) {
+        ArrayList<User> friendsList = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             String query = "SELECT friends FROM user WHERE id = ?";
@@ -291,33 +296,25 @@ public class User {
                 stmt.setInt(1, userId);
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
-                    friendIds = rs.getString("friends");
+                    String friendIds = rs.getString("friends");
+                    if (friendIds != null && !friendIds.isEmpty()) {
+                        String[] ids = friendIds.split("/");
+                        for (String dbId : ids) {
+                            int friendId = Integer.parseInt(dbId);
+                            User friend = getUserWithId(friendId);
+                            if (friend != null) {
+                                friendsList.add(friend);
+                            }
+                        }
+                    }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return friendIds;
-    }
-
-    public ArrayList<User> getFriends(int userId) {
-        ArrayList<User> friendsList = new ArrayList<>();
-
-        String friendIds = getAllFriendsAsString(userId);
-        String[] ids = friendIds.split("/");
-        for (String dbId : ids) {
-            int friendId = Integer.parseInt(dbId);
-            User friend = getUserWithId(friendId);
-            if (friend != null) {
-                friendsList.add(friend);
-            }
-        }
-
         return friendsList;
     }
-
-
 
 
 
