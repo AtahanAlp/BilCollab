@@ -23,6 +23,7 @@ public class User {
     private String displayName;
     private BufferedImage profilePic;
     private String description;
+    private ArrayList<Activity> allActivities;
     private ArrayList<Activity> createdActivities;
     private ArrayList<Activity> joinedActivities;
     private ArrayList<Plan> plans;
@@ -42,6 +43,7 @@ public class User {
         // = DEFAULT_PROFILE_PIC;
         setDescription();
 
+        allActivities = new ArrayList<Activity>();
         createdActivities = new ArrayList<Activity>();
         joinedActivities = new ArrayList<Activity>();
         plans = new ArrayList<Plan>();
@@ -181,7 +183,31 @@ public class User {
     }
 
     public ArrayList<Activity> getAllActivities() {
-        //TODO
+        allActivities = new ArrayList<Activity>();
+        
+        try {
+                Connection connect = DatabaseConnection.getConnection();
+
+                Statement statement = connect.createStatement();
+
+                // Result set get the result of the SQL query
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM activities");
+
+                // Iterate over the ResultSet, adding each activity to the ArrayList
+                while (resultSet.next()) {
+                    String title = resultSet.getString("title");
+                    String description = resultSet.getString("description");
+                    String startDate = resultSet.getString("startDate");
+                    String endDate = resultSet.getString("endDate");
+                    int quota = resultSet.getInt("quota");
+                    boolean isPublic = resultSet.getBoolean("isPublic");
+                    String category = resultSet.getString("category");
+
+                    allActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         return new ArrayList<Activity>();
     }
 
