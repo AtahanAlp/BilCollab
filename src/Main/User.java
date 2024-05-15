@@ -378,6 +378,11 @@ public class User {
     public ArrayList<FriendRequest> getFriendRequests() {
         return friendRequests;
     }
+    
+    public boolean sendFriendRequest(String username){
+        //TODO
+        return false;
+    }
 
 public ArrayList<User> getFriends(int userId) {
     ArrayList<User> friendsList = new ArrayList<>();
@@ -461,10 +466,6 @@ public ArrayList<User> getFriends(int userId) {
         }
     }
 
-    public void addActivity(Activity activity) {
-        joinedActivities.add(activity);
-    }
-
     public void removeActivity(Activity activity) {
         joinedActivities.remove(activity);
     }
@@ -496,6 +497,10 @@ public ArrayList<User> getFriends(int userId) {
     }
 
 
+    public void addJoinedActivity(Activity activity){
+        
+    }
+    
     public boolean createActivity(String title, String description, String startDate, String endDate, int quota, boolean isPublic, String category) {
         if (!title.trim().equals("") && !description.trim().equals("") ) {//TODO: &&check collisions!!!
 
