@@ -71,7 +71,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
     private long getLastMessageTimestamp(int friendID) {
         long lastMessageTimestamp = 0;
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT creationDate FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY creationDate DESC LIMIT 1";
+            String query = "SELECT creationDate FROM message WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY creationDate DESC LIMIT 1";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, curr.getId());
                 stmt.setInt(2, friendID);
