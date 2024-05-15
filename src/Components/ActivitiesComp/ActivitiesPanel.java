@@ -399,7 +399,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         outputPanel.removeAll();
         filter.setVisible(false);  
         String category = (String) jComboBox1.getSelectedItem();
-        ArrayList<Activity> activities = user.getSpecificActivities(searchBar.getText().trim());
+        ArrayList<Activity> activities = user.getSpecificActivitiesByCategory(category);
         
         for (int i = activities.size()-1; i >= 0; i--) {
             outputPanel.add(new ActivityItem(activities.get(i), user));
