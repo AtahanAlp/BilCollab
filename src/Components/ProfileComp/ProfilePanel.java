@@ -88,7 +88,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         
        ArrayList<Activity> activities = user.getCreatedActivities();
         for (int i = activities.size()-1; i >= 0; i--) {
-            outputPanel.add(new ActivityItem(activities.get(i)));
+            outputPanel.add(new ActivityItem(activities.get(i), user));
         }
     }
     
@@ -99,7 +99,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         
         ArrayList<Activity> activities = user.getJoinedActivities();
         for (int i = activities.size()-1; i >= 0; i--) {
-            outputPanel.add(new ActivityItem(activities.get(i)));
+            outputPanel.add(new ActivityItem(activities.get(i), user));
         }
     }
     
