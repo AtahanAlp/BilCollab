@@ -82,6 +82,7 @@ public class MessagePanel extends javax.swing.JPanel {
 
                     Message message = new Message(senderId, receiverId, messageText, messageId, sentAt, isSeen);
                     dbMessages.add(message);
+                    MessageDisplayPane.add(message);
                 }
             }
         } catch (SQLException e) {
@@ -155,7 +156,6 @@ public class MessagePanel extends javax.swing.JPanel {
     private void sendMessage(User sender, User receiver, String content) {
 
         Message message = new Message(sender.getId(), receiver.getId(), content);
-        
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             String query = "INSERT INTO message (id, content, creationDate, sender_id, receiver_id, isSeen) VALUES (?, ?, ?, ?, ?, ?)";
