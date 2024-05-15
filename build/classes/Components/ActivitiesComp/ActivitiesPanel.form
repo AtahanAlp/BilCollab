@@ -114,7 +114,7 @@
                                   </Group>
                                   <Component id="jComboBox1" min="-2" pref="677" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="button2" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
+                              <Component id="button_SetFilter" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
@@ -133,7 +133,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jComboBox1" min="-2" pref="38" max="-2" attributes="0"/>
                           <EmptySpace pref="95" max="32767" attributes="0"/>
-                          <Component id="button2" min="-2" max="-2" attributes="0"/>
+                          <Component id="button_SetFilter" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -210,7 +210,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="Components.Button" name="button2">
+                <Component class="Components.Button" name="button_SetFilter">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="43" green="c" red="f5" type="rgb"/>
@@ -230,7 +230,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_SetFilterActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

@@ -128,7 +128,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         button1 = new Components.Button();
-        button2 = new Components.Button();
+        button_SetFilter = new Components.Button();
         centererPanel = new javax.swing.JPanel();
         searchPanel = new javax.swing.JPanel();
         activityCounter = new javax.swing.JLabel();
@@ -184,15 +184,15 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
             }
         });
 
-        button2.setBackground(new java.awt.Color(245, 12, 67));
-        button2.setForeground(new java.awt.Color(255, 255, 255));
-        button2.setText("Set Filter");
-        button2.setBgColor(new java.awt.Color(245, 12, 67));
-        button2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        button2.setTextColor(new java.awt.Color(255, 255, 255));
-        button2.addActionListener(new java.awt.event.ActionListener() {
+        button_SetFilter.setBackground(new java.awt.Color(245, 12, 67));
+        button_SetFilter.setForeground(new java.awt.Color(255, 255, 255));
+        button_SetFilter.setText("Set Filter");
+        button_SetFilter.setBgColor(new java.awt.Color(245, 12, 67));
+        button_SetFilter.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        button_SetFilter.setTextColor(new java.awt.Color(255, 255, 255));
+        button_SetFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
+                button_SetFilterActionPerformed(evt);
             }
         });
 
@@ -210,7 +210,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(button2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(button_SetFilter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
         filterLayout.setVerticalGroup(
@@ -225,7 +225,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(button_SetFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
 
@@ -395,9 +395,19 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         filter.setVisible(true);
     }//GEN-LAST:event_filterBtnActionPerformed
 
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-        filter.setVisible(false);
-    }//GEN-LAST:event_button2ActionPerformed
+    private void button_SetFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SetFilterActionPerformed
+        outputPanel.removeAll();
+        filter.setVisible(false);  
+        String category = (String) jComboBox1.getSelectedItem();
+        ArrayList<Activity> activities = user.getSpecificActivities(searchBar.getText().trim());
+        
+        for (int i = activities.size()-1; i >= 0; i--) {
+            outputPanel.add(new ActivityItem(activities.get(i), user));
+        }
+        
+        setactivityCounter(activities.size());
+         
+    }//GEN-LAST:event_button_SetFilterActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -409,7 +419,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
     private javax.swing.JPanel ancorPanel;
     private javax.swing.JPanel belowPanel;
     private Components.Button button1;
-    private Components.Button button2;
+    private Components.Button button_SetFilter;
     private javax.swing.JPanel centererPanel;
     private Components.RoundedPanel filter;
     private Components.Button filterBtn;
