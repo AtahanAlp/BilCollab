@@ -65,7 +65,7 @@ public class MessagePanel extends javax.swing.JPanel {
         List<Message> dbMessages = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at DESC LIMIT 10";
+            String query = "SELECT * FROM message WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY creationDate DESC LIMIT 20";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, currentUserID);
                 stmt.setInt(2, friendID);

@@ -49,6 +49,8 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
     }
     
     private void displayAllChats() {
+        Chats.removeAll();
+        
         Collections.sort(friends, new Comparator<User>() {
             @Override
             public int compare(User user1, User user2) {
@@ -69,7 +71,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
     private long getLastMessageTimestamp(int friendID) {
         long lastMessageTimestamp = 0;
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT sent_at FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at DESC LIMIT 1";
+            String query = "SELECT creationDate FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY creationDate DESC LIMIT 1";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, curr.getId());
                 stmt.setInt(2, friendID);
@@ -78,7 +80,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
 
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
-                    lastMessageTimestamp = rs.getTimestamp("sent_at").getTime();
+                    lastMessageTimestamp = rs.getTimestamp("creationDate").getTime();
                 }
             }
         } catch (SQLException e) {

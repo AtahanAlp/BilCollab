@@ -71,7 +71,7 @@ public class Message extends javax.swing.JPanel {
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, id); 
                 stmt.setString(2, content);
-                stmt.setString(3, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                stmt.setString(3, LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd HH:mm")));
                 stmt.setInt(4, senderId);
                 stmt.setInt(5,receiverId );
                 stmt.setBoolean(6, seen);

@@ -63,7 +63,7 @@ public class Chat extends JPanel {
         String lastSentMessage = "";
         
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT message_text FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at DESC LIMIT 1";
+            String query = "SELECT content FROM message WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY creationDate DESC LIMIT 1";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, messagesPanel.getCurrentUser().getId());
                 stmt.setInt(2, friendID);
