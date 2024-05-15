@@ -76,9 +76,9 @@ public class MessagePanel extends javax.swing.JPanel {
                     int messageId = rs.getInt("id");
                     int senderId = rs.getInt("sender_id");
                     int receiverId = rs.getInt("receiver_id");
-                    String messageText = rs.getString("message_text");
-                    String sentAt = rs.getString("sent_at");
-                    boolean isSeen = rs.getBoolean("is_seen");
+                    String messageText = rs.getString("content");
+                    String sentAt = rs.getString("creationDate");
+                    boolean isSeen = rs.getBoolean("isSeen");
 
                     Message message = new Message(senderId, receiverId, messageText, messageId, sentAt, isSeen);
                     dbMessages.add(message);
@@ -159,7 +159,7 @@ public class MessagePanel extends javax.swing.JPanel {
         MessageArea.setText("");
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "INSERT INTO messages (message_id, content, time, sender_id, receiver_id, is_seen) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO messages (message_id, content, creationDate, sender_id, receiver_id, isSeen) VALUES (?, ?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, message.getId());
                 stmt.setString(2, message.getContent());
