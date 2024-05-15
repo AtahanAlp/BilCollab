@@ -549,7 +549,7 @@ public ArrayList<User> getFriends(int userId) {
                 Connection connect = DatabaseConnection.getConnection();
 
             // PreparedStatements can use variables and are more efficient
-                PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO activity (title, description, startDate, endDate, quota, isPublic, category, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO activity (title, description, startDate, endDate, quota, isPublic, category, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
             // Parameters start with 1
                 preparedStatement.setString(1, title);
