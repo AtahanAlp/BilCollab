@@ -11,6 +11,7 @@ import Main.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JScrollBar;
 
@@ -29,7 +30,10 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         initComponents();
         
         searchBar.setCharLimit(50);
-        searchBar.setActivityPanel(this);
+        searchBar.searchBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadSearchActivities();
+            }});
         
         setOpaque(false);
         JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
@@ -78,7 +82,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
     }
     
     //TODO
-    public void loadSearchActivities(String searchTxt){
+    public void loadSearchActivities(){
         outputPanel.removeAll();        
         scrollPane.getVerticalScrollBar().setValue(0);
         

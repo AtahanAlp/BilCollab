@@ -40,6 +40,7 @@ public class User {
         this.mail = mail;
         this.password = password;
         displayName = username;
+        this.id = getId();
         // = DEFAULT_PROFILE_PIC;
         setDescription();
 
@@ -198,10 +199,41 @@ public class User {
     }
 
     public ArrayList<Activity> getCreatedActivities() {
+        createdActivities = new ArrayList<Activity>();
+        getAllActivities();
+        for (Activity activity : allActivities) {
+            if (activity.getCreator() == this) {
+                createdActivities.add(activity);
+            }
+        }
+        
         return createdActivities;
     }
 
     public ArrayList<Activity> getJoinedActivities() {
+        joinedActivities = new ArrayList<Activity>();
+
+         try (Connection conn = DatabaseConnection.getConnection()) {
+           PreparedStatement stmt = conn.prepareStatement("SELECT * FROM activity WHERE participants LIKE ?");
+            stmt.setString(1, "%" + "/" + id + "%");
+            
+            ResultSet resultSet = stmt.executeQuery();
+               while (resultSet.next()) {
+                    String title = resultSet.getString("title");
+                    String description = resultSet.getString("description");
+                    String startDate = resultSet.getString("startDate");
+                    String endDate = resultSet.getString("endDate");
+                    int quota = resultSet.getInt("quota");
+                    boolean isPublic = resultSet.getBoolean("isPublic");
+                    String category = resultSet.getString("category");
+
+                    joinedActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
+               }
+        } catch (SQLException e) {
+            // Handle SQLException
+            e.printStackTrace();
+        }
+
         return joinedActivities;
     }
     
@@ -245,12 +277,10 @@ public class User {
                 Connection connect = DatabaseConnection.getConnection();
 
                 Statement statement = connect.createStatement();
-                
-                str = "%" + str + "%"; // The '%' is a wildcard character that matches any number of characters
 
                 PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM activity WHERE title LIKE ? OR description LIKE ?");
-                preparedStatement.setString(1, str);
-                preparedStatement.setString(2, str);
+                preparedStatement.setString(1, "%" + str + "%");
+                preparedStatement.setString(2, "%" + str + "%");
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -291,18 +321,15 @@ public class User {
              
             String sql = "SELECT information, sender_id FROM notification WHERE receiver_id = ?"; 
             stmt = connection.prepareStatement(sql); 
-            stmt.setInt(2, id); 
+            stmt.setInt(1, id); 
             rs = stmt.executeQuery(); 
             while (rs.next()) { 
                 String info = rs.getString("information"); 
                 int senderId = rs.getInt("sender_id"); 
-                int receiverId = rs.getInt("receiverer_id"); 
+                
                 User sender = getUserWithId(senderId); 
-                senderId = sender.getId();
-                User receiver = this;
-                receiverId = this.getId();
+
                 notifications.add(new Notification(info, sender)); 
-                stmt.setInt(1, senderId);
             } 
         } catch (SQLException e) { 
             e.printStackTrace(); 

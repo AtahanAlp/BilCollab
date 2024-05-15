@@ -14,7 +14,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.border.EmptyBorder;
 
@@ -343,8 +342,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     }//GEN-LAST:event_joinedActBtnItemStateChanged
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        String newDescription = JOptionPane.showInputDialog(this, "Enter new description:", user.getDescription());
-        
+        String newDescription = description.getText();
         if(newDescription != null) {
         user.setDescription(newDescription);
         
@@ -361,6 +359,14 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
             enableEditing();
         }
         else{
+            String newDescription = description.getText();
+            if(newDescription != null) {
+                user.setDescription(newDescription);
+        
+                // Update the description text area with the new description
+                description.setText(newDescription);
+            }
+            // Disable editing mode and save the changes
             disableEditingAndSave();
         }
     }//GEN-LAST:event_editBtnItemStateChanged
