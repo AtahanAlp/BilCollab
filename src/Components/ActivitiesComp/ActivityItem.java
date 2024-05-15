@@ -29,23 +29,25 @@ import javax.swing.JOptionPane;
 public class ActivityItem extends javax.swing.JPanel {
     
     private Activity activity;
+    private User user;
     
     /**
      * Creates new form activityItem
      */
     public ActivityItem() {
         initComponents();
-
+        
         joinBtn.setBgColor(Button.RED);
         joinBtn.setColorClicked(new Color(155, 2, 17));
         joinBtn.setTextColor(Color.WHITE);
         this.description.setText("<html><p style=\"width:400px\">"+description.getText()+"</p></html>");
     }
     
-    public ActivityItem(Activity activity) {
+    public ActivityItem(Activity activity, User user) {
         initComponents();
         
         this.activity = activity;
+        this.user = user;
         
         joinBtn.setBgColor(Button.RED);
         joinBtn.setColorClicked(new Color(155, 2, 17));
