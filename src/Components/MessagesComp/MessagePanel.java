@@ -59,7 +59,7 @@ public class MessagePanel extends javax.swing.JPanel {
         jLabel1.setText(friend.getDisplayName());
         List<Message> lastMessages = loadLastMessages(currentUser.getId(), friend.getId());
         for (Message msg : lastMessages) {
-            MessageDisplay.add(msg);
+            addMsgToDisplay(msg);
         }
     }
     
