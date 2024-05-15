@@ -23,6 +23,7 @@ public class User {
     private String displayName;
     private BufferedImage profilePic;
     private String description;
+    private ArrayList<Activity> allActivities;
     private ArrayList<Activity> createdActivities;
     private ArrayList<Activity> joinedActivities;
     private ArrayList<Plan> plans;
@@ -42,6 +43,7 @@ public class User {
         // = DEFAULT_PROFILE_PIC;
         setDescription();
 
+        allActivities = new ArrayList<Activity>();
         createdActivities = new ArrayList<Activity>();
         joinedActivities = new ArrayList<Activity>();
         plans = new ArrayList<Plan>();
@@ -181,8 +183,32 @@ public class User {
     }
 
     public ArrayList<Activity> getAllActivities() {
-        //TODO
-        return new ArrayList<Activity>();
+        allActivities = new ArrayList<Activity>();
+        
+        try {
+                Connection connect = DatabaseConnection.getConnection();
+
+                Statement statement = connect.createStatement();
+
+                // Result set get the result of the SQL query
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM activities");
+
+                // Iterate over the ResultSet, adding each activity to the ArrayList
+                while (resultSet.next()) {
+                    String title = resultSet.getString("title");
+                    String description = resultSet.getString("description");
+                    String startDate = resultSet.getString("startDate");
+                    String endDate = resultSet.getString("endDate");
+                    int quota = resultSet.getInt("quota");
+                    boolean isPublic = resultSet.getBoolean("isPublic");
+                    String category = resultSet.getString("category");
+
+                    allActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        return allActivities;
     }
 
     public ArrayList<Activity> getSpecificActivities(String str) {
@@ -232,36 +258,41 @@ public class User {
         return friendRequests;
     }
 
-    public ArrayList<User> getFriends(int userId) {
-        ArrayList<User> userFriends = new ArrayList<>();
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+    public String getAllFriendsAsString(int userId) {
+        String friendIds = "";
 
-        try {
-            conn = DatabaseConnection.getConnection();
-            String query = "SELECT * FROM user WHERE FIND_IN_SET(id, (SELECT REPLACE(friends, '/', ',') FROM user WHERE id = ?)) > 0";
-            stmt = conn.prepareStatement(query);
-            stmt.setInt(1, userId);
-            rs = stmt.executeQuery();
-            while (rs.next()) {
-                int friendId = rs.getInt("id");
-                String username = rs.getString("username");
-                String mail = rs.getString("mail");
-                String password = rs.getString("password");
-
-                User friend = new User(username, mail, password);
-                friend.setId(friendId);
-                userFriends.add(friend);
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "SELECT friends FROM user WHERE id = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, userId);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    friendIds = rs.getString("friends");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DatabaseConnection.close(conn, stmt, rs);
         }
 
-        return userFriends;
+        return friendIds;
     }
+
+    public ArrayList<User> getFriends(int userId) {
+        ArrayList<User> friendsList = new ArrayList<>();
+
+        String friendIds = getAllFriendsAsString(userId);
+        String[] ids = friendIds.split("/");
+        for (String dbId : ids) {
+            int friendId = Integer.parseInt(dbId);
+            User friend = getUserWithId(friendId);
+            if (friend != null) {
+                friendsList.add(friend);
+            }
+        }
+
+        return friendsList;
+    }
+
 
 
 
@@ -354,7 +385,7 @@ public class User {
                 Connection connect = DatabaseConnection.getConnection();
 
             // PreparedStatements can use variables and are more efficient
-                PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO activity (title, description, startDate, endDate, quota, isPublic, category) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO activity (title, description, startDate, endDate, quota, isPublic, category, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             // Parameters start with 1
                 preparedStatement.setString(1, title);
@@ -364,6 +395,7 @@ public class User {
                 preparedStatement.setInt(5, quota);
                 preparedStatement.setBoolean(6, isPublic);
                 preparedStatement.setString(7, category);
+                preparedStatement.setInt(8, getId());
 
                 preparedStatement.executeUpdate();
 

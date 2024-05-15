@@ -61,6 +61,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         scrollPane.getVerticalScrollBar().setValue(0);
         
         ArrayList<Activity> activities = user.getAllActivities();
+        activities.add(new Activity("ascend","as" , "tit" , user, "a" ,"a" , 3, true));
         
         if (ascendingDate) {
             for (int i = activities.size()-1; i >= 0; i--) {
