@@ -67,16 +67,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
     public void refresh(){
         titleField.setText("");
         description.setText("");
-        publicBtn.setSelected(true);
-        
-        monthBox.setSelectedIndex(0);
-        dayBox.setSelectedIndex(0);
-        minuteBox.setSelectedIndex(0);
-        yearBox.setSelectedIndex(0);
-        hourBox.setSelectedIndex(0);
-        durationBox.setSelectedIndex(0);
-        quotaBox.setSelectedIndex(0);
-        
+          
         warning.setVisible(false);
     }
     
@@ -198,6 +189,11 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                 publicBtnItemStateChanged(evt);
             }
         });
+        publicBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                publicBtnActionPerformed(evt);
+            }
+        });
 
         privateBtn.setForeground(new java.awt.Color(102, 102, 102));
         privateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/private.png"))); // NOI18N
@@ -237,7 +233,14 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setText("Duration (min)");
 
+        monthBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthBoxActionPerformed(evt);
+            }
+        });
+
         CategoryBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chill", "Food", "Hobby", "Sport", "Study", "Outdoor", "Other" }));
+        CategoryBox.setSelectedIndex(-1);
         CategoryBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CategoryBoxActionPerformed(evt);
@@ -280,7 +283,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(yearBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(quotaBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
                         .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(createBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -312,7 +315,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundedPanelLayout.createSequentialGroup()
                         .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(roundedPanelLayout.createSequentialGroup()
                                 .addComponent(categoryLbl)
@@ -354,7 +357,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(durationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(quotaLbl)
                     .addComponent(warning))
@@ -370,9 +373,9 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,18 +390,18 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         if (publicBtn.isSelected()) {
             publicBtn.setForeground(new Color(245,12,67));
         }
-        else{
+        /*else{
              publicBtn.setForeground(new Color(102, 102, 102));
-        }
+        }*/
     }//GEN-LAST:event_publicBtnItemStateChanged
 
     private void privateBtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_privateBtnItemStateChanged
         if (privateBtn.isSelected()) {
             privateBtn.setForeground(new Color(245,12,67));
         }
-        else{
+        /*else{
              privateBtn.setForeground(new Color(102, 102, 102));
-        }
+        }*/
     }//GEN-LAST:event_privateBtnItemStateChanged
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
@@ -446,6 +449,14 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
        String selectedCategory = (String) comboBox.getSelectedItem();
        setButtonIcon(selectedCategory);
     }//GEN-LAST:event_CategoryBoxActionPerformed
+
+    private void monthBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthBoxActionPerformed
+
+    private void publicBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_publicBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
