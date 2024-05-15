@@ -155,11 +155,10 @@ public class MessagePanel extends javax.swing.JPanel {
     private void sendMessage(User sender, User receiver, String content) {
 
         Message message = new Message(sender.getId(), receiver.getId(), content);
-        addMsgToDisplay(message);
-        MessageArea.setText("");
+        
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "INSERT INTO messages (message_id, content, creationDate, sender_id, receiver_id, isSeen) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO message (id, content, creationDate, sender_id, receiver_id, isSeen) VALUES (?, ?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, message.getId());
                 stmt.setString(2, message.getContent());
@@ -173,6 +172,8 @@ public class MessagePanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
         receiver.createNotification(null);
+        addMsgToDisplay(message);
+        MessageArea.setText("");
         MessageDisplay.revalidate();
     }
 

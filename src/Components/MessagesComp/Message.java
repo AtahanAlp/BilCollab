@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JTextArea;
 import java.time.LocalDateTime;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -29,14 +33,22 @@ public class Message extends javax.swing.JPanel {
     public Message(int senderId, int receiverId, String content) {
         initComponents();
         
-        LocalTime currentTime = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM HH:mm");
-        String formattedTime = currentTime.format(formatter);
+        //LocalTime currentTime = LocalTime.now();
+        java.util.Date currentTime = new Date();
+
+        // Create a Calendar instance and set its time to the current time
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentTime);
+        String pattern = "MM/dd/yyyy HH:mm:ss";
+       
+        
+        DateFormat df = new SimpleDateFormat(pattern);
+        String currentTimeString = df.format(currentTime);
         
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.content = content;
-        this.time = formattedTime;
+        this.time = currentTimeString;
         this.seen = false;
         MessageContent.setText (this.content);
         
