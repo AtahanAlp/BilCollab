@@ -154,7 +154,7 @@ public class Activity {
     public void joinUser(User user){
         if (!participants.contains(user) && participants.size() < quota) {
             participants.add(user);
-            user.addActivity(this);
+            user.addJoinedActivity(this);
         }
     }
     

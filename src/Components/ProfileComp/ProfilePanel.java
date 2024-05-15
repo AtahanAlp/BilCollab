@@ -13,6 +13,7 @@ import Main.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JScrollBar;
 import javax.swing.border.EmptyBorder;
@@ -37,6 +38,10 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         displayName.setDocument(new TextCharLimit(20));
         
         searchBar.setCharLimit(22);
+        searchBar.searchBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                user.sendFriendRequest(searchBar.getText().trim());
+        }});
         
         buttonGroup.add(yourActBtn);
         buttonGroup.add(joinedActBtn);
