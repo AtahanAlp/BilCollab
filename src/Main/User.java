@@ -254,34 +254,30 @@ public class User {
     }
 
     public ArrayList<User> getFriends(int userId) {
-        ArrayList<User> userFriends = new ArrayList<>();
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        ArrayList<User> friendsList = new ArrayList<>();
 
-        try {
-            conn = DatabaseConnection.getConnection();
-            String query = "SELECT * FROM user WHERE FIND_IN_SET(id, (SELECT REPLACE(friends, '/', ',') FROM user WHERE id = ?)) > 0";
-            stmt = conn.prepareStatement(query);
-            stmt.setInt(1, userId);
-            rs = stmt.executeQuery();
-            while (rs.next()) {
-                int friendId = rs.getInt("id");
-                String username = rs.getString("username");
-                String mail = rs.getString("mail");
-                String password = rs.getString("password");
-
-                User friend = new User(username, mail, password);
-                friend.setId(friendId);
-                userFriends.add(friend);
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "SELECT friends FROM user WHERE id = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, userId);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    String friendIds = rs.getString("friends");
+                    String[] ids = friendIds.split("/");
+                    for (String dbId : ids) {
+                        int friendId = Integer.parseInt(dbId);
+                        User friend = getUserWithId(friendId);
+                        if (friend != null) {
+                            friendsList.add(friend);
+                        }
+                    }
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DatabaseConnection.close(conn, stmt, rs);
         }
 
-        return userFriends;
+        return friendsList;
     }
 
 
@@ -375,7 +371,7 @@ public class User {
                 Connection connect = DatabaseConnection.getConnection();
 
             // PreparedStatements can use variables and are more efficient
-                PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO activities (title, description, startDate, endDate, quota, isPublic, category) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO activity (title, description, startDate, endDate, quota, isPublic, category) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             // Parameters start with 1
                 preparedStatement.setString(1, title);
