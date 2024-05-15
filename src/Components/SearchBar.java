@@ -13,7 +13,6 @@ import javax.swing.border.EmptyBorder;
  * @author Atahan
  */
 public class SearchBar extends javax.swing.JPanel {
-    ActivitiesPanel panel;
     
     /**
      * Creates new form searchBar
@@ -26,10 +25,6 @@ public class SearchBar extends javax.swing.JPanel {
         searchBtn.setBgColor(new Color(0,0,0,0));
     }
     
-    public void setActivityPanel(ActivitiesPanel activitiesPanel){
-        panel = activitiesPanel;
-    }
-
     public void setHint(String hint){
         hintTextField.setHint(hint);
     }
@@ -108,7 +103,7 @@ public class SearchBar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        panel.loadSearchActivities(hintTextField.getText());
+
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void hintTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintTextFieldActionPerformed
@@ -117,8 +112,8 @@ public class SearchBar extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Components.HintTextField hintTextField;
-    private Components.Button searchBtn;
+    public Components.HintTextField hintTextField;
+    public Components.Button searchBtn;
     private Components.RoundedPanel totalArea;
     // End of variables declaration//GEN-END:variables
 }
