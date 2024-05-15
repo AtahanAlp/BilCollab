@@ -77,7 +77,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     }
     
     public void setFriendNo(){
-        friendsNo.setText(user.getFriends().size()+"");
+        friendsNo.setText(user.getFriends(user.getId()).size()+"");
     }
     
     public void loadYourActivities(){
