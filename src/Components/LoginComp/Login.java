@@ -50,7 +50,6 @@ public class Login extends javax.swing.JFrame {
         infoLbl = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
-        jCheckBox2 = new javax.swing.JCheckBox();
         loginBtn = new Components.Button();
         signupPageBtn = new Components.Button();
         mailPanel1 = new Components.RoundedPanel();
@@ -122,14 +121,6 @@ public class Login extends javax.swing.JFrame {
         loginPanel.setBackground(new java.awt.Color(235, 240, 255));
         loginPanel.setMaximumSize(new java.awt.Dimension(570, 800));
         loginPanel.setMinimumSize(new java.awt.Dimension(570, 800));
-
-        jCheckBox2.setForeground(new java.awt.Color(102, 102, 102));
-        jCheckBox2.setText("Remember Me");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
-            }
-        });
 
         loginBtn.setText("Login");
         loginBtn.setBgColor(new java.awt.Color(245, 12, 67));
@@ -222,7 +213,6 @@ public class Login extends javax.swing.JFrame {
             .addGroup(loginPanelLayout.createSequentialGroup()
                 .addContainerGap(131, Short.MAX_VALUE)
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jCheckBox2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(signupPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(passwordPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -239,9 +229,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(mailPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
-                .addGap(40, 40, 40)
+                .addGap(67, 67, 67)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(signupPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,10 +485,6 @@ public class Login extends javax.swing.JFrame {
         revalidate();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
-
     private void signupPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupPageBtnActionPerformed
        signupPanel.setVisible(true);
        backBtn.setVisible(true);
@@ -547,7 +531,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel bilCollabLogo1;
     private javax.swing.JLabel infoLbl;
     private javax.swing.JPanel infoPanel;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

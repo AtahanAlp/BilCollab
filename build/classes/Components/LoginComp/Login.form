@@ -130,7 +130,6 @@
                   <Group type="102" attributes="0">
                       <EmptySpace pref="131" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="loginBtn" alignment="1" max="32767" attributes="0"/>
                           <Component id="signupPageBtn" alignment="1" max="32767" attributes="0"/>
                           <Component id="passwordPanel1" alignment="1" max="32767" attributes="0"/>
@@ -150,9 +149,7 @@
                       <Component id="mailPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="passwordPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       <Component id="loginBtn" min="-2" pref="41" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="signupPageBtn" min="-2" pref="30" max="-2" attributes="0"/>
@@ -162,17 +159,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox2">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Remember Me"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox2ActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="Components.Button" name="loginBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Login"/>

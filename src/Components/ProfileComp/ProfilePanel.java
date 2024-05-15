@@ -352,16 +352,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     }//GEN-LAST:event_joinedActBtnItemStateChanged
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        String newDescription = description.getText();
-        if(newDescription != null) {
-        user.setDescription(newDescription);
         
-        // Update the description text area with the new description
-        description.setText(newDescription);
-        
-        // Disable editing mode and save the changes
-        disableEditingAndSave();
-        }
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void editBtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_editBtnItemStateChanged
