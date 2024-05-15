@@ -208,7 +208,7 @@ public class User {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        return new ArrayList<Activity>();
+        return allActivities;
     }
 
     public ArrayList<Activity> getSpecificActivities(String str) {
