@@ -191,7 +191,7 @@ public class User {
                 Statement statement = connect.createStatement();
 
                 // Result set get the result of the SQL query
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM activities");
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM activity");
 
                 // Iterate over the ResultSet, adding each activity to the ArrayList
                 while (resultSet.next()) {
@@ -212,8 +212,37 @@ public class User {
     }
 
     public ArrayList<Activity> getSpecificActivities(String str) {
-        //TODO
-        return new ArrayList<Activity>();
+        ArrayList<Activity> activities = new ArrayList<Activity>();
+        
+        try {
+                Connection connect = DatabaseConnection.getConnection();
+
+                Statement statement = connect.createStatement();
+                
+                str = "%" + str + "%"; // The '%' is a wildcard character that matches any number of characters
+
+                PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM activity WHERE title LIKE ? OR description LIKE ?");
+                preparedStatement.setString(1, str);
+                preparedStatement.setString(2, str);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                // Iterate over the ResultSet, adding each activity to the ArrayList
+                while (resultSet.next()) {
+                    String title = resultSet.getString("title");
+                    String description = resultSet.getString("description");
+                    String startDate = resultSet.getString("startDate");
+                    String endDate = resultSet.getString("endDate");
+                    int quota = resultSet.getInt("quota");
+                    boolean isPublic = resultSet.getBoolean("isPublic");
+                    String category = resultSet.getString("category");
+
+                    activities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        return activities;
     }
 
     public ArrayList<Plan> getPlans() {
