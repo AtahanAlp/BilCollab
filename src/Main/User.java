@@ -371,7 +371,7 @@ public class User {
                 Connection connect = DatabaseConnection.getConnection();
 
             // PreparedStatements can use variables and are more efficient
-                PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO activity (title, description, startDate, endDate, quota, isPublic, category) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO activity (title, description, startDate, endDate, quota, isPublic, category, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             // Parameters start with 1
                 preparedStatement.setString(1, title);
@@ -381,6 +381,7 @@ public class User {
                 preparedStatement.setInt(5, quota);
                 preparedStatement.setBoolean(6, isPublic);
                 preparedStatement.setString(7, category);
+                preparedStatement.setInt(8, getId());
 
                 preparedStatement.executeUpdate();
 
