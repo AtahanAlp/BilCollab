@@ -277,19 +277,23 @@ public class User {
     }
     
     public void acceptRequest (FriendRequest request) {
-       addFriend(request.getSender()); 
-       try (Connection conn = DatabaseConnection.getConnection()) {
-           
-            String query = "UPDATE users SET friends = CONCAT(friends, ?) WHERE id = ?";
+       addFriend(request.getSender());
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String query = "UPDATE users SET friends = CONCAT(COALESCE(friends, ''), ?) WHERE id = ?";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setString(1, "/" + request.getSender().getId());
-                stmt.setInt(2, getId());
-                stmt.executeUpdate();
+            // Add sender to reciever
+            stmt.setString(1, "/" + request.getSender().getId());
+            stmt.setInt(2, getId());
+            stmt.executeUpdate();
+
+            // Add reciever to sender
+            stmt.setString(1, "/" + getId());
+            stmt.setInt(2, request.getSender().getId());
+            stmt.executeUpdate();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+        e.printStackTrace();
         }
-       
     }
 
     public void addActivity(Activity activity) {
