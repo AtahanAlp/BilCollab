@@ -6,12 +6,21 @@ package Components.ActivitiesComp;
 
 import Components.Button;
 import Main.Activity;
+import Main.DatabaseConnection;
+import Main.User;
+import static Main.User.getCurrentUser;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -218,9 +227,57 @@ public class ActivityItem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
-        // TODO add your handling code here:
+        if (activity.getAttendence() < activity.getQuota()) {
+        User currentUser = getCurrentUser();
+        activity.joinUser(currentUser);
+        setQuotaDisplay();
+           
+        joinBtn.setText("JOINED");
+        joinBtn.setEnabled(false);
+        activity.getParticipants().add(currentUser);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Sorry, this activity is already full.");
+        }
+        
     }//GEN-LAST:event_joinBtnActionPerformed
+    
+    public void saveToDatabase() {
+        String ids = "";
+        for(int i = 0; i < activity.getAttendence() ; i++)
+        {
+            ids += activity.getParticipants().get(i).getId();
+            
+            if(i != activity.getAttendence()-1)
+            {
+                ids += "/";            }
+        }
+        
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        ResultSet rSet = null;
+        
+        try{
+            connection = DatabaseConnection.getConnection();
+           
+            String sql = "INSERT INTO activity (participants) "
+                    + "VALUES (?,)";
+            pStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pStatement.setString(1, ids);
+            pStatement.executeUpdate();
+                    
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        finally{
+            
+            DatabaseConnection.close(connection, pStatement, rSet);
+        }
+          
 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityTime;

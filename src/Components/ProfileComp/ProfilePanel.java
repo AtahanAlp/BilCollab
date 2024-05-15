@@ -161,6 +161,11 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
                 yourActBtnItemStateChanged(evt);
             }
         });
+        yourActBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yourActBtnActionPerformed(evt);
+            }
+        });
         buttonPanel.add(yourActBtn);
 
         joinedActBtn.setForeground(new java.awt.Color(51, 51, 51));
@@ -169,6 +174,11 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         joinedActBtn.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 joinedActBtnItemStateChanged(evt);
+            }
+        });
+        joinedActBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joinedActBtnActionPerformed(evt);
             }
         });
         buttonPanel.add(joinedActBtn);
@@ -353,6 +363,14 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
             disableEditingAndSave();
         }
     }//GEN-LAST:event_editBtnItemStateChanged
+
+    private void yourActBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yourActBtnActionPerformed
+        loadYourActivities();
+    }//GEN-LAST:event_yourActBtnActionPerformed
+
+    private void joinedActBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinedActBtnActionPerformed
+        loadJoinedActivities();
+    }//GEN-LAST:event_joinedActBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
