@@ -204,6 +204,10 @@ public class User {
     public ArrayList<Activity> getJoinedActivities() {
         return joinedActivities;
     }
+    
+    public void joinActivity(Activity activity){
+        //Addfriendin aynısı!!
+    }
 
     public ArrayList<Activity> getAllActivities() {
         allActivities = new ArrayList<Activity>();

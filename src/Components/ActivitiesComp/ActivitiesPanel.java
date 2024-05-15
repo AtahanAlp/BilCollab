@@ -29,6 +29,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         initComponents();
         
         searchBar.setCharLimit(50);
+        searchBar.setActivityPanel(this);
         
         setOpaque(false);
         JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
@@ -61,16 +62,15 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         scrollPane.getVerticalScrollBar().setValue(0);
         
         ArrayList<Activity> activities = user.getAllActivities();
-        activities.add(new Activity("ascend","as" , "tit" , user, "a" ,"a" , 3, true));
         
         if (ascendingDate) {
             for (int i = activities.size()-1; i >= 0; i--) {
-                outputPanel.add(new ActivityItem(activities.get(i)));
+                outputPanel.add(new ActivityItem(activities.get(i), user));
             }
         }
         else{
             for (int i = 0; i < activities.size(); i++) {
-               outputPanel.add(new ActivityItem(activities.get(i)));
+               outputPanel.add(new ActivityItem(activities.get(i), user));
             }
         }
         
@@ -85,7 +85,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         ArrayList<Activity> activities = user.getSpecificActivities(searchBar.getText().trim());
         
         for (int i = activities.size()-1; i >= 0; i--) {
-            outputPanel.add(new ActivityItem(activities.get(i)));
+            outputPanel.add(new ActivityItem(activities.get(i), user));
         }
 
         setactivityCounter(activities.size());
@@ -99,7 +99,7 @@ public class ActivitiesPanel extends javax.swing.JPanel implements RefreshablePa
         ArrayList<Activity> activities = user.getSpecificActivities(searchBar.getText().trim());
         
         for (int i = activities.size()-1; i >= 0; i--) {
-            outputPanel.add(new ActivityItem(activities.get(i)));
+            outputPanel.add(new ActivityItem(activities.get(i), user));
         }
 
         setactivityCounter(activities.size());
