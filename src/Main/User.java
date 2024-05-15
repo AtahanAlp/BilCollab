@@ -227,7 +227,7 @@ public class User {
         return friendRequests;
     }
 
-    public ArrayList<User> getFriends() {
+    public ArrayList<User> getFriends(int userId) {
         ArrayList<User> userFriends = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -235,8 +235,9 @@ public class User {
 
         try {
             conn = DatabaseConnection.getConnection();
-            String query = "SELECT * FROM user WHERE FIND_IN_SET(id, REPLACE(friends, '/', ',')) > 0";
+            String query = "SELECT * FROM user WHERE FIND_IN_SET(id, (SELECT REPLACE(friends, '/', ',') FROM user WHERE id = ?)) > 0";
             stmt = conn.prepareStatement(query);
+            stmt.setInt(1, userId);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int friendId = rs.getInt("id");
@@ -251,18 +252,12 @@ public class User {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Close resources
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            DatabaseConnection.close(conn, stmt, rs);
         }
 
         return userFriends;
     }
+
 
 
 
@@ -337,7 +332,7 @@ public class User {
     }
 
     public boolean checkFriend(User user) {
-        for(User u: this.getFriends()){
+        for(User u: getFriends(this.getId())){
             if(u.getId() == user.getId()){
                 return true;
             }

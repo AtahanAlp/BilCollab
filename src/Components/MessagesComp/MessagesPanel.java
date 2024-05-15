@@ -44,7 +44,7 @@ public class MessagesPanel extends javax.swing.JPanel implements RefreshablePane
     }
     
     public void refresh(){
-        this.friends = curr.getFriends();
+        this.friends = curr.getFriends(curr.getId());
         displayAllChats();
     }
     
