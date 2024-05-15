@@ -72,7 +72,7 @@ public class Chat extends JPanel {
 
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
-                    lastSentMessage = rs.getString("message_text");
+                    lastSentMessage = rs.getString("content");
                     jLabel2.setText(lastSentMessage);
                 }
             }
