@@ -6,6 +6,7 @@ package Components.ActivitiesComp;
 
 import Components.Button;
 import Main.Activity;
+import Main.User;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -20,23 +21,25 @@ import javax.swing.ImageIcon;
 public class ActivityItem extends javax.swing.JPanel {
     
     private Activity activity;
+    private User user;
     
     /**
      * Creates new form activityItem
      */
     public ActivityItem() {
         initComponents();
-
+        
         joinBtn.setBgColor(Button.RED);
         joinBtn.setColorClicked(new Color(155, 2, 17));
         joinBtn.setTextColor(Color.WHITE);
         this.description.setText("<html><p style=\"width:400px\">"+description.getText()+"</p></html>");
     }
     
-    public ActivityItem(Activity activity) {
+    public ActivityItem(Activity activity, User user) {
         initComponents();
         
         this.activity = activity;
+        this.user = user;
         
         joinBtn.setBgColor(Button.RED);
         joinBtn.setColorClicked(new Color(155, 2, 17));
@@ -218,7 +221,7 @@ public class ActivityItem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
-        // TODO add your handling code here:
+        user.joinActivity(activity);
     }//GEN-LAST:event_joinBtnActionPerformed
 
 

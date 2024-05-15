@@ -4,6 +4,7 @@
  */
 package Components;
 
+import Components.ActivitiesComp.ActivitiesPanel;
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 
@@ -12,7 +13,8 @@ import javax.swing.border.EmptyBorder;
  * @author Atahan
  */
 public class SearchBar extends javax.swing.JPanel {
-
+    ActivitiesPanel panel;
+    
     /**
      * Creates new form searchBar
      */
@@ -22,6 +24,10 @@ public class SearchBar extends javax.swing.JPanel {
         hintTextField.setHint("Search");
         
         searchBtn.setBgColor(new Color(0,0,0,0));
+    }
+    
+    public void setActivityPanel(ActivitiesPanel activitiesPanel){
+        panel = activitiesPanel;
     }
 
     public void setHint(String hint){
@@ -102,7 +108,7 @@ public class SearchBar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        // TODO add your handling code here:
+        panel.loadSearchActivities(hintTextField.getText());
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void hintTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintTextFieldActionPerformed
