@@ -4,6 +4,7 @@
  */
 package Main;
 
+import static Main.User.getUserWithId;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -108,27 +109,37 @@ public class Activity {
     }
 
     public ArrayList<User> getParticipants() {
-        ArrayList<User> participants = new ArrayList<User>();
+        
+         ArrayList<User> participants = new ArrayList<User>();
 
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM activity WHERE id IN (SELECT CAST(value AS UNSIGNED) FROM STRING_SPLIT(participants, '/'))";
-            try (PreparedStatement stmt = conn.prepareStatement(query)) {
-                ResultSet rs = stmt.executeQuery();
-                while (rs.next()) {
-                    int participantID = rs.getInt("id");
-                    String name = rs.getString("name");
-                    String email = rs.getString("email");
-                    String friendPassword = rs.getString("password");
-
-                    User participant = new User(name, email, friendPassword);
-                    participant.setId(participantID);
-                    participants.add(participant);
+    try (Connection conn = DatabaseConnection.getConnection()) {
+        String query = "SELECT participants FROM activity WHERE title = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, title);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String participantIds = rs.getString("participants");
+                if (participantIds != null && !participantIds.isEmpty()) {
+                    String[] ids = participantIds.split("/");
+                    for (String dbId : ids) {
+                        int userId = Integer.parseInt(dbId);
+                        User user = getUserWithId(userId);
+                        if (user != null) {
+                            participants.add(user);
+                        } else {
+                            // Handle case where user is not found
+                            // Log a warning or take appropriate action
+                            System.out.println("User with ID " + userId + " not found.");
+                        }
+                    }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        return participants;
+    } catch (SQLException e) {
+        // Handle SQLException
+        e.printStackTrace();
+    }
+    return participants;
     }
 
     public boolean isPublic() {
