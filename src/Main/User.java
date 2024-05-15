@@ -348,10 +348,30 @@ public class User {
 
 
     public boolean createActivity(String title, String description, String startDate, String endDate, int quota, boolean isPublic, String category) {
-        if (!title.trim().equals("") && description.trim().equals("") ) {//TODO: &&check collisions!!!
-            //TODO database part!!!
-            createdActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
-            return true;
+        if (!title.trim().equals("") && !description.trim().equals("") ) {//TODO: &&check collisions!!!
+
+            try {
+                Connection connect = DatabaseConnection.getConnection();
+
+            // PreparedStatements can use variables and are more efficient
+                PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO activities (title, description, startDate, endDate, quota, isPublic, category) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+            // Parameters start with 1
+                preparedStatement.setString(1, title);
+                preparedStatement.setString(2, description);
+                preparedStatement.setString(3, startDate);
+                preparedStatement.setString(4, endDate);
+                preparedStatement.setInt(5, quota);
+                preparedStatement.setBoolean(6, isPublic);
+                preparedStatement.setString(7, category);
+
+                preparedStatement.executeUpdate();
+
+                createdActivities.add(new Activity(startDate, endDate, title, this, description, category, quota, isPublic));
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }

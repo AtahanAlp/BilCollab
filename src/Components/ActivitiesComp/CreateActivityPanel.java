@@ -10,7 +10,7 @@ import Components.TextCharLimit;
 import Main.Notification;
 import Main.User;
 import java.awt.Color;
-import java.sql.*;
+import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -404,25 +404,21 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         String pattern = "MM/dd/yyyy HH:mm:ss";
         Date startDate = new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
-                        (int)dayBox.getSelectedItem());
-        Date endDate = startDate;
+                        (int)dayBox.getSelectedItem(), (int)hourBox.getSelectedItem(), (int)minuteBox.getSelectedItem(), 0);
+        
+        int durationHour = hourBox.getSelectedIndex() / 60;
+        int durationMinutes = hourBox.getSelectedIndex() % 60;
+        
+        Date endDate = new Date((int)yearBox.getSelectedItem(), (int)monthBox.getSelectedItem(), 
+                        (int)dayBox.getSelectedItem(), (int)hourBox.getSelectedItem() + durationHour, (int)minuteBox.getSelectedItem() + durationMinutes, 0);
   
         DateFormat df = new SimpleDateFormat(pattern);
         String startDateString = df.format(startDate);
         String endDateString = df.format(startDate);
         
-        Time startTime = new Time((int)hourBox.getSelectedItem(), (int)minuteBox.getSelectedItem(), 0);
-        
-        int durationHour = hourBox.getSelectedIndex() / 60;
-        int durationMinutes = hourBox.getSelectedIndex() % 60;
-        Time endTime = new Time((int)hourBox.getSelectedItem() + durationHour, (int)minuteBox.getSelectedItem() + durationMinutes, 0);
-        
         if (user.createActivity(titleField.getText(), description.getText(), startDateString, endDateString, (int)quotaBox.getSelectedItem(), publicBtn.isSelected(), getCategory())) {//TODO: &&check collisions!!!
             appFrame.getSideMenu().setSelectedPage(appFrame.getSideMenu().profileBtn, appFrame.getProfilePanel());
             refresh();
-           
-            
-
         }
         else{
             warning.setVisible(true);
@@ -444,6 +440,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
    
         return  category + ".png";
     }
+     
     private void CategoryBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryBoxActionPerformed
        JComboBox<String> comboBox = (JComboBox<String>) evt.getSource();
        String selectedCategory = (String) comboBox.getSelectedItem();
