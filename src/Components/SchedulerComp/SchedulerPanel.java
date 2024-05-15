@@ -83,6 +83,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1000, 800));
 
         jTable_Scheduler.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -119,6 +120,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         jScrollPane1.setViewportView(jTable_Scheduler);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setOpaque(false);
 
         button_Add.setForeground(new java.awt.Color(102, 102, 102));
         button_Add.setText("Add");
@@ -292,10 +294,9 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
                     .addComponent(roundedPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(roundedPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(roundedPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jComboBox_End, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox_Start, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox_Day, javax.swing.GroupLayout.Alignment.LEADING, 0, 147, Short.MAX_VALUE))
+                    .addComponent(jComboBox_End, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox_Start, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox_Day, 0, 147, Short.MAX_VALUE)
                     .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -336,11 +337,11 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(warningSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -348,7 +349,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(warningSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
