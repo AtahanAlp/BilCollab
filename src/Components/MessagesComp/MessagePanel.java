@@ -57,8 +57,7 @@ public class MessagePanel extends javax.swing.JPanel {
         });
         
         jLabel1.setText(friend.getDisplayName());
-        //loadLastMessages(); will be implemented after database
-        
+        loadLastMessages(currentUser.getId(), friend.getId());
     }
     
     public List<Message> loadLastMessages(int currentUserID, int friendID) {
@@ -193,9 +192,9 @@ public class MessagePanel extends javax.swing.JPanel {
         MessageDisplayPane = new javax.swing.JScrollPane();
         MessageDisplay = new javax.swing.JPanel();
         roundedPanel2 = new Components.RoundedPanel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         MessageArea = new javax.swing.JTextArea();
+        button2 = new Components.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -263,8 +262,6 @@ public class MessagePanel extends javax.swing.JPanel {
 
         roundedPanel2.setBackground(new java.awt.Color(220, 220, 220));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/up.png"))); // NOI18N
-
         jScrollPane2.setBorder(null);
 
         MessageArea.setBackground(new java.awt.Color(220, 220, 220));
@@ -272,28 +269,35 @@ public class MessagePanel extends javax.swing.JPanel {
         MessageArea.setRows(5);
         jScrollPane2.setViewportView(MessageArea);
 
+        button2.setBackground(new java.awt.Color(220, 220, 220));
+        button2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/up.png"))); // NOI18N
+        button2.setBgColor(new java.awt.Color(220, 220, 220));
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
         roundedPanel2.setLayout(roundedPanel2Layout);
         roundedPanel2Layout.setHorizontalGroup(
             roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         roundedPanel2Layout.setVerticalGroup(
             roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(38, 38, 38))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(roundedPanel2Layout.createSequentialGroup()
+                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -317,7 +321,7 @@ public class MessagePanel extends javax.swing.JPanel {
                 .addComponent(MessageDisplayPane, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(roundedPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -325,15 +329,19 @@ public class MessagePanel extends javax.swing.JPanel {
         m.updateDisplay(null);
     }//GEN-LAST:event_button1ActionPerformed
 
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        sendMessage (currentUser, friend, MessageArea.getText());
+    }//GEN-LAST:event_button2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea MessageArea;
     private javax.swing.JPanel MessageDisplay;
     private javax.swing.JScrollPane MessageDisplayPane;
     private Components.Button button1;
+    private Components.Button button2;
     private Components.ImageAvatar imageAvatar1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private Components.RoundedPanel roundedPanel1;
     private Components.RoundedPanel roundedPanel2;
