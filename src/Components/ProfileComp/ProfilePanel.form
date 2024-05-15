@@ -154,6 +154,7 @@
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="yourActBtnItemStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="yourActBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="Components.SelectionButton" name="joinedActBtn">
@@ -168,6 +169,7 @@
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="joinedActBtnItemStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="joinedActBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

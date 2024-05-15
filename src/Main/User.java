@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class User {
     //public static final BufferedImage DEFAULT_PROFILE_PIC = ImageIO.read(new File("profilePic.png"));
-
+    private static User currentUser;
     private int id;
     private String username;
     private String password;
@@ -274,6 +274,9 @@ public class User {
 
     public ArrayList<Plan> getPlans() {
         return plans;
+    }
+     public static User getCurrentUser() {
+        return currentUser;
     }
 
     public ArrayList<Notification> getNotifications() {
