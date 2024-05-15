@@ -57,7 +57,10 @@ public class MessagePanel extends javax.swing.JPanel {
         });
         
         jLabel1.setText(friend.getDisplayName());
-        loadLastMessages(currentUser.getId(), friend.getId());
+        List<Message> lastMessages = loadLastMessages(currentUser.getId(), friend.getId());
+        for (Message msg : lastMessages) {
+            addMsgToDisplay(msg);
+        }
     }
     
     public List<Message> loadLastMessages(int currentUserID, int friendID) {
@@ -82,7 +85,6 @@ public class MessagePanel extends javax.swing.JPanel {
 
                     Message message = new Message(senderId, receiverId, messageText, messageId, sentAt, isSeen);
                     dbMessages.add(message);
-                    MessageDisplayPane.add(message);
                 }
             }
         } catch (SQLException e) {
@@ -97,7 +99,7 @@ public class MessagePanel extends javax.swing.JPanel {
         gbc.gridx = 0;
         gbc.gridy = messageCount++;
 
-        if (m.getSenderId() != currentUser.getId()) {
+        if (m.getSenderId() == currentUser.getId()) {
             m.setBackground (Color.decode("#F50C43"));
             m.getTextArea().setForeground (Color.WHITE);
             m.getTextArea().setBackground(Color.decode("#F50C43"));
