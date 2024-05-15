@@ -229,8 +229,16 @@ public class ActivityItem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
-        if (activity.getAttendence() < activity.getQuota()) {
         User currentUser = getCurrentUser();
+        
+        if (activity.getParticipants().contains(currentUser)) {
+        joinBtn.setText("ALREADY JOINED");
+        joinBtn.setEnabled(false);
+        return;
+        
+        }
+        if (activity.getAttendence() < activity.getQuota()) {
+        
         activity.joinUser(currentUser);
         setQuotaDisplay();
            
@@ -240,7 +248,7 @@ public class ActivityItem extends javax.swing.JPanel {
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "Sorry, this activity is already full.");
+            joinBtn.setText("FULL");
         }
         
     }//GEN-LAST:event_joinBtnActionPerformed
@@ -251,9 +259,6 @@ public class ActivityItem extends javax.swing.JPanel {
         {
             ids += activity.getParticipants().get(i).getId();
             
-            if(i != activity.getAttendence()-1)
-            {
-                ids += "/";            }
         }
         
         Connection connection = null;
@@ -266,7 +271,7 @@ public class ActivityItem extends javax.swing.JPanel {
             String sql = "INSERT INTO activity (participants) "
                     + "VALUES (?,)";
             pStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pStatement.setString(1, ids);
+            pStatement.setString(1, ids + "/");
             pStatement.executeUpdate();
                     
         }
