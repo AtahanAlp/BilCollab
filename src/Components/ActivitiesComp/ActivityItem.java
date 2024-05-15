@@ -245,7 +245,7 @@ public class ActivityItem extends javax.swing.JPanel {
            
         joinBtn.setText("JOINED");
         joinBtn.setEnabled(false);
-        activity.getParticipants().add(currentUser);
+        activity.addParticipants(user.getId());
         }
         else
         {
