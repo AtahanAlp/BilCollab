@@ -18,13 +18,17 @@ import javax.swing.table.TableCellRenderer;
  */
 public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePanel{
     boolean isFull;
-    Object label = "-";
-    String zero = " ";
-    
 
+    private ArrayList<String> planNames = new ArrayList<>();
     private User user;
     private ArrayList<Plan> plans;
     TableCellRenderer renderer = new CustomTableCellRenderer();
+    
+     private void addNewName(String newName) {
+        planNames.add(newName);
+        ((CustomTableCellRenderer) renderer).setTargetNames(planNames);
+        jTable_Scheduler.setDefaultRenderer(Object.class, renderer);
+    }
     
     
     /**
@@ -374,6 +378,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
         }
         
         String name = jTextField_Name.getText();
+        addNewName(name);
         
         Plan p = new Plan(name,dayInt,startInt,endInt);
         plans.add(p);
@@ -383,7 +388,7 @@ public class SchedulerPanel extends javax.swing.JPanel implements RefreshablePan
    
         }
         
-        jTable_Scheduler.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+        //jTable_Scheduler.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
        
     }//GEN-LAST:event_button_AddActionPerformed
 
