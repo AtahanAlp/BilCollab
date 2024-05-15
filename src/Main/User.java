@@ -253,8 +253,8 @@ public class User {
         return friendRequests;
     }
 
-    public ArrayList<User> getFriends(int userId) {
-        ArrayList<User> friendsList = new ArrayList<>();
+    public String getAllFriendsAsString(int userId) {
+        String friendIds = "";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             String query = "SELECT friends FROM user WHERE id = ?";
@@ -262,23 +262,32 @@ public class User {
                 stmt.setInt(1, userId);
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
-                    String friendIds = rs.getString("friends");
-                    String[] ids = friendIds.split("/");
-                    for (String dbId : ids) {
-                        int friendId = Integer.parseInt(dbId);
-                        User friend = getUserWithId(friendId);
-                        if (friend != null) {
-                            friendsList.add(friend);
-                        }
-                    }
+                    friendIds = rs.getString("friends");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        return friendIds;
+    }
+
+    public ArrayList<User> getFriends(int userId) {
+        ArrayList<User> friendsList = new ArrayList<>();
+
+        String friendIds = getAllFriendsAsString(userId);
+        String[] ids = friendIds.split("/");
+        for (String dbId : ids) {
+            int friendId = Integer.parseInt(dbId);
+            User friend = getUserWithId(friendId);
+            if (friend != null) {
+                friendsList.add(friend);
+            }
+        }
+
         return friendsList;
     }
+
 
 
 
