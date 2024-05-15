@@ -271,6 +271,41 @@ public class User {
             }
         return activities;
     }
+    
+    public ArrayList<Activity> getSpecificActivitiesByCategory(String category) {
+        ArrayList<Activity> activities = new ArrayList<Activity>();
+        
+        try {
+                Connection connect = DatabaseConnection.getConnection();
+
+                Statement statement = connect.createStatement();
+                
+                category = "%" + category + "%"; // The '%' is a wildcard character that matches any number of characters
+
+                PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM activity WHERE cateogy LIKE ?");;
+                preparedStatement.setString(1, category);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                // Iterate over the ResultSet, adding each activity to the ArrayList
+                while (resultSet.next()) {
+                    String title = resultSet.getString("title");
+                    String description1 = resultSet.getString("description");
+                    String startDate = resultSet.getString("startDate");
+                    String endDate = resultSet.getString("endDate");
+                    int quota = resultSet.getInt("quota");
+                    boolean isPublic = resultSet.getBoolean("isPublic");
+                    String category1 = resultSet.getString("category");
+
+                    activities.add(new Activity(startDate, endDate, title, this, description1, category1, quota, isPublic));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        return activities;
+    }
+    
+    
 
     public ArrayList<Plan> getPlans() {
         return plans;
