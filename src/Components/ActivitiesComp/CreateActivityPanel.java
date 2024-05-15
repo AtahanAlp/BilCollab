@@ -72,8 +72,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
     }
     
     private String getCategory(){
-        //TODO
-        return "";
+        return (String)categoryBox.getSelectedItem();
     }
 
     /**
@@ -112,7 +111,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         minuteBox = new Components.intComboBox();
         durationBox = new Components.intComboBox();
         quotaBox = new Components.intComboBox();
-        CategoryBox = new javax.swing.JComboBox<>();
+        categoryBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(1150, 800));
@@ -239,11 +238,11 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
             }
         });
 
-        CategoryBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chill", "Food", "Hobby", "Sport", "Study", "Outdoor", "Other" }));
-        CategoryBox.setSelectedIndex(-1);
-        CategoryBox.addActionListener(new java.awt.event.ActionListener() {
+        categoryBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chill", "Food", "Hobby", "Sport", "Study", "Outdoor", "Other" }));
+        categoryBox.setSelectedIndex(-1);
+        categoryBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CategoryBoxActionPerformed(evt);
+                categoryBoxActionPerformed(evt);
             }
         });
 
@@ -266,7 +265,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                                 .addGap(18, 18, 18)
                                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(categoryLbl)
-                                    .addComponent(CategoryBox, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(categoryBox, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(roundedPanelLayout.createSequentialGroup()
                                 .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +319,7 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
                             .addGroup(roundedPanelLayout.createSequentialGroup()
                                 .addComponent(categoryLbl)
                                 .addGap(4, 4, 4)
-                                .addComponent(CategoryBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(categoryBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(categoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)))
                     .addGroup(roundedPanelLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -444,11 +443,11 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
         return  category + ".png";
     }
      
-    private void CategoryBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryBoxActionPerformed
+    private void categoryBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryBoxActionPerformed
        JComboBox<String> comboBox = (JComboBox<String>) evt.getSource();
        String selectedCategory = (String) comboBox.getSelectedItem();
        setButtonIcon(selectedCategory);
-    }//GEN-LAST:event_CategoryBoxActionPerformed
+    }//GEN-LAST:event_categoryBoxActionPerformed
 
     private void monthBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthBoxActionPerformed
         // TODO add your handling code here:
@@ -460,8 +459,8 @@ public class CreateActivityPanel extends javax.swing.JPanel implements Refreshab
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CategoryBox;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> categoryBox;
     private Components.Button categoryBtn;
     private javax.swing.JLabel categoryLbl;
     private Components.Button createBtn;
