@@ -108,6 +108,26 @@ public class Activity {
         return participants.size();
     }
 
+    public void addParticipants(int userId) {
+    try (Connection conn = DatabaseConnection.getConnection()) {
+        String query = "UPDATE activity SET participants = CONCAT_WS('/', participants, ?) WHERE title = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            stmt.setString(2, title);
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("User with ID " + userId + " added to participants.");
+            } else {
+                // Handle case where update did not occur
+                System.out.println("Failed to add user with ID " + userId + " to participants.");
+            }
+        }
+    } catch (SQLException e) {
+        // Handle SQLException
+        e.printStackTrace();
+    }
+}
+    
     public ArrayList<User> getParticipants() {
         
          ArrayList<User> participants = new ArrayList<User>();
