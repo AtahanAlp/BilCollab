@@ -42,6 +42,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 user.sendFriendRequest(searchBar.getText().trim());
         }});
+        searchBar.setVisible(false);
         
         buttonGroup.add(yourActBtn);
         buttonGroup.add(joinedActBtn);
@@ -92,7 +93,9 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         
        ArrayList<Activity> activities = user.getCreatedActivities();
         for (int i = activities.size()-1; i >= 0; i--) {
-            outputPanel.add(new ActivityItem(activities.get(i), user));
+            ActivityItem item = new ActivityItem(activities.get(i), user);
+            item.joinBtn.setVisible(false);
+            outputPanel.add(item);
         }
     }
     
@@ -103,7 +106,9 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         
         ArrayList<Activity> activities = user.getJoinedActivities();
         for (int i = activities.size()-1; i >= 0; i--) {
-            outputPanel.add(new ActivityItem(activities.get(i), user));
+            ActivityItem item = new ActivityItem(activities.get(i), user);
+            item.joinBtn.setVisible(false);
+            outputPanel.add(item);
         }
     }
     

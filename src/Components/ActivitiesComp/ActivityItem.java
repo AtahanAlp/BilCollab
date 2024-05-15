@@ -292,7 +292,7 @@ public class ActivityItem extends javax.swing.JPanel {
     private javax.swing.JLabel activityTime;
     private javax.swing.JLabel creatorName;
     private javax.swing.JLabel description;
-    private Components.Button joinBtn;
+    public Components.Button joinBtn;
     private Components.ImageAvatar profilePic;
     private javax.swing.JLabel quota;
     private Components.RoundedPanel roundedPanel1;
