@@ -136,6 +136,10 @@ public class User {
     public String getDisplayName() {
         return displayName;
     }
+    
+    public String getDescription() {
+        return description;
+    }
 
     public BufferedImage getProfilePic() {
         return profilePic;
@@ -224,30 +228,42 @@ public class User {
     }
 
     public ArrayList<User> getFriends() {
-        
         ArrayList<User> userFriends = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM user WHERE id IN (SELECT CAST(value AS UNSIGNED) FROM STRING_SPLIT(friends, '/'))";
-            try (PreparedStatement stmt = conn.prepareStatement(query)) {
-                ResultSet rs = stmt.executeQuery();
-                while (rs.next()) {
-                    int friendId = rs.getInt("id");
-                    String name = rs.getString("name");
-                    String email = rs.getString("email");
-                    String friendPassword = rs.getString("password");
+        try {
+            conn = DatabaseConnection.getConnection();
+            String query = "SELECT * FROM user WHERE FIND_IN_SET(id, REPLACE(friends, '/', ',')) > 0";
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int friendId = rs.getInt("id");
+                String username = rs.getString("username");
+                String mail = rs.getString("mail");
+                String password = rs.getString("password");
 
-                    User friend = new User(name, email, friendPassword);
-                    friend.setId(friendId);
-                    userFriends.add(friend);
-                }
+                User friend = new User(username, mail, password);
+                friend.setId(friendId);
+                userFriends.add(friend);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            // Close resources
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
 
         return userFriends;
     }
+
 
 
     //setter methods
