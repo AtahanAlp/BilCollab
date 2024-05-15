@@ -120,7 +120,30 @@ public class User {
   
     //getter methods
     public int getId() {
-        return id;
+        int id = -1; 
+         
+        Connection connection = null; 
+        PreparedStatement stmt = null; 
+        ResultSet rs = null; 
+ 
+        try { 
+            connection = DatabaseConnection.getConnection(); 
+             
+            String sql = "SELECT id FROM User WHERE username = ?"; 
+            stmt = connection.prepareStatement(sql); 
+            stmt.setString(1, username); 
+            rs = stmt.executeQuery(); 
+            if (rs.next()) { 
+                id  = rs.getInt("id"); 
+            } 
+        } catch (SQLException e) { 
+            e.printStackTrace(); 
+        } finally{            
+            DatabaseConnection.close(connection, stmt, rs); 
+        } 
+         
+        this.id = id; 
+        return id; 
     }
 
     public String getUsername() {
@@ -287,34 +310,39 @@ public class User {
         return friendRequests;
     }
 
-    public ArrayList<User> getFriends(int userId) {
-        ArrayList<User> friendsList = new ArrayList<>();
+public ArrayList<User> getFriends(int userId) {
+    ArrayList<User> friendsList = new ArrayList<>();
 
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT friends FROM user WHERE id = ?";
-            try (PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, userId);
-                ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    String friendIds = rs.getString("friends");
-                    if (friendIds != null && !friendIds.isEmpty()) {
-                        String[] ids = friendIds.split("/");
-                        for (String dbId : ids) {
-                            int friendId = Integer.parseInt(dbId);
-                            User friend = getUserWithId(friendId);
-                            if (friend != null) {
-                                friendsList.add(friend);
-                            }
+    try (Connection conn = DatabaseConnection.getConnection()) {
+        String query = "SELECT friends FROM user WHERE id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String friendIds = rs.getString("friends");
+                if (friendIds != null && !friendIds.isEmpty()) {
+                    String[] ids = friendIds.split("/");
+                    for (String dbId : ids) {
+                        int friendId = Integer.parseInt(dbId);
+                        User friend = getUserWithId(friendId);
+                        if (friend != null) {
+                            friendsList.add(friend);
+                        } else {
+                            // Handle case where user is not found
+                            // Log a warning or take appropriate action
+                            System.out.println("User with ID " + friendId + " not found.");
                         }
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-
-        return friendsList;
+    } catch (SQLException e) {
+        // Handle SQLException
+        e.printStackTrace();
     }
+
+    return friendsList;
+}
 
 
 
