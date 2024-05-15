@@ -99,7 +99,7 @@ public class MessagePanel extends javax.swing.JPanel {
         gbc.gridx = 0;
         gbc.gridy = messageCount++;
 
-        if (m.getSenderId() != currentUser.getId()) {
+        if (m.getSenderId() == currentUser.getId()) {
             m.setBackground (Color.decode("#F50C43"));
             m.getTextArea().setForeground (Color.WHITE);
             m.getTextArea().setBackground(Color.decode("#F50C43"));
