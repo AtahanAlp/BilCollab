@@ -237,8 +237,49 @@ public class User {
         return joinedActivities;
     }
     
+        public void addParticipantToActivity(Activity activity) {
+        String participants = "";
+            
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        ResultSet rSet = null;
+        
+        try{
+            connection = DatabaseConnection.getConnection();
+           
+            PreparedStatement fetchStatement = connection.prepareStatement("SELECT participants FROM activity WHERE title = ?");
+            fetchStatement.setString(1, activity.getTitle());
+            ResultSet resultSet = fetchStatement.executeQuery();
+
+            if (resultSet.next()) {
+                participants = resultSet.getString("participants");
+
+                participants += id + "/";
+                
+                // Update the participants string in the database
+                PreparedStatement updateStatement = connection.prepareStatement("UPDATE activity SET participants = ? WHERE title = ?");
+                updateStatement.setString(1, participants);
+                updateStatement.setString(2, activity.getTitle());
+                updateStatement.executeUpdate();
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        finally{
+            
+            DatabaseConnection.close(connection, pStatement, rSet);
+        }
+          
+
+    }
+    
     public void joinActivity(Activity activity){
-        //Addfriendin aynısı!!
+        
+        ArrayList<User> participants = activity.getParticipants();
+        participants.add(this);
+        this.addParticipantToActivity(activity);
+        
     }
 
     public ArrayList<Activity> getAllActivities() {

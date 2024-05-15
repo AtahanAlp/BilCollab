@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -28,7 +29,7 @@ import javax.swing.JOptionPane;
  */
 public class ActivityItem extends javax.swing.JPanel {
     
-    private Activity activity;
+    public Activity activity;
     private User user;
     
     /**
@@ -245,7 +246,7 @@ public class ActivityItem extends javax.swing.JPanel {
         
     }//GEN-LAST:event_joinBtnActionPerformed
     
-    public void saveToDatabase() {
+    public void saveArrayToDatabase() {
         String ids = "";
         for(int i = 0; i < activity.getAttendence() ; i++)
         {
@@ -280,6 +281,7 @@ public class ActivityItem extends javax.swing.JPanel {
           
 
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityTime;
