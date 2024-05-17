@@ -37,7 +37,6 @@ public class ActivityItem extends javax.swing.JPanel {
      */
     public ActivityItem() {
         initComponents();
-        onPageLoad();
         
         joinBtn.setBgColor(Button.RED);
         joinBtn.setColorClicked(new Color(155, 2, 17));
@@ -47,7 +46,7 @@ public class ActivityItem extends javax.swing.JPanel {
     
     public ActivityItem(Activity activity, User user) {
         initComponents();
-        onPageLoad();
+        
         this.activity = activity;
         this.user = user;
         
@@ -284,25 +283,8 @@ public class ActivityItem extends javax.swing.JPanel {
             
             DatabaseConnection.close(connection, pStatement, rSet);
         }
-    }
-    
-    private void initializeJoinButton() {
-        User currentUser = getCurrentUser();
+          
 
-        if (activity.getParticipants().contains(currentUser)) {
-            joinBtn.setText("ALREADY JOINED");
-            joinBtn.setEnabled(false);
-        } else if (activity.getParticipants().size() >= activity.getQuota()) {
-            joinBtn.setText("FULL");
-            joinBtn.setEnabled(false);
-        } else {
-            joinBtn.setText("JOIN");
-            joinBtn.setEnabled(true);
-        }
-    }
-
-    private void onPageLoad() {
-        initializeJoinButton();
     }
 
 
