@@ -35,7 +35,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
 
     public ProfilePanel() {
         initComponents();
-        profileCounter.setText("asdfg");
+   
         searchBar.setCharLimit(50);
         searchBar.searchBtn.addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +75,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         scrollBar.setUI(new ScrollBarUI());//change later
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setViewportBorder(null);
-
+        
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(25);
         outputPanel.setLayout(layout);
@@ -109,33 +109,34 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         System.out.println(user.getId() + "");
         friendsNo.setText(user.getFriends(user.getId()).size() + "");
     }
+    
+    
 
     public void loadSearchProfiles() {
-        outputPanel.removeAll();
+        outputProfilePanel.removeAll();
         scrollPane.getVerticalScrollBar().setValue(0);
 
         String searchText = searchBar.getText().trim();
 
         ArrayList<User> foundUsers = searchUserProfiles(searchText);
-
-        // Add the found user profiles to the output panel 
         for (int i = foundUsers.size() - 1; i >= 0; i--) {
-            User profile = foundUsers.get(i);
-            JLabel userLabel = new JLabel(profile.getUsername());
-            userLabel.addMouseListener(new MouseAdapter() {
+             User profile = foundUsers.get(i);
+            ProfileItem profileItem = new ProfileItem(profile);
+            outputProfilePanel.add(profileItem);
+            profileItem.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
                     AppFrame appFrame = new AppFrame(profile);
                 }
             });
-            outputPanel.add(userLabel);
+            
         }
 
         setProfileCounter(foundUsers.size());
 
-        outputPanel.revalidate();
-        outputPanel.repaint();
+        outputProfilePanel.revalidate();
+        outputProfilePanel.repaint();
     }
 
     public void openUserProfile(User userProfile, AppFrame appFrame) {
@@ -253,6 +254,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         searchBar = new Components.SearchBar();
         descriptionLbl = new javax.swing.JLabel();
         profileCounter = new javax.swing.JLabel();
+        outputProfilePanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(102, 255, 255));
         setMaximumSize(new java.awt.Dimension(1150, 800));
@@ -371,15 +373,26 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         descriptionLbl.setForeground(new java.awt.Color(153, 153, 153));
         descriptionLbl.setText("Description:");
 
+        javax.swing.GroupLayout outputProfilePanelLayout = new javax.swing.GroupLayout(outputProfilePanel);
+        outputProfilePanel.setLayout(outputProfilePanelLayout);
+        outputProfilePanelLayout.setHorizontalGroup(
+            outputProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 292, Short.MAX_VALUE)
+        );
+        outputProfilePanelLayout.setVerticalGroup(
+            outputProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 188, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1098, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,25 +401,25 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(displayName, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(username)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(activityNo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(activitiesTxt)
-                        .addGap(55, 55, 55)
-                        .addComponent(friendsNo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FriendsTxt)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(46, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(displayName, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(profileCounter)
-                        .addGap(292, 292, 292))))
+                        .addComponent(profileCounter))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(username)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(activityNo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(activitiesTxt)
+                                .addGap(55, 55, 55)
+                                .addComponent(friendsNo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(FriendsTxt)))
+                        .addGap(213, 213, 213)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(outputProfilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,7 +435,11 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)
+                        .addComponent(descriptionLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -430,19 +447,18 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
                             .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(username)
-                            .addComponent(profileCounter))
-                        .addGap(83, 83, 83)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(activityNo)
-                            .addComponent(activitiesTxt)
-                            .addComponent(friendsNo)
-                            .addComponent(FriendsTxt))))
-                .addGap(103, 103, 103)
-                .addComponent(descriptionLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(username)
+                                    .addComponent(profileCounter))
+                                .addGap(89, 89, 89)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(activityNo)
+                                    .addComponent(activitiesTxt)
+                                    .addComponent(friendsNo)
+                                    .addComponent(FriendsTxt)))
+                            .addComponent(outputProfilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(27, 27, 27)
                 .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -504,6 +520,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     private Components.ImageAvatar imageAvatar;
     private Components.SelectionButton joinedActBtn;
     private javax.swing.JPanel outputPanel;
+    private javax.swing.JPanel outputProfilePanel;
     private javax.swing.JLabel profileCounter;
     private javax.swing.JScrollPane scrollPane;
     private Components.SearchBar searchBar;
