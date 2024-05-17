@@ -42,6 +42,7 @@ public class ProfileItem extends javax.swing.JPanel {
         initComponents();
         setBackground(Color.WHITE);
         this.user = user;
+<<<<<<< HEAD
         this.userNameLabel.setText(username);
         this.nameLabel.setText(user.getDisplayName());
 <<<<<<< HEAD
@@ -49,6 +50,9 @@ public class ProfileItem extends javax.swing.JPanel {
 <<<<<<< HEAD
         profileImage.setIcon(new ImageIcon(getClass().getResource("/icons/user.png")));
 =======
+=======
+        this.userNameLabel.setText("@" + username);
+>>>>>>> e0641c674134cd94d71d980489244b81948575b4
         addFriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,6 +112,7 @@ public class ProfileItem extends javax.swing.JPanel {
     private void initComponents() {
 
         userNameLabel = new javax.swing.JLabel();
+<<<<<<< HEAD
         nameLabel = new javax.swing.JLabel();
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -124,17 +129,25 @@ public class ProfileItem extends javax.swing.JPanel {
         profileImage = new Components.ImageAvatar();
         getAddFriendButton = new javax.swing.JButton();
 >>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
+=======
+        addFriend = new Components.Button();
+        profileButton = new Components.Button();
+        jLabel1 = new javax.swing.JLabel();
+>>>>>>> e0641c674134cd94d71d980489244b81948575b4
 
         setPreferredSize(new java.awt.Dimension(445, 217));
 
         userNameLabel.setText("jLabel1");
 
+<<<<<<< HEAD
         nameLabel.setText("jLabel1");
 
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> e0641c674134cd94d71d980489244b81948575b4
         addFriend.setText("button1");
 
         profileButton.setText("button1");
@@ -144,6 +157,7 @@ public class ProfileItem extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
 >>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
 =======
         getAddFriendButton.setText("jButton1");
@@ -153,11 +167,16 @@ public class ProfileItem extends javax.swing.JPanel {
         getAddFriendButton.setText("jButton1");
 
 >>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
+=======
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/denizcaglar/Desktop/Ellipse 21.png")); // NOI18N
+
+>>>>>>> e0641c674134cd94d71d980489244b81948575b4
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -224,18 +243,31 @@ public class ProfileItem extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addFriendActionPerformed
 =======
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameLabel)
-                            .addComponent(userNameLabel)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+=======
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addFriend, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addFriend, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> e0641c674134cd94d71d980489244b81948575b4
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userNameLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addFriend, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -278,8 +310,13 @@ public class ProfileItem extends javax.swing.JPanel {
 >>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
     private javax.swing.JButton getAddFriendButton;
     private javax.swing.JLabel nameLabel;
+=======
+    private Components.Button addFriend;
+    private javax.swing.JLabel jLabel1;
+>>>>>>> e0641c674134cd94d71d980489244b81948575b4
     private Components.Button profileButton;
     private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables

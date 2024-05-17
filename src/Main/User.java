@@ -424,11 +424,82 @@ public class User implements ProfilePanelProvider{
     public ArrayList<FriendRequest> getFriendRequests() {
         return friendRequests;
     }
-    
-    public boolean sendFriendRequest(String username){
-        //TODO
+    public boolean sendFriendRequest(String username) {
+    User recipient = getUserByUsername(username);
+    if (recipient == null) {
+        System.out.println("User not found.");
         return false;
     }
+    
+    if (isFriendOrRequestPending(recipient.getId())) {
+        System.out.println("Friend request already sent or you are already friends.");
+        return false;
+    }
+
+    String sql = "INSERT INTO FriendRequest (sender_id, receiver_id) VALUES (?, ?)";
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, this.id);
+        stmt.setInt(2, recipient.getId());
+        stmt.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+
+private User getUserByUsername(String username) {
+    String sql = "SELECT * FROM User WHERE username = ?";
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, username);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                String mail = rs.getString("mail");
+                String password = rs.getString("password");
+                User user = new User(username, mail, password);
+                user.setId(rs.getInt("id")); // Assuming you have an `id` column or use another unique identifier
+                return user;
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
+
+private boolean isFriendOrRequestPending(int userId) {
+    String sql = "SELECT * FROM FriendRequest WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)";
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, this.id);
+        stmt.setInt(2, userId);
+        stmt.setInt(3, userId);
+        stmt.setInt(4, this.id);
+        try (ResultSet rs = stmt.executeQuery()) {
+            return rs.next();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+private boolean isFriendRequestSent(int userId) {
+    String sql = "SELECT * FROM FriendRequest WHERE sender_id = ? AND receiver_id = ?";
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, this.id);
+        stmt.setInt(2, userId);
+        try (ResultSet rs = stmt.executeQuery()) {
+            return rs.next();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+
     
 public ArrayList<User> getFriends(int userId) {
     ArrayList<User> friendsList = new ArrayList<>();
