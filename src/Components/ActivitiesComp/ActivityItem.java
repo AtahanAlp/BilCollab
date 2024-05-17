@@ -182,6 +182,7 @@ public class ActivityItem extends javax.swing.JPanel {
             }
         });
 
+        jListParticipants.setBackground(new java.awt.Color(204, 204, 204));
         jListParticipants.setToolTipText("");
         jScrollPane_Participants.setViewportView(jListParticipants);
 
