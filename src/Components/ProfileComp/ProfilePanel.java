@@ -20,6 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.border.EmptyBorder;
 
@@ -29,6 +30,7 @@ import javax.swing.border.EmptyBorder;
  */
 public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel{
     private User user;
+    private JPanel searchResultsContainer;
     
     public ProfilePanel() {
         initComponents();
@@ -70,14 +72,24 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setViewportBorder(null);
         
+        searchResultsContainer = new JPanel();
+        searchResultsContainer.setLayout(new BorderLayout());
+        
+        // Add components to the ProfilePanel
+        add(searchBar, BorderLayout.NORTH);
+        add(searchResultsContainer, BorderLayout.CENTER);
+
+        // Set up search results panel
         searchResultsPanel = new javax.swing.JPanel();
         searchResultsPanel.setLayout(new GridLayout(0, 1));
         searchResultsPanel.setOpaque(false);
+        
+        searchResultsContainer.add(searchResultsPanel, BorderLayout.CENTER);
 
+        // Configure output panel layout
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(25);
         outputPanel.setLayout(layout);
-        
         
     }
 
