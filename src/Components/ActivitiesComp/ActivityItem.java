@@ -276,7 +276,6 @@ public class ActivityItem extends javax.swing.JPanel {
             joinBtn.setText("ALREADY JOINED");
             joinBtn.setEnabled(false);
             return;
-        
         }
         else if (activity.getParticipants().size() < activity.getQuota()) {
             activity.joinUser(user);
@@ -289,6 +288,7 @@ public class ActivityItem extends javax.swing.JPanel {
         else
         {
             joinBtn.setText("FULL");
+            joinBtn.setEnabled(false);
         }
         setQuotaDisplay();
         
