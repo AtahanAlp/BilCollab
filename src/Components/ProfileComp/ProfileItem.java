@@ -4,8 +4,9 @@
  */
 package Components.ProfileComp;
 
-import Components.ImageAvatar;
+import Main.User;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 
@@ -14,28 +15,31 @@ import javax.swing.ImageIcon;
  * @author denizcaglar
  */
 public class ProfileItem extends javax.swing.JPanel {
-
+    
+    private User user;
     private String username;
-    private String imagePath;
-    public ProfileItem() {
+  
+    public ProfileItem(User user) {
         initComponents();
         setBackground(Color.WHITE);
-        username = "";
-        imagePath = "/path/to/default/image.png";
-        updateUIComponents();
-    }
-
-    public ProfileItem(String username, String imagePath) {
-        initComponents();
-        setBackground(Color.WHITE);
-        this.username = username;
-        this.imagePath = imagePath;
+        this.user = user;
         updateUIComponents();
     }
     
     private void updateUIComponents() {
-        nameLabel.setText(username);
-        profileImage.setIcon(new ImageIcon(getClass().getResource(imagePath)));
+        userNameLabel.setText(user.getUsername());
+        nameLabel.setText(user.getDisplayName());
+        
+        BufferedImage profilePic = user.getProfilePic();
+        if (profilePic != null) 
+        {
+            profileImage.setIcon(new ImageIcon(profilePic));
+        } 
+        else 
+        {
+            profileImage.setIcon(new ImageIcon(getClass().getResource("/icons/user.png")));
+        }
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,9 +53,12 @@ public class ProfileItem extends javax.swing.JPanel {
     private void initComponents() {
 
         profileImage = new Components.ImageAvatar();
+        userNameLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(200, 200));
+
+        userNameLabel.setText("jLabel1");
 
         nameLabel.setText("jLabel1");
 
@@ -60,11 +67,13 @@ public class ProfileItem extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(143, 143, 143)
+                .addGap(119, 119, 119)
+                .addComponent(userNameLabel)
+                .addGap(64, 64, 64)
                 .addComponent(nameLabel)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,9 +83,11 @@ public class ProfileItem extends javax.swing.JPanel {
                         .addGap(80, 80, 80)
                         .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(nameLabel)))
-                .addContainerGap(120, Short.MAX_VALUE))
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userNameLabel)
+                            .addComponent(nameLabel))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -84,5 +95,6 @@ public class ProfileItem extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel nameLabel;
     private Components.ImageAvatar profileImage;
+    private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables
 }
