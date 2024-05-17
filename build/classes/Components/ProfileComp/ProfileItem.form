@@ -21,20 +21,35 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+=======
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+>>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
               <Component id="userNameLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="profileImage" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace pref="105" max="32767" attributes="0"/>
+=======
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="addFriend" min="-2" pref="118" max="-2" attributes="0"/>
+                  <Component id="profileButton" min="-2" pref="118" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+>>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+<<<<<<< HEAD
               <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -46,6 +61,24 @@
               <EmptySpace pref="77" max="32767" attributes="0"/>
               <Component id="profileImage" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+=======
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="userNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="profileButton" min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="addFriend" min="-2" pref="25" max="-2" attributes="0"/>
+              <EmptySpace pref="82" max="32767" attributes="0"/>
+>>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,5 +115,21 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
+<<<<<<< HEAD
+=======
+    <Component class="Components.Button" name="addFriend">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="button1"/>
+      </Properties>
+    </Component>
+    <Component class="Components.Button" name="profileButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="button1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="profileButtonActionPerformed"/>
+      </Events>
+    </Component>
+>>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
   </SubComponents>
 </Form>

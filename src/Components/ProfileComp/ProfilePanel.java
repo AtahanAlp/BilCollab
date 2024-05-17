@@ -72,7 +72,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(25);
-        outputPanel.setLayout(layout);
+        outputProfilePanel.setLayout(layout);
         
         
 
@@ -125,10 +125,11 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
             {
                 profileItem.getAddFriendButton().setText("ADD FRIEND");
             }
+            
             profileItem.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                  switchToProfilePanel();
+                  switchToProfilePanel(profileItem);
                 }
             });
             
@@ -139,8 +140,8 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         outputProfilePanel.revalidate();
         outputProfilePanel.repaint();
     }
-    public void switchToProfilePanel() {
-    AppFrame appFrame = (AppFrame) SwingUtilities.getWindowAncestor(this);
+    public static void switchToProfilePanel(ProfileItem item) {
+    AppFrame appFrame = (AppFrame) SwingUtilities.getWindowAncestor(item);
         if (appFrame != null) {
              RefreshablePanel profilePanel = appFrame.getProfilePanel();
              if (profilePanel != null) {
