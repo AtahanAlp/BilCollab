@@ -63,7 +63,7 @@ public class ActivityItem extends javax.swing.JPanel {
     }
 
     private void setQuotaDisplay(){
-        this.quota.setText("Quota: " + activity.getAttendence() + "/" + activity.getQuota());
+        this.quota.setText("Quota: " + activity.getParticipants().size() + "/" + activity.getQuota());
     }
     
     private void setTitleIcon(boolean isPublic){
