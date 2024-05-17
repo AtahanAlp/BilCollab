@@ -426,7 +426,7 @@ public class User {
         //TODO
         return false;
     }
-
+    
 public ArrayList<User> getFriends(int userId) {
     ArrayList<User> friendsList = new ArrayList<>();
 
@@ -573,6 +573,29 @@ public ArrayList<User> getFriends(int userId) {
         }
         return false;
     }
+    
+    public static ArrayList<User> getAllUsers() {
+    ArrayList<User> users = new ArrayList<>();
+
+    try (Connection conn = DatabaseConnection.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery("SELECT * FROM User")) {
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String username = rs.getString("username");
+            String mail = rs.getString("mail");
+            String password = rs.getString("password");
+            User user = new User(username, mail, password);
+            user.setId(id);
+            users.add(user);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return users;
+}
 
     private boolean checkDateCollision(Date startDate, Date endDate) {
         //TODO

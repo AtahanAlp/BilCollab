@@ -232,20 +232,21 @@ public class ActivityItem extends javax.swing.JPanel {
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
         User currentUser = getCurrentUser();
         
-        if (activity.getParticipants().contains(user)) {
-        joinBtn.setText("ALREADY JOINED");
-        joinBtn.setEnabled(false);
-        return;
+        if (activity.getParticipants().contains(user)) 
+        {
+            joinBtn.setText("ALREADY JOINED");
+            joinBtn.setEnabled(false);
+            return;
         
         }
         if (activity.getAttendence() < activity.getQuota()) {
         
-        activity.joinUser(user);
-        setQuotaDisplay();
-           
-        joinBtn.setText("JOINED");
-        joinBtn.setEnabled(false);
-        activity.addParticipants(user.getId());
+            activity.joinUser(user);
+            setQuotaDisplay();
+
+            joinBtn.setText("JOINED");
+            joinBtn.setEnabled(false);
+            activity.addParticipants(user.getId());
         }
         else
         {
