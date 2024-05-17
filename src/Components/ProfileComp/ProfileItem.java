@@ -53,10 +53,20 @@ public class ProfileItem extends javax.swing.JPanel {
     private void initComponents() {
 
         profileImage = new Components.ImageAvatar();
+        addFriend = new Components.Button();
         userNameLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(200, 200));
+        setPreferredSize(new java.awt.Dimension(445, 217));
+
+        addFriend.setText("ADD FRIEND");
+        addFriend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFriendActionPerformed(evt);
+            }
+        });
+        profileImage.add(addFriend);
+        addFriend.setBounds(0, 10, 100, 40);
 
         userNameLabel.setText("jLabel1");
 
@@ -67,32 +77,36 @@ public class ProfileItem extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
+                .addGap(120, 120, 120)
                 .addComponent(userNameLabel)
-                .addGap(64, 64, 64)
+                .addGap(18, 18, 18)
                 .addComponent(nameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userNameLabel)
-                            .addComponent(nameLabel))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(95, 95, 95)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(userNameLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(77, Short.MAX_VALUE)
+                .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addFriendActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Components.Button addFriend;
     private javax.swing.JLabel nameLabel;
     private Components.ImageAvatar profileImage;
     private javax.swing.JLabel userNameLabel;

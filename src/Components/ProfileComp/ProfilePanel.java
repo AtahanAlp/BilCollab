@@ -34,11 +34,6 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     
     public ProfilePanel() {
         initComponents();
-        searchResultsContainer.setLayout(new BorderLayout());
-        add(searchBar, BorderLayout.NORTH);
-        add(searchResultsContainer, BorderLayout.CENTER);
-        searchResultsContainer.add(searchResultsPanel, BorderLayout.CENTER);
-    
         searchBar.setCharLimit(50);
         searchBar.searchBtn.addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,9 +67,10 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         scrollPane.setViewportBorder(null);
         
         
+        
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(25);
-        outputPanel.setLayout(layout);
+        searchResultsPanel.setLayout(layout);
         
     }
 
@@ -113,17 +109,19 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         String searchText = searchBar.getText().trim();
     
         ArrayList<User> foundUsers = searchUserProfiles(searchText);
-
+    
         for (User profile : foundUsers) {
         ProfileItem profileItem = new ProfileItem(profile);
+        searchResultsPanel.add(profileItem);
+        
         profileItem.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 AppFrame appFrame = new AppFrame(profile);
             }
         });
-        searchResultsPanel.add(profileItem);
-    }
+        
+        }
         setProfileCounter(foundUsers.size());
 
         searchResultsPanel.revalidate();
@@ -250,7 +248,6 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         descriptionLbl = new javax.swing.JLabel();
         profileCounter = new javax.swing.JLabel();
         searchResultsPanel = new javax.swing.JPanel();
-        searchResultsContainer = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(102, 255, 255));
         setMaximumSize(new java.awt.Dimension(1150, 800));
@@ -372,26 +369,15 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         profileCounter.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         profileCounter.setForeground(new java.awt.Color(102, 102, 102));
 
-        javax.swing.GroupLayout searchResultsContainerLayout = new javax.swing.GroupLayout(searchResultsContainer);
-        searchResultsContainer.setLayout(searchResultsContainerLayout);
-        searchResultsContainerLayout.setHorizontalGroup(
-            searchResultsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        searchResultsContainerLayout.setVerticalGroup(
-            searchResultsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 141, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout searchResultsPanelLayout = new javax.swing.GroupLayout(searchResultsPanel);
         searchResultsPanel.setLayout(searchResultsPanelLayout);
         searchResultsPanelLayout.setHorizontalGroup(
             searchResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         searchResultsPanelLayout.setVerticalGroup(
             searchResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 231, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -426,10 +412,10 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(FriendsTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                     .addComponent(searchResultsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,7 +458,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
                 .addGap(27, 27, 27)
                 .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE))
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -534,7 +520,6 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     private javax.swing.JLabel profileCounter;
     private javax.swing.JScrollPane scrollPane;
     private Components.SearchBar searchBar;
-    private javax.swing.JPanel searchResultsContainer;
     private javax.swing.JPanel searchResultsPanel;
     private javax.swing.JLabel username;
     private Components.SelectionButton yourActBtn;
