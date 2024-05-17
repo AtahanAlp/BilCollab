@@ -45,8 +45,9 @@ public class ActivityItem extends javax.swing.JPanel {
     }
     
     public ActivityItem(Activity activity, User user) {
+       
         initComponents();
-        
+        //jScrollPane_Participants.setVisible(false);
         this.activity = activity;
         this.user = user;
         
@@ -173,6 +174,7 @@ public class ActivityItem extends javax.swing.JPanel {
         description.setAlignmentY(0.0F);
         description.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+        button_Participants.setBackground(new java.awt.Color(255, 204, 204));
         button_Participants.setText("Participants");
         button_Participants.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,6 +265,7 @@ public class ActivityItem extends javax.swing.JPanel {
     public void addParticipant(String username) {
         listModel.addElement(username);
     }
+
     
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
         User currentUser = getCurrentUser();
@@ -293,12 +296,8 @@ public class ActivityItem extends javax.swing.JPanel {
 
         jScrollPane_Participants.setVisible(true);
         
-        for(int i = 0; i < activity.getParticipants().size(); i++){
-            String username = activity.getParticipants().get(i).getUsername();
-            addParticipant(username);
-        }
-        
-        
+        addListItems();
+        button_Participants.setEnabled(false);
     }//GEN-LAST:event_button_ParticipantsActionPerformed
     
     public void saveArrayToDatabase() {
@@ -332,6 +331,13 @@ public class ActivityItem extends javax.swing.JPanel {
         }
           
 
+    }
+    
+    public void addListItems(){
+        for(int i = 0; i < activity.getParticipants().size(); i++){
+            String username = activity.getParticipants().get(i).getUsername();
+            addParticipant(username);
+        }
     }
 
 
