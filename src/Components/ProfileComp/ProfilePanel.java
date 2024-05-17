@@ -30,6 +30,7 @@ import javax.swing.border.EmptyBorder;
  */
 public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel{
     private User user;
+    private JPanel searchResultsContainer; 
     
     
     public ProfilePanel() {
@@ -41,6 +42,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
                 searchResultsPanel.setVisible(true);
             }});
         
+        searchBar.setVisible(true);
         description.setWrapStyleWord(true);
         description.setLineWrap(true);
         description.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -51,7 +53,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         displayName.setBackground(new Color(0,0,0,0));
         displayName.setDocument(new TextCharLimit(20));
        
-        searchBar.setVisible(true);
+        
         
         buttonGroup.add(yourActBtn);
         buttonGroup.add(joinedActBtn);
@@ -67,13 +69,24 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setViewportBorder(null);
         
+        searchResultsContainer = new JPanel(); 
+        searchResultsContainer.setLayout(new BorderLayout()); 
+         
+        add(searchBar, BorderLayout.NORTH); 
+        add(searchResultsContainer, BorderLayout.CENTER); 
+ 
+        searchResultsPanel = new javax.swing.JPanel(); 
+        searchResultsPanel.setLayout(new GridLayout(0, 1)); 
+        searchResultsPanel.setOpaque(false); 
+        
+        searchResultsContainer.add(searchResultsPanel, BorderLayout.CENTER); 
+ 
+        // Configure output panel layout 
+        GridLayout layout = new GridLayout(0, 1); 
+        layout.setVgap(25); 
+        outputPanel.setLayout(layout); 
         
         
-        GridLayout layout = new GridLayout(0, 1);
-        layout.setVgap(25);
-        searchResultsPanel.setLayout(layout);
-        
-         searchResultsPanel.setVisible(false); 
         
     }
 
