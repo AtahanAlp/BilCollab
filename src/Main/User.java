@@ -352,10 +352,9 @@ public class User {
                 Connection connect = DatabaseConnection.getConnection();
 
                 Statement statement = connect.createStatement();
-                
                 category = "%" + category + "%"; // The '%' is a wildcard character that matches any number of characters
 
-                PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM activity WHERE cateogy LIKE ?");;
+                PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM activity WHERE category LIKE ?");;
                 preparedStatement.setString(1, category);
 
                 ResultSet resultSet = preparedStatement.executeQuery();
