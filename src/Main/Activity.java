@@ -107,6 +107,27 @@ public class Activity {
     public int getAttendence() {
         return participants.size();
     }
+    
+    /**
+     * 
+     * @param user
+     * @return 
+     */
+    public boolean contains(User user){
+        int num = participants.size();
+        boolean isContain = true;
+        
+        for(int i = 0; i < num; i ++){
+            if(participants.get(i).getId() == user.getId()){
+                isContain = true;
+            }
+            else{
+                isContain = false;
+            }
+        }
+        
+        return isContain;
+    }
 
     public void addParticipants(int userId) {
     try (Connection conn = DatabaseConnection.getConnection()) {
