@@ -290,6 +290,7 @@ public class ActivityItem extends javax.swing.JPanel {
         {
             joinBtn.setText("FULL");
         }
+        setQuotaDisplay();
         
     }//GEN-LAST:event_joinBtnActionPerformed
 
