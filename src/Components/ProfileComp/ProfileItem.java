@@ -6,10 +6,7 @@ package Components.ProfileComp;
 
 import Main.User;
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -23,23 +20,18 @@ public class ProfileItem extends javax.swing.JPanel {
     private User user;
     private String username;
   
-    public ProfileItem(User user) throws IOException {
+    public ProfileItem(User user) {
         initComponents();
         setBackground(Color.BLACK);
         this.user = user;
         this.userNameLabel.setText(username);
         this.nameLabel.setText(user.getDisplayName());
-        try {
-                BufferedImage defaultPic = ImageIO.read(getClass().getResource("/icons/user.png"));
-                profileImage.setIcon(new ImageIcon(defaultPic.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        profileImage.setIcon(new ImageIcon(getClass().getResource("/icons/user.png")));
         
     }
     
      public JButton getAddFriendButton() {
-        return getAddFriendButton;
+        return addFriend;
     }
      
 
@@ -54,54 +46,61 @@ public class ProfileItem extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        profileImage = new Components.ImageAvatar();
+        addFriend = new Components.Button();
         userNameLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
-        profileImage = new Components.ImageAvatar();
-        getAddFriendButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(445, 217));
+
+        addFriend.setText("ADD FRIEND");
+        addFriend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFriendActionPerformed(evt);
+            }
+        });
+        profileImage.add(addFriend);
+        addFriend.setBounds(0, 10, 100, 40);
 
         userNameLabel.setText("jLabel1");
 
         nameLabel.setText("jLabel1");
-
-        getAddFriendButton.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(120, 120, 120)
                 .addComponent(userNameLabel)
                 .addGap(18, 18, 18)
                 .addComponent(nameLabel)
-                .addGap(42, 42, 42)
-                .addComponent(getAddFriendButton)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameLabel)
-                            .addComponent(userNameLabel)
-                            .addComponent(getAddFriendButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(95, 95, 95)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(userNameLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(77, Short.MAX_VALUE)
+                .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addFriendActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton getAddFriendButton;
+    private Components.Button addFriend;
     private javax.swing.JLabel nameLabel;
     private Components.ImageAvatar profileImage;
     private javax.swing.JLabel userNameLabel;
