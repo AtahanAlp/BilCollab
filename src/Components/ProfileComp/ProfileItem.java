@@ -8,13 +8,19 @@ import Components.AppFrame;
 import Main.User;
 import java.awt.Color;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 >>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
+=======
+import java.awt.Image;
+>>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -28,12 +34,13 @@ public class ProfileItem extends javax.swing.JPanel {
     private User user;
     private String username;
   
-    public ProfileItem(User user) {
+    public ProfileItem(User user) throws IOException {
         initComponents();
         setBackground(Color.WHITE);
         this.user = user;
         this.userNameLabel.setText(username);
         this.nameLabel.setText(user.getDisplayName());
+<<<<<<< HEAD
 <<<<<<< HEAD
         profileImage.setIcon(new ImageIcon(getClass().getResource("/icons/user.png")));
 =======
@@ -60,11 +67,19 @@ public class ProfileItem extends javax.swing.JPanel {
             }
         });
 >>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
+=======
+        try {
+                BufferedImage defaultPic = ImageIO.read(getClass().getResource("/icons/user.png"));
+                profileImage.setIcon(new ImageIcon(defaultPic.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+>>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
         
     }
     
      public JButton getAddFriendButton() {
-        return addFriend;
+        return getAddFriendButton;
     }
      public JButton getProfileButton() {
         return profileButton;
@@ -82,31 +97,26 @@ public class ProfileItem extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        profileImage = new Components.ImageAvatar();
-        addFriend = new Components.Button();
         userNameLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         addFriend = new Components.Button();
         profileButton = new Components.Button();
 >>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
+=======
+        profileImage = new Components.ImageAvatar();
+        getAddFriendButton = new javax.swing.JButton();
+>>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
 
         setPreferredSize(new java.awt.Dimension(445, 217));
-
-        addFriend.setText("ADD FRIEND");
-        addFriend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addFriendActionPerformed(evt);
-            }
-        });
-        profileImage.add(addFriend);
-        addFriend.setBounds(0, 10, 100, 40);
 
         userNameLabel.setText("jLabel1");
 
         nameLabel.setText("jLabel1");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         addFriend.setText("button1");
@@ -119,19 +129,30 @@ public class ProfileItem extends javax.swing.JPanel {
         });
 
 >>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
+=======
+        getAddFriendButton.setText("jButton1");
+
+>>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
 <<<<<<< HEAD
+<<<<<<< HEAD
                 .addGap(120, 120, 120)
 =======
                 .addGap(89, 89, 89)
 >>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
+=======
+                .addGap(14, 14, 14)
+                .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+>>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
                 .addComponent(userNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameLabel)
+<<<<<<< HEAD
 <<<<<<< HEAD
                 .addGap(18, 18, 18)
                 .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,10 +164,16 @@ public class ProfileItem extends javax.swing.JPanel {
                     .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
 >>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
+=======
+                .addGap(42, 42, 42)
+                .addComponent(getAddFriendButton)
+                .addContainerGap(103, Short.MAX_VALUE))
+>>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
 <<<<<<< HEAD
                 .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -184,9 +211,25 @@ public class ProfileItem extends javax.swing.JPanel {
     }//GEN-LAST:event_profileButtonActionPerformed
 >>>>>>> 88bc71bec067f7f9dc16ee7474a5ed0cf4efcaed
 
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameLabel)
+                            .addComponent(userNameLabel)
+                            .addComponent(getAddFriendButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+>>>>>>> parent of 72eeb3f (Revert "fixed the size of profile image")
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Components.Button addFriend;
+    private javax.swing.JButton getAddFriendButton;
     private javax.swing.JLabel nameLabel;
     private Components.Button profileButton;
     private javax.swing.JLabel userNameLabel;
