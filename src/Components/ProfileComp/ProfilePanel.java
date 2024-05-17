@@ -30,11 +30,15 @@ import javax.swing.border.EmptyBorder;
  */
 public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel{
     private User user;
-    private JPanel searchResultsContainer;
+    
     
     public ProfilePanel() {
         initComponents();
-        
+        searchResultsContainer.setLayout(new BorderLayout());
+        add(searchBar, BorderLayout.NORTH);
+        add(searchResultsContainer, BorderLayout.CENTER);
+        searchResultsContainer.add(searchResultsPanel, BorderLayout.CENTER);
+    
         searchBar.setCharLimit(50);
         searchBar.searchBtn.addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,21 +76,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setViewportBorder(null);
         
-        searchResultsContainer = new JPanel();
-        searchResultsContainer.setLayout(new BorderLayout());
         
-        // Add components to the ProfilePanel
-        add(searchBar, BorderLayout.NORTH);
-        add(searchResultsContainer, BorderLayout.CENTER);
-
-        // Set up search results panel
-        searchResultsPanel = new javax.swing.JPanel();
-        searchResultsPanel.setLayout(new GridLayout(0, 1));
-        searchResultsPanel.setOpaque(false);
-        
-        searchResultsContainer.add(searchResultsPanel, BorderLayout.CENTER);
-
-        // Configure output panel layout
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(25);
         outputPanel.setLayout(layout);
@@ -265,6 +255,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         descriptionLbl = new javax.swing.JLabel();
         profileCounter = new javax.swing.JLabel();
         searchResultsPanel = new javax.swing.JPanel();
+        searchResultsContainer = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(102, 255, 255));
         setMaximumSize(new java.awt.Dimension(1150, 800));
@@ -386,15 +377,26 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         profileCounter.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         profileCounter.setForeground(new java.awt.Color(102, 102, 102));
 
+        javax.swing.GroupLayout searchResultsContainerLayout = new javax.swing.GroupLayout(searchResultsContainer);
+        searchResultsContainer.setLayout(searchResultsContainerLayout);
+        searchResultsContainerLayout.setHorizontalGroup(
+            searchResultsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        searchResultsContainerLayout.setVerticalGroup(
+            searchResultsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 141, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout searchResultsPanelLayout = new javax.swing.GroupLayout(searchResultsPanel);
         searchResultsPanel.setLayout(searchResultsPanelLayout);
         searchResultsPanelLayout.setHorizontalGroup(
             searchResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(searchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         searchResultsPanelLayout.setVerticalGroup(
             searchResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 141, Short.MAX_VALUE)
+            .addComponent(searchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -504,7 +506,6 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
             if(newDescription != null) {
                 user.setDescription(newDescription);
         
-                // Update the description text area with the new description
                 description.setText(newDescription);
             }
             // Disable editing mode and save the changes
@@ -538,6 +539,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     private javax.swing.JLabel profileCounter;
     private javax.swing.JScrollPane scrollPane;
     private Components.SearchBar searchBar;
+    private javax.swing.JPanel searchResultsContainer;
     private javax.swing.JPanel searchResultsPanel;
     private javax.swing.JLabel username;
     private Components.SelectionButton yourActBtn;
