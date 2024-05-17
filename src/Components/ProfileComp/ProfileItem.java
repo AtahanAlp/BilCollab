@@ -22,30 +22,19 @@ public class ProfileItem extends javax.swing.JPanel {
   
     public ProfileItem(User user) {
         initComponents();
-        setBackground(Color.WHITE);
+        setBackground(Color.BLACK);
         this.user = user;
-        updateUIComponents();
+        this.userNameLabel.setText(username);
+        this.nameLabel.setText(user.getDisplayName());
+        profileImage.setIcon(new ImageIcon(getClass().getResource("/icons/user.png")));
+        
     }
     
      public JButton getAddFriendButton() {
         return addFriend;
     }
      
-    private void updateUIComponents() {
-        userNameLabel.setText(user.getUsername());
-        nameLabel.setText(user.getDisplayName());
-        
-        BufferedImage profilePic = user.getProfilePic();
-        if (profilePic != null) 
-        {
-            profileImage.setIcon(new ImageIcon(profilePic));
-        } 
-        else 
-        {
-            profileImage.setIcon(new ImageIcon(getClass().getResource("/icons/user.png")));
-        }
 
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

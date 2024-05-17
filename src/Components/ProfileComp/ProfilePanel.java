@@ -32,8 +32,7 @@ import javax.swing.border.EmptyBorder;
 public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel {
 
     private User user;
-    private JPanel searchResultsContainer;
-
+    
     public ProfilePanel() {
         initComponents();
    
@@ -55,12 +54,6 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         displayName.setBackground(new Color(0, 0, 0, 0));
         displayName.setDocument(new TextCharLimit(20));
 
-        searchBar.setCharLimit(22);
-        searchBar.searchBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                user.sendFriendRequest(searchBar.getText().trim());
-            }
-        });
         searchBar.setVisible(true);
 
         buttonGroup.add(yourActBtn);
@@ -80,6 +73,8 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(25);
         outputPanel.setLayout(layout);
+        
+        
 
     }
 
@@ -110,6 +105,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
 
     public void loadSearchProfiles() {
         outputProfilePanel.removeAll();
+        revalidate();
         scrollPane.getVerticalScrollBar().setValue(0);
 
         String searchText = searchBar.getText().trim();
