@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -82,11 +83,6 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
 
     }
 
-    private ProfilePanel(User userProfile) {
-        AppFrame appFrame = new AppFrame(user);
-        openUserProfile(userProfile, appFrame);
-    }
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -123,11 +119,20 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
              User profile = foundUsers.get(i);
             ProfileItem profileItem = new ProfileItem(profile);
             outputProfilePanel.add(profileItem);
+            
+            boolean isFriend = user.checkFriend(profile);
+            if (isFriend) 
+            {
+                profileItem.getAddFriendButton().setText("DELETE");
+            } 
+            else 
+            {
+                profileItem.getAddFriendButton().setText("ADD FRIEND");
+            }
             profileItem.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-
-                    AppFrame appFrame = new AppFrame(profile);
+                  switchToProfilePanel();
                 }
             });
             
@@ -138,15 +143,17 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         outputProfilePanel.revalidate();
         outputProfilePanel.repaint();
     }
-
-    public void openUserProfile(User userProfile, AppFrame appFrame) {
-        ProfilePanel userProfilePanel = new ProfilePanel(userProfile);
-
-        appFrame.getContentPane().removeAll();
-        appFrame.getContentPane().add(userProfilePanel, BorderLayout.CENTER);
-        appFrame.revalidate();
-        appFrame.repaint();
+    public void switchToProfilePanel() {
+    AppFrame appFrame = (AppFrame) SwingUtilities.getWindowAncestor(this);
+        if (appFrame != null) {
+             RefreshablePanel profilePanel = appFrame.getProfilePanel();
+             if (profilePanel != null) {
+                 appFrame.switchPanels((JPanel) profilePanel);
+                
+            }
+        }
     }
+
 
     private ArrayList<User> searchUserProfiles(String searchText) {
 

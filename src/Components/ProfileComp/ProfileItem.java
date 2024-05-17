@@ -8,6 +8,7 @@ import Main.User;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 
 /**
@@ -26,6 +27,10 @@ public class ProfileItem extends javax.swing.JPanel {
         updateUIComponents();
     }
     
+     public JButton getAddFriendButton() {
+        return addFriend;
+    }
+     
     private void updateUIComponents() {
         userNameLabel.setText(user.getUsername());
         nameLabel.setText(user.getDisplayName());

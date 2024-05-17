@@ -54,6 +54,7 @@ public class AppFrame extends javax.swing.JFrame {
         notificationBtn.setColorClicked(new Color(177, 177, 177));
         
         infoPanel.setBorder(new MatteBorder(0, 0, 1, 0, new Color(220, 220, 220)));
+        
     }
 
     /**
@@ -293,6 +294,7 @@ public class AppFrame extends javax.swing.JFrame {
             }
         });
     }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Components.ActivitiesComp.ActivitiesPanel activitiesPanel;

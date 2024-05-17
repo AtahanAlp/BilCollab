@@ -4,16 +4,18 @@
  */
 package Main;
 
+import Components.ProfileComp.ProfilePanel;
 import java.sql.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Atahan
  */
-public class User {
+public class User implements ProfilePanelProvider{
     //public static final BufferedImage DEFAULT_PROFILE_PIC = ImageIO.read(new File("profilePic.png"));
     private static User currentUser;
     private int id;
@@ -30,10 +32,9 @@ public class User {
     private ArrayList<Notification> notifications;
     private ArrayList<FriendRequest> friendRequests;
     private ArrayList<User> friends;
+    private ProfilePanelProvider profilePanelProvider;
 
-    public User() {
-        this("ali", "mail", "123");
-    }
+  
 
     public User(String username, String mail, String password) {
         this.username = username;
@@ -51,6 +52,9 @@ public class User {
         notifications = new ArrayList<Notification>();
         friendRequests = new ArrayList<FriendRequest>();
         friends = new ArrayList<User>();
+    }
+    public User(ProfilePanelProvider profilePanelProvider) {
+        this.profilePanelProvider = profilePanelProvider;
     }
 
     public void saveToDatabase() {
@@ -459,7 +463,9 @@ public ArrayList<User> getFriends(int userId) {
 
     return friendsList;
 }
-
+public interface ProfilePanelProvider {
+    JPanel getProfilePanel();
+}
 
 
     //setter methods
@@ -599,5 +605,14 @@ public ArrayList<User> getFriends(int userId) {
     private boolean checkDateCollision(Date startDate, Date endDate) {
         //TODO
         return true;
+    }
+    public void switchToProfilePanel() {
+        JPanel profilePanel = profilePanelProvider.getProfilePanel();
+        
+    }
+    
+    public JPanel getProfilePanel(User user) {
+        ProfilePanel profilePanel = new ProfilePanel();
+        return profilePanel;
     }
 }
