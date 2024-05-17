@@ -11,17 +11,14 @@ import Main.User;
 import static Main.User.getCurrentUser;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Graphics;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -31,12 +28,15 @@ public class ActivityItem extends javax.swing.JPanel {
     
     public Activity activity;
     private User user;
+    private DefaultListModel<String> listModel;
     
     /**
      * Creates new form activityItem
      */
     public ActivityItem() {
         initComponents();
+        
+        jScrollPane_Participants.setVisible(false);
         
         joinBtn.setBgColor(Button.RED);
         joinBtn.setColorClicked(new Color(155, 2, 17));
@@ -49,6 +49,10 @@ public class ActivityItem extends javax.swing.JPanel {
         
         this.activity = activity;
         this.user = user;
+        
+        listModel = new DefaultListModel<>();
+        jListParticipants.setModel(listModel);
+
         
         joinBtn.setBgColor(Button.RED);
         joinBtn.setColorClicked(new Color(155, 2, 17));
@@ -93,6 +97,9 @@ public class ActivityItem extends javax.swing.JPanel {
         profilePic = new Components.ImageAvatar();
         roundedPanel2 = new Components.RoundedPanel();
         description = new javax.swing.JLabel();
+        button_Participants = new Components.Button();
+        jScrollPane_Participants = new javax.swing.JScrollPane();
+        jListParticipants = new javax.swing.JList<>();
 
         setMaximumSize(new java.awt.Dimension(2000, 2000));
         setMinimumSize(new java.awt.Dimension(985, 240));
@@ -166,6 +173,16 @@ public class ActivityItem extends javax.swing.JPanel {
         description.setAlignmentY(0.0F);
         description.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+        button_Participants.setText("Participants");
+        button_Participants.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_ParticipantsActionPerformed(evt);
+            }
+        });
+
+        jListParticipants.setToolTipText("");
+        jScrollPane_Participants.setViewportView(jListParticipants);
+
         javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
         roundedPanel1Layout.setHorizontalGroup(
@@ -186,18 +203,25 @@ public class ActivityItem extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
                         .addComponent(quota, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(joinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane_Participants, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(timeDesc, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(activityTime, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(40, 40, 40))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
+                                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(timeDesc, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(activityTime, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(40, 40, 40))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
+                                .addComponent(button_Participants, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67))))))
         );
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,12 +231,17 @@ public class ActivityItem extends javax.swing.JPanel {
                     .addGroup(roundedPanel1Layout.createSequentialGroup()
                         .addComponent(timeDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(activityTime, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91)
-                        .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(joinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(quota))
-                        .addGap(23, 23, 23))
+                        .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                                .addComponent(activityTime, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(button_Participants, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(joinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(quota)))
+                            .addComponent(jScrollPane_Participants, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))
                     .addGroup(roundedPanel1Layout.createSequentialGroup()
                         .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(roundedPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -229,6 +258,12 @@ public class ActivityItem extends javax.swing.JPanel {
         add(roundedPanel1, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
 
+
+    
+    public void addParticipant(String username) {
+        listModel.addElement(username);
+    }
+    
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
         User currentUser = getCurrentUser();
         
@@ -253,6 +288,18 @@ public class ActivityItem extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_joinBtnActionPerformed
+
+    private void button_ParticipantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_ParticipantsActionPerformed
+
+        jScrollPane_Participants.setVisible(true);
+        
+        for(int i = 0; i < activity.getParticipants().size(); i++){
+            String username = activity.getParticipants().get(i).getUsername();
+            addParticipant(username);
+        }
+        
+        
+    }//GEN-LAST:event_button_ParticipantsActionPerformed
     
     public void saveArrayToDatabase() {
         String ids = "";
@@ -290,8 +337,11 @@ public class ActivityItem extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityTime;
+    private Components.Button button_Participants;
     private javax.swing.JLabel creatorName;
     private javax.swing.JLabel description;
+    private javax.swing.JList<String> jListParticipants;
+    private javax.swing.JScrollPane jScrollPane_Participants;
     public Components.Button joinBtn;
     private Components.ImageAvatar profilePic;
     private javax.swing.JLabel quota;
