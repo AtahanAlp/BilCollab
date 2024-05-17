@@ -38,6 +38,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         searchBar.searchBtn.addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadSearchProfiles();
+                searchResultsPanel.setVisible(true);
             }});
         
         description.setWrapStyleWord(true);
@@ -71,6 +72,8 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(25);
         searchResultsPanel.setLayout(layout);
+        
+         searchResultsPanel.setVisible(false); 
         
     }
 
