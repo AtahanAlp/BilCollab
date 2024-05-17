@@ -239,8 +239,7 @@ public class ActivityItem extends javax.swing.JPanel {
             return;
         
         }
-        if (activity.getAttendence() < activity.getQuota()) {
-        
+        else if (activity.getParticipants().size() < activity.getQuota()) {
             activity.joinUser(user);
             setQuotaDisplay();
 
@@ -257,7 +256,7 @@ public class ActivityItem extends javax.swing.JPanel {
     
     public void saveArrayToDatabase() {
         String ids = "";
-        for(int i = 0; i < activity.getAttendence() ; i++)
+        for(int i = 0; i < activity.getParticipants().size() ; i++)
         {
             ids += activity.getParticipants().get(i).getId();
             
