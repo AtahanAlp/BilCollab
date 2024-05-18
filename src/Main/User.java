@@ -448,6 +448,9 @@ public class User {
         stmt.setInt(1, this.id);
         stmt.setInt(2, recipient.getId());
         stmt.executeUpdate();
+        
+         String description = this.username + " has sent you a friend request!";
+        recipient.createNotification(description, this);
         return true;
     } catch (SQLException e) {
         e.printStackTrace();
@@ -607,23 +610,24 @@ public interface ProfilePanelProvider {
         friendRequests.remove(request);
     }
 
-    public void createNotification(Notification notification) {
-    Connection connection = null;
-    PreparedStatement stmt = null;
+    public void createNotification(String description, User sender) {
+    Notification notification = new Notification(description, sender);
 
-    try {
-        connection = DatabaseConnection.getConnection();
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement pStatement = connection.prepareStatement(
+                 "INSERT INTO notification (information, sender_id, receiver_id) VALUES (?, ?, ?)")) {
 
-        String sql = "INSERT INTO notification ( content,  sender_id, receiver_id) VALUES ( ?, ?, ?)";
-        stmt = connection.prepareStatement(sql);
-        stmt.setString(2, notification.getDescription());
-        stmt.setInt(4, notification.getSender().getId());
-        stmt.setInt(5, this.id); 
+        pStatement.setString(4, description);
+        pStatement.setInt(3, sender.getId());
+        pStatement.setInt(6, this.id);
+        pStatement.executeUpdate();
 
-        stmt.executeUpdate();
     } catch (SQLException e) {
         e.printStackTrace();
-    } 
+    }
+
+    // Add the notification to the user's notifications list
+    this.notifications.add(notification);
 }
 
     public boolean checkFriend(User user) {

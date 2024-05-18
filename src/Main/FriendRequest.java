@@ -18,7 +18,7 @@ public class FriendRequest {
         this.description = sender.getDisplayName() + "sent you a friend request.";
         this.receiver = receiver;
         this.sender = sender;
-        receiver.createNotification(new Notification(description, sender));
+        receiver.createNotification(this.description, sender);
     }
    
     public String getDescription() {

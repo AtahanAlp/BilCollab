@@ -173,7 +173,8 @@ public class MessagePanel extends javax.swing.JPanel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        receiver.createNotification(null);
+        String notificationDescription = "You have received a new message from " + sender.getDisplayName();
+        receiver.createNotification(notificationDescription, sender);
         addMsgToDisplay(message);
         MessageArea.setText("");
         MessageDisplay.revalidate();
