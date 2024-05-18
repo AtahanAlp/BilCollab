@@ -427,6 +427,22 @@ public class User {
     return notifications;
 }
 
+    public void removeRequest(FriendRequest request){
+    String sql = "DELETE FROM FriendRequest WHERE (sender_id = ?, receiver_id = ?) OR (sender_id = ?, receiver_id = ?)";
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, request.getSender().getId());
+        stmt.setInt(2, request.getReceiver().getId());
+        stmt.setInt(3, request.getSender().getId());
+        stmt.setInt(4, request.getReceiver().getId());
+        stmt.executeUpdate();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    }
+    
     public ArrayList<FriendRequest> getFriendRequests() {
         
          ArrayList<FriendRequest> friendRequests = new ArrayList<FriendRequest>();
