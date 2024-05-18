@@ -142,7 +142,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         desiredProfilePanel.setUser(desiredUser);
         appFrame.switchPanels(desiredProfilePanel);
     }
-}
+    }
 
 
     private ArrayList<User> searchUserProfiles(String searchText) {

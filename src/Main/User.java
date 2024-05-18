@@ -428,8 +428,26 @@ public class User {
 }
 
     public ArrayList<FriendRequest> getFriendRequests() {
-        return friendRequests;
+        
+         ArrayList<FriendRequest> friendRequests = new ArrayList<FriendRequest>();
+
+    try (Connection conn = DatabaseConnection.getConnection()) {
+        String query = "SELECT sender_id FROM FriendRequests WHERE reciever_id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                    int senderId = rs.getInt("sender_id");
+                    friendRequests.add(new FriendRequest(this, getUserWithId(id)));
+            }
+        }
+    } catch (SQLException e) {
+        // Handle SQLException
+        e.printStackTrace();
     }
+    return friendRequests;
+    }
+    
     public boolean sendFriendRequest(String username) {
     User recipient = getUserByUsername(username);
     if (recipient == null) {
@@ -468,7 +486,7 @@ private User getUserByUsername(String username) {
                 String mail = rs.getString("mail");
                 String password = rs.getString("password");
                 User user = new User(username, mail, password);
-                user.setId(rs.getInt("id")); // Assuming you have an `id` column or use another unique identifier
+                user.setId(rs.getInt("id")); // for the id of the user
                 return user;
             }
         }
@@ -528,8 +546,6 @@ public ArrayList<User> getFriends(int userId) {
                         if (friend != null) {
                             friendsList.add(friend);
                         } else {
-                            // Handle case where user is not found
-                            // Log a warning or take appropriate action
                             System.out.println("User with ID " + friendId + " not found.");
                         }
                     }
@@ -577,7 +593,7 @@ public interface ProfilePanelProvider {
     public void acceptRequest (FriendRequest request) {
        addFriend(request.getSender());
         try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "UPDATE users SET friends = CONCAT(COALESCE(friends, ''), ?) WHERE id = ?";
+            String query = "UPDATE user SET friends = CONCAT(COALESCE(friends, ''), ?) WHERE id = ?";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
             // Add sender to reciever
             stmt.setString(1, "/" + request.getSender().getId());
@@ -606,9 +622,6 @@ public interface ProfilePanelProvider {
         friends.remove(friend);
     }
 
-    public void removeRequest(FriendRequest request) {
-        friendRequests.remove(request);
-    }
 
     public void createNotification(String description, User sender) {
     Notification notification = new Notification(description, sender);
@@ -617,9 +630,9 @@ public interface ProfilePanelProvider {
          PreparedStatement pStatement = connection.prepareStatement(
                  "INSERT INTO notification (information, sender_id, receiver_id) VALUES (?, ?, ?)")) {
 
-        pStatement.setString(4, description);
-        pStatement.setInt(3, sender.getId());
-        pStatement.setInt(6, this.id);
+        pStatement.setString(1, description);
+        pStatement.setInt(2, sender.getId());
+        pStatement.setInt(3, this.id);
         pStatement.executeUpdate();
 
     } catch (SQLException e) {

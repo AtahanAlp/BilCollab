@@ -114,6 +114,7 @@ public class Activity {
      * @return 
      */
     public boolean contains(User user){
+        ArrayList<User> participants = getParticipants();
         int num = participants.size();
         boolean isContain = true;
         
@@ -168,8 +169,6 @@ public class Activity {
                         if (user != null) {
                             participants.add(user);
                         } else {
-                            // Handle case where user is not found
-                            // Log a warning or take appropriate action
                             System.out.println("User with ID " + userId + " not found.");
                         }
                     }
