@@ -16,16 +16,17 @@ import javax.swing.JOptionPane;
  * @author denizcaglar
  */
 public class ProfileItem extends javax.swing.JPanel {
-    
-    private User user;
-    private String username;
+    private User senderUser;
+    private User receiverUser;
+    private String receiverUsername;
   
-    public ProfileItem(User user) {
+    public ProfileItem(User senderUser, User receiverUser) {
         initComponents();
         setBackground(Color.WHITE);
-        this.user = user;
-        this.username = user.getUsername();
-        this.userNameLabel.setText("@" + username);
+         this.senderUser = senderUser;
+        this.receiverUser = receiverUser;
+        this.receiverUsername = receiverUser.getUsername();
+        this.userNameLabel.setText("@" + receiverUsername);
         
         addFriend.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -121,8 +122,8 @@ public class ProfileItem extends javax.swing.JPanel {
     }//GEN-LAST:event_profileButtonActionPerformed
 
     private void addFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendActionPerformed
-       user.sendFriendRequest(username);
-       JOptionPane.showMessageDialog(this, "Friend request sent to @" + username, "Friend Request Sent", JOptionPane.INFORMATION_MESSAGE);
+       senderUser.sendFriendRequest(receiverUsername);
+       JOptionPane.showMessageDialog(this, "Friend request sent to @" + receiverUsername, "Friend Request Sent", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_addFriendActionPerformed
 
 
