@@ -42,6 +42,9 @@ public class ProfileItem extends javax.swing.JPanel {
         
     }
     
+    public User getReceiverUser() {
+        return receiverUser;
+    }
      public JButton getAddFriendButton() {
         return addFriend;
     }

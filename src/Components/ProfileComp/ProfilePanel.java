@@ -134,16 +134,15 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         outputProfilePanel.revalidate();
         outputProfilePanel.repaint();
     }
-    public static void switchToProfilePanel(ProfileItem item) {
+   public static void switchToProfilePanel(ProfileItem item) {
     AppFrame appFrame = (AppFrame) SwingUtilities.getWindowAncestor(item);
-        if (appFrame != null) {
-             RefreshablePanel profilePanel = appFrame.getProfilePanel();
-             if (profilePanel != null) {
-                 appFrame.switchPanels((JPanel) profilePanel);
-                
-            }
-        }
+    if (appFrame != null) {
+        User desiredUser = item.getReceiverUser();
+        ProfilePanel desiredProfilePanel = new ProfilePanel();
+        desiredProfilePanel.setUser(desiredUser);
+        appFrame.switchPanels(desiredProfilePanel);
     }
+}
 
 
     private ArrayList<User> searchUserProfiles(String searchText) {
