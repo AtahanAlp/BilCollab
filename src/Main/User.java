@@ -448,7 +448,7 @@ public class User {
          ArrayList<FriendRequest> friendRequests = new ArrayList<FriendRequest>();
 
     try (Connection conn = DatabaseConnection.getConnection()) {
-        String query = "SELECT sender_id FROM FriendRequests WHERE reciever_id = ?";
+        String query = "SELECT sender_id FROM FriendRequest WHERE receiver_id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
