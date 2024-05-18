@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  *
  * @author Atahan
  */
-public class User implements ProfilePanelProvider{
+public class User {
     //public static final BufferedImage DEFAULT_PROFILE_PIC = ImageIO.read(new File("profilePic.png"));
     private static User currentUser;
     private int id;
@@ -608,8 +608,23 @@ public interface ProfilePanelProvider {
     }
 
     public void createNotification(Notification notification) {
-        //TODO
-    }
+    Connection connection = null;
+    PreparedStatement stmt = null;
+
+    try {
+        connection = DatabaseConnection.getConnection();
+
+        String sql = "INSERT INTO notification ( content,  sender_id, receiver_id) VALUES ( ?, ?, ?)";
+        stmt = connection.prepareStatement(sql);
+        stmt.setString(2, notification.getDescription());
+        stmt.setInt(4, notification.getSender().getId());
+        stmt.setInt(5, this.id); 
+
+        stmt.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } 
+}
 
     public boolean checkFriend(User user) {
         for(User u: getFriends(this.getId())){

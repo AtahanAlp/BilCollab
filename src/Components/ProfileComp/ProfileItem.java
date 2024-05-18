@@ -122,7 +122,7 @@ public class ProfileItem extends javax.swing.JPanel {
 
     private void addFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendActionPerformed
        user.sendFriendRequest(username);
-        JOptionPane.showMessageDialog(this, "Friend request sent to @" + username, "Friend Request Sent", JOptionPane.INFORMATION_MESSAGE);
+       JOptionPane.showMessageDialog(this, "Friend request sent to @" + username, "Friend Request Sent", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_addFriendActionPerformed
 
 
