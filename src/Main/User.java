@@ -391,35 +391,41 @@ public class User implements ProfilePanelProvider{
     }
 
     public ArrayList<Notification> getNotifications() {
-        notifications = new ArrayList<Notification>(); 
-         
-        Connection connection = null; 
-        PreparedStatement stmt = null; 
-        ResultSet rs = null; 
- 
-        try { 
-            connection = DatabaseConnection.getConnection(); 
-             
-            String sql = "SELECT information, sender_id FROM notification WHERE receiver_id = ?"; 
-            stmt = connection.prepareStatement(sql); 
-            stmt.setInt(1, id); 
-            rs = stmt.executeQuery(); 
-            while (rs.next()) { 
-                String info = rs.getString("information"); 
-                int senderId = rs.getInt("sender_id"); 
-                
-                User sender = getUserWithId(senderId); 
+    ArrayList<Notification> notifications = new ArrayList<>();
+    Connection connection = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
 
-                notifications.add(new Notification(info, sender)); 
-            } 
-        } catch (SQLException e) { 
-            e.printStackTrace(); 
-        } finally{            
-            DatabaseConnection.close(connection, stmt, rs); 
-        } 
-         
-        return notifications; 
+    try {
+        connection = DatabaseConnection.getConnection();
+
+        String sql = "SELECT id, creationDate, information, isSeen, sender_id, receiver_id FROM notification WHERE receiver_id = ?";
+        stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        rs = stmt.executeQuery();
+        
+        while (rs.next()) {
+            int notificationId = rs.getInt("id");
+            String creationDate = rs.getString("creationDate");
+            String description = rs.getString("information");
+            boolean isSeen = rs.getBoolean("isSeen");
+            int senderId = rs.getInt("sender_id");
+            int receiverId = rs.getInt("receiver_id");
+
+            User sender = getUserWithId(senderId);
+            User receiver = getUserWithId(receiverId);
+
+            Notification notification = new Notification(description, sender);
+            notifications.add(notification);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        DatabaseConnection.close(connection, stmt, rs);
     }
+
+    return notifications;
+}
 
     public ArrayList<FriendRequest> getFriendRequests() {
         return friendRequests;

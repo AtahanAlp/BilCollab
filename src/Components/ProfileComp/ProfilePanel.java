@@ -11,7 +11,6 @@ import Components.ScrollBarUI;
 import Components.TextCharLimit;
 import Main.Activity;
 import Main.User;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -19,7 +18,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.SwingUtilities;
@@ -119,19 +117,15 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
             boolean isFriend = user.checkFriend(profile);
             if (isFriend) 
             {
+                profileItem.getProfileButton().setText("VIEW");
                 profileItem.getAddFriendButton().setText("DELETE");
+                
             } 
             else 
             {
+                profileItem.getProfileButton().setText("CAN'T VIEW");
                 profileItem.getAddFriendButton().setText("ADD FRIEND");
             }
-            
-            profileItem.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                  switchToProfilePanel(profileItem);
-                }
-            });
             
         }
 
@@ -259,6 +253,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         descriptionLbl = new javax.swing.JLabel();
         profileCounter = new javax.swing.JLabel();
         outputProfilePanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         setBackground(new java.awt.Color(102, 255, 255));
         setMaximumSize(new java.awt.Dimension(1150, 800));
@@ -381,11 +376,13 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         outputProfilePanel.setLayout(outputProfilePanelLayout);
         outputProfilePanelLayout.setHorizontalGroup(
             outputProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
+            .addGroup(outputProfilePanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         outputProfilePanelLayout.setVerticalGroup(
             outputProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 189, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -521,6 +518,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
     private Components.SelectionButton editBtn;
     private javax.swing.JLabel friendsNo;
     private Components.ImageAvatar imageAvatar;
+    private javax.swing.JScrollPane jScrollPane1;
     private Components.SelectionButton joinedActBtn;
     private javax.swing.JPanel outputPanel;
     private javax.swing.JPanel outputProfilePanel;

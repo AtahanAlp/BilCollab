@@ -29,16 +29,13 @@ public class ProfileItem extends javax.swing.JPanel {
         initComponents();
         setBackground(Color.WHITE);
         this.user = user;
+        this.username = user.getUsername();
         this.userNameLabel.setText("@" + username);
+        
         addFriend.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                addFriendActionPerformed(e);
-            }
-
-            private void addFriendActionPerformed(ActionEvent e) {
-              user.sendFriendRequest(username);
-            }
+                user.sendFriendRequest(username);
+             }
         });
 
         // Add mouse listener to profileButton
@@ -84,6 +81,11 @@ public class ProfileItem extends javax.swing.JPanel {
         userNameLabel.setText("jLabel1");
 
         addFriend.setText("button1");
+        addFriend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFriendActionPerformed(evt);
+            }
+        });
 
         profileButton.setText("button1");
         profileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -107,12 +109,12 @@ public class ProfileItem extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addFriend, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
@@ -121,13 +123,17 @@ public class ProfileItem extends javax.swing.JPanel {
                             .addComponent(userNameLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addFriend, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(4, 4, 4))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         ProfilePanel.switchToProfilePanel(this);
     }//GEN-LAST:event_profileButtonActionPerformed
+
+    private void addFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addFriendActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
