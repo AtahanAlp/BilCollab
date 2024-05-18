@@ -161,11 +161,11 @@ public class AppFrame extends javax.swing.JFrame {
         notificationsPanel.openNotifications();
     }//GEN-LAST:event_notificationBtnActionPerformed
    
-    public void switchPanels(JPanel selectedPanel){
-        for (Component component : showPane.getComponents()) {
-            component.setVisible(false);
-        }
-        selectedPanel.setVisible(true);
+    public void switchPanels(JPanel selectedPanel) {
+        showPane.removeAll();
+        showPane.add(selectedPanel);
+        showPane.revalidate();
+        showPane.repaint();
     }
     
     public SideMenu getSideMenu(){
