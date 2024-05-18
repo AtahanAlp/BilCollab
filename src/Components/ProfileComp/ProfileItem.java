@@ -3,17 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Components.ProfileComp;
-
-import Components.AppFrame;
 import Main.User;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -34,19 +29,13 @@ public class ProfileItem extends javax.swing.JPanel {
         
         addFriend.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                user.sendFriendRequest(username);
-             }
+                addFriendActionPerformed(e);
+            }
         });
 
-        // Add mouse listener to profileButton
-        profileButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                profileButtonMouseClicked(e);
-            }
-
-            private void profileButtonMouseClicked(MouseEvent e) {
-                 ProfilePanel.switchToProfilePanel(ProfileItem.this);
+        profileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileButtonActionPerformed(evt);
             }
         });
         
@@ -132,7 +121,8 @@ public class ProfileItem extends javax.swing.JPanel {
     }//GEN-LAST:event_profileButtonActionPerformed
 
     private void addFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendActionPerformed
-        // TODO add your handling code here:
+       user.sendFriendRequest(username);
+        JOptionPane.showMessageDialog(this, "Friend request sent to @" + username, "Friend Request Sent", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_addFriendActionPerformed
 
 
