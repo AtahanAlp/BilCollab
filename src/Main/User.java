@@ -694,10 +694,6 @@ public interface ProfilePanelProvider {
     return users;
 }
 
-    private boolean checkDateCollision(Date startDate, Date endDate) {
-        //TODO
-        return true;
-    }
     public void switchToProfilePanel() {
         JPanel profilePanel = profilePanelProvider.getProfilePanel();
         

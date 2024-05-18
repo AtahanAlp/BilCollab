@@ -111,7 +111,7 @@ public class ProfilePanel extends javax.swing.JPanel implements RefreshablePanel
         ArrayList<User> foundUsers = searchUserProfiles(searchText);
         for (int i = foundUsers.size() - 1; i >= 0; i--) {
              User profile = foundUsers.get(i);
-            ProfileItem profileItem = new ProfileItem(profile);
+            ProfileItem profileItem = new ProfileItem(user,profile);
             outputProfilePanel.add(profileItem);
             
             boolean isFriend = user.checkFriend(profile);
