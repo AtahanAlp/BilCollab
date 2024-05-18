@@ -454,7 +454,7 @@ public class User {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                     int senderId = rs.getInt("sender_id");
-                    friendRequests.add(new FriendRequest(this, getUserWithId(id)));
+                    friendRequests.add(new FriendRequest(this, getUserWithId(senderId)));
             }
         }
     } catch (SQLException e) {
@@ -615,7 +615,7 @@ public interface ProfilePanelProvider {
             stmt.setString(1, "/" + request.getSender().getId());
             stmt.setInt(2, getId());
             stmt.executeUpdate();
-
+            
             // Add reciever to sender
             stmt.setString(1, "/" + getId());
             stmt.setInt(2, request.getSender().getId());
